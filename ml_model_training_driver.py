@@ -7,15 +7,12 @@ import pandas as pd
 import argparse
 import json
 from pathlib import Path
-from sklearn.linear_model import LogisticRegression
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.svm import SVC
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import StratifiedKFold
 import numpy as np
 
 # internal utils
-from preprocess import preprocess_data_for_fader_network
+from preprocess import preprocess_data_for_ml_models
 from logger_utils import get_logger, init_logger
 from config_utils import Params, initialize_seed
 
@@ -27,34 +24,18 @@ class SimpleNeuralNetwork(nn.Module):
     """ Neural network with better architecture for tabular data."""
     def __init__(self, input_size):
         super(SimpleNeuralNetwork, self).__init__()
-        # Architecture: input -> 256 -> 128 -> 64 -> 32 -> 1
-        # Following good practices for tabular data
+        # Architecture: input ->  258 -> 128 -> 64 -> 1
         self.layer1 = nn.Linear(input_size, 256)
-        self.bn1 = nn.BatchNorm1d(256)
-        self.dropout1 = nn.Dropout(0.3)
-        
         self.layer2 = nn.Linear(256, 128)
-        self.bn2 = nn.BatchNorm1d(128)
-        self.dropout2 = nn.Dropout(0.3)
-        
         self.layer3 = nn.Linear(128, 64)
-        self.bn3 = nn.BatchNorm1d(64)
-        self.dropout3 = nn.Dropout(0.2)
-        
-        self.layer4 = nn.Linear(64, 32)
-        self.bn4 = nn.BatchNorm1d(32)
-        self.dropout4 = nn.Dropout(0.2)
-        
-        self.output_layer = nn.Linear(32, 1)
-        
+        self.output_layer = nn.Linear(64, 1)
         self.relu = nn.ReLU()
         self.sigmoid = nn.Sigmoid()
         
     def forward(self, x):
-        x = self.dropout1(self.relu(self.bn1(self.layer1(x))))
-        x = self.dropout2(self.relu(self.bn2(self.layer2(x))))
-        x = self.dropout3(self.relu(self.bn3(self.layer3(x))))
-        x = self.dropout4(self.relu(self.bn4(self.layer4(x))))
+        x = self.relu(self.layer1(x))
+        x = self.relu(self.layer2(x))
+        x = self.relu(self.layer3(x))
         x = self.sigmoid(self.output_layer(x))
         return x
 
@@ -63,23 +44,18 @@ class SimpleNeuralNetwork(nn.Module):
 def main(params, device):
     
     # paths
-    
     MODEL_PATHS = {
-        "logistic": os.path.join(params.ml_models_dir, f"{params.dataset_name}__logistic_regression__.pkl"),
-        "rf":       os.path.join(params.ml_models_dir, f"{params.dataset_name}__random_forest__.pkl"),
-        "svm":      os.path.join(params.ml_models_dir, f"{params.dataset_name}__svm__.pkl"),
-        "nn":       os.path.join(params.ml_models_dir, f"{params.dataset_name}__nn__.pth"),
+        "nn": os.path.join(params.ml_models_dir, f"{params.dataset_name}__nn__.pth"),
     }
     
     # Get simple train/test splits for standard ML training
-    X_train, X_test, ht, y_train, y_test = preprocess_data_for_fader_network(params)        # Convert to PyTorch tensors for neural network
+    X_train, X_test, ht, y_train, y_test = preprocess_data_for_ml_models(params)        # Convert to PyTorch tensors for neural network
     X_train_tensor = torch.FloatTensor(X_train.values if hasattr(X_train, 'values') else X_train)
     X_test_tensor = torch.FloatTensor(X_test.values if hasattr(X_test, 'values') else X_test)
     y_train_tensor = torch.FloatTensor(y_train.values if hasattr(y_train, 'values') else y_train)
     y_test_tensor = torch.FloatTensor(y_test.values if hasattr(y_test, 'values') else y_test)
     
     # Using scikit-learn default settings
-
     logger.info("="*80)
     logger.info("STANDARD 80/20 TRAIN/TEST ML METHODOLOGY")
     logger.info("="*80)
@@ -88,7 +64,7 @@ def main(params, device):
     logger.info("Step 3: NO hyperparameter tuning - use reasonable defaults")
     logger.info("Step 4: Evaluate models on TEST set only (20% of data)")
     logger.info("="*80)
-
+    
     logger.info(f"Training data size: {len(X_train)} (80%)")
     logger.info(f"Test data size: {len(X_test)} (20%)")
     logger.info("Using reasonable default hyperparameters (no tuning needed)")
@@ -97,36 +73,6 @@ def main(params, device):
     default_nn_lr = 0.001
     
     input_size = X_train_tensor.shape[1]
-
-    # Train all models with default hyperparameters on training data
-    logger.info("\n Training Logistic Regression...")
-    lr_final = LogisticRegression(random_state=DETERMINISTIC_SEED, max_iter=1000)
-    lr_final.fit(X_train, y_train)  # Train on training set only
-    with open(MODEL_PATHS["logistic"], "wb") as f:
-        pickle.dump(lr_final, f)
-    acc_lr = accuracy_score(y_test, lr_final.predict(X_test))  # Evaluate on test set only
-    logger.info(f"Logistic Regression  - Test accuracy: {acc_lr:.4f}")
-    print(f"  - {os.path.basename(MODEL_PATHS['logistic'])}: Test={acc_lr:.3f}")
-
-    # Random Forest
-    logger.info("\n Training Random Forest...")
-    rf_final = RandomForestClassifier(random_state=DETERMINISTIC_SEED)
-    rf_final.fit(X_train, y_train)  # Train on training set only
-    with open(MODEL_PATHS["rf"], "wb") as f:
-        pickle.dump(rf_final, f)
-    acc_rf = accuracy_score(y_test, rf_final.predict(X_test))  # Evaluate on test set only
-    logger.info(f"Random Forest - Test accuracy: {acc_rf:.4f}")
-    print(f"  - {os.path.basename(MODEL_PATHS['rf'])}: Test={acc_rf:.3f}")
-
-    # SVM
-    logger.info("\n Training SVM...")
-    svm_final = SVC(random_state=DETERMINISTIC_SEED, probability=True)
-    svm_final.fit(X_train, y_train)  # Train on training set only
-    with open(MODEL_PATHS["svm"], "wb") as f:
-        pickle.dump(svm_final, f)
-    acc_svm = accuracy_score(y_test, svm_final.predict(X_test))  # Evaluate on test set only
-    logger.info(f"SVM - Test accuracy: {acc_svm:.4f}")
-    print(f"  - {os.path.basename(MODEL_PATHS['svm'])}: Test={acc_svm:.3f}")
 
     # Neural Network
     logger.info("\n Training Neural Network...")
@@ -181,8 +127,7 @@ if __name__ == "__main__":
     params = Params(config)
 
     # Resolve basic paths (relative to project root if not absolute)
-    # code/ml_model_training.py is in code/, so parent.parent is project root
-    project_root = Path(__file__).resolve().parent.parent
+    project_root = Path(__file__).resolve().parent
 
     # Helper to make path absolute relative to project root if it isn't already
     def resolve_path(path_str):

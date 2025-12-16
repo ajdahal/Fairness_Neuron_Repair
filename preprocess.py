@@ -91,12 +91,12 @@ def initialize_hypertransformer(params):
     return ht
 
 
-def preprocess_data_for_fader_network(params):
+def preprocess_data_for_ml_models(params):
     """
-    Preprocess data specifically for Fader Network training with 80/20 train/test split.
+    Preprocess data specifically for ML Network training with 80/20 train/test split.
     This function loads the pre-split data and doesn't balance sensitive attributes.
     """
-    logger.info("Preprocessing data for Fader Network training")
+    logger.info("Preprocessing data for ML Network training")
     logger.info("Loading pre-split train/test data created by download_split_dataset_router")
     
     train_file = params.train_file_path
@@ -126,6 +126,19 @@ def preprocess_data_for_fader_network(params):
         X_test = test_data
         Y_train = None
         Y_test = None
+    
+    # Initialize and fit HyperTransformer on features only (X_train, without output column)
+    logger.info("Initializing and fitting HyperTransformer on training features...")
+    ht = initialize_hypertransformer(params)
+    ht.fit(X_train)
+    logger.info("HyperTransformer fitted successfully on training features")
+    
+    ht_file_path = os.path.join(params.ml_models_dir, f"{os.path.splitext(os.path.basename(params.train_file_path))[0]}_hypertransformer.pkl")
+    
+    os.makedirs(params.ml_models_dir, exist_ok=True)
+    with open(ht_file_path, "wb") as f:
+        pickle.dump(ht, f)
+    logger.info(f"HyperTransformer saved to: {shorten_path_for_logging(ht_file_path)}")
     
     logger.info("Skipping sensitive attribute balancing for Fader Network to ensure consistent comparison with ML models.")
     logger.info(f"X_train length: {len(X_train)}, column headers (original distribution): {X_train.columns}")
