@@ -87,7 +87,7 @@ class SimpleNeuralNetwork(nn.Module):
             values = [values] * len(neuron_indices)
         
         for idx, val in zip(neuron_indices, values):
-            self.neuron_mask[idx] = val                                          # what is set in the values is the mask value for the neurons in the neuron_indices list?
+            self.neuron_mask[idx] = val                                          # the values of the indices are set to the values in the values list
         
         # Print the neuron mask after setting
         logger.info(f"Neuron mask after setting indices {neuron_indices} to {values}:")
@@ -113,7 +113,8 @@ def train_model(model, train_loader, criterion, optimizer, device, n_epochs=200)
             
             optimizer.zero_grad()
             outputs = model(X_batch)
-            loss = criterion(outputs.squeeze(), y_batch)
+            outputs = outputs.squeeze(dim=1)
+            loss = criterion(outputs, y_batch)
             loss.backward()
             optimizer.step()
             
@@ -148,7 +149,7 @@ def normalize_activations(activations_train, activations_test=None):
     scaler = MinMaxScaler()
     
     # Fit on training data and transform training activations
-    activations_train_norm = scaler.fit_transform(activations_train)            # how does this work? column by column or over the entire matrix or row by row?
+    activations_train_norm = scaler.fit_transform(activations_train)            # it's per column metric ... for each column, min and max are calculated and then the values are normalized to the range [0, 1] for that column
     
     # Log min/max per column for verification
     min_per_col = scaler.data_min_
@@ -239,7 +240,7 @@ def identify_biased_neurons(svm, model, top_k=10):
     logger.info(f"importance for the dropout of the neurons: {np.array2string(importance, precision=3, suppress_small=True)}")
     
     # Get direction from SVM (sign of coefficient)
-    direction = np.sign(svm.coef_[0])                       # what are different kinds of coefficients? Meaning of the magnitue of the coefficient?
+    direction = np.sign(svm.coef_[0])                      # the magnitude of the coefficient indicates the strength for one class and, the sign indicates the direction of the bias
     
     # Rank by importance
     top_indices = np.argsort(importance)[::-1][:top_k]      # every information needs to be sorted in descending order
@@ -277,13 +278,16 @@ def calculate_counterfactual_discrimination(model, X_test, ht, sensitive_attr, t
     X_test_patched, dummy_indices_orig = patch_test_categories(train_X, X_test, categorical_cols, "test")
     X_test_cf_patched, dummy_indices_cf = patch_test_categories(train_X, X_test_cf, categorical_cols, "test")
     
+    logger.info(f"Dummy indices for original data: {dummy_indices_orig}")
+    logger.info(f"Dummy indices for counterfactual data: {dummy_indices_cf}")
+    
     # Verify they have the same dummy indices (should be true if only gender changed)
     # If they differ, we cannot guarantee row alignment
     if dummy_indices_orig != dummy_indices_cf:
         raise ValueError(
             f"Dummy indices must match for correct row alignment: "
             f"original={dummy_indices_orig}, counterfactual={dummy_indices_cf}. "
-            f"This indicates preprocessing inconsistency that would cause incorrect comparisons."               # think about this in detail
+            f"This indicates preprocessing inconsistency that would cause incorrect comparisons."
         )
     logger.info(f"Dummy indices match: {dummy_indices_orig}")
     
@@ -327,7 +331,7 @@ def calculate_counterfactual_discrimination(model, X_test, ht, sensitive_attr, t
     X_test_tensor = torch.FloatTensor(X_test_transformed.values).to(device)
     X_test_cf_tensor = torch.FloatTensor(X_test_cf_transformed.values).to(device)
     
-    with torch.no_grad():                                        # why not batch the method for inference? - not sure about this
+    with torch.no_grad():
         original_pred = (model(X_test_tensor).cpu().numpy().flatten() > 0.5).astype(int)
         cf_pred = (model(X_test_cf_tensor).cpu().numpy().flatten() > 0.5).astype(int)
     
@@ -340,7 +344,7 @@ def calculate_counterfactual_discrimination(model, X_test, ht, sensitive_attr, t
     }
 
 
-def main(params, device):
+def main(params, device, timestamp):
     """Main function for Stage 1: Baseline analysis and bias detection."""
     
     start_time = datetime.now()
@@ -402,7 +406,7 @@ def main(params, device):
     train_model(model, train_loader, criterion, optimizer, device, n_epochs=300)
     
     # Save model
-    model_path = os.path.join(params.ml_models_dir, f"{params.dataset_name}__nn_stage1__.pth")
+    model_path = os.path.join(params.ml_models_dir, f"{params.dataset_name}__nn_stage1__{timestamp}.pth")
     torch.save(model.state_dict(), model_path)
     logger.info(f"Model saved to: {model_path}")
     
@@ -423,7 +427,7 @@ def main(params, device):
     logger.info(f"Normalized test activations shape: {activations_test_norm.shape}")
     
     # Train gender classifier on normalized activations
-    logger.info("\nTraining linear SVM to predict gender from normalized activations...")          # this is not the original gender labels, but the gender labels after preprocessing - needs to align at all times
+    logger.info("\nTraining linear SVM to predict gender from normalized activations...")          # needs to align at all times - gender labels after preprocessing
     svm, gender_map, svm_train_acc = train_gender_classifier(activations_train_norm, gender_train)
     
     # Evaluate gender classifier on normalized test activations
@@ -445,7 +449,7 @@ def main(params, device):
 
     
     # Save biased neurons
-    biased_neurons_path = os.path.join(params.ml_models_dir, f"{params.dataset_name}_biased_neurons_stage1.csv")
+    biased_neurons_path = os.path.join(params.ml_models_dir, f"{params.dataset_name}_biased_neurons_stage1_{timestamp}.csv")
     biased_df = pd.DataFrame(biased_neurons, columns=['neuron_idx', 'importance', 'direction'])
     biased_df.to_csv(biased_neurons_path, index=False)
     logger.info(f"Biased neurons saved to: {biased_neurons_path}")
@@ -457,7 +461,7 @@ def main(params, device):
         columns=[f'neuron_{i}' for i in range(64)]
     )
     activation_train_df['gender'] = gender_train
-    activation_train_path = os.path.join(params.ml_models_dir, f"{params.dataset_name}_activations_train_stage1.csv")
+    activation_train_path = os.path.join(params.ml_models_dir, f"{params.dataset_name}_activations_train_stage1_{timestamp}.csv")
     activation_train_df.to_csv(activation_train_path, index=False)
     logger.info(f"Training activations saved to: {activation_train_path}")
     
@@ -466,12 +470,12 @@ def main(params, device):
         columns=[f'neuron_{i}' for i in range(64)]
     )
     activation_test_df['gender'] = gender_test
-    activation_test_path = os.path.join(params.ml_models_dir, f"{params.dataset_name}_activations_test_stage1.csv")
+    activation_test_path = os.path.join(params.ml_models_dir, f"{params.dataset_name}_activations_test_stage1_{timestamp}.csv")
     activation_test_df.to_csv(activation_test_path, index=False)
     logger.info(f"Test activations saved to: {activation_test_path}")
     
     # Save gender classifier
-    svm_path = os.path.join(params.ml_models_dir, f"{params.dataset_name}_gender_classifier_stage1.pkl")
+    svm_path = os.path.join(params.ml_models_dir, f"{params.dataset_name}_gender_classifier_stage1_{timestamp}.pkl")
     with open(svm_path, 'wb') as f:
         pickle.dump({'svm': svm, 'gender_map': gender_map}, f)
     logger.info(f"Gender classifier saved to: {svm_path}")
@@ -555,7 +559,7 @@ def main(params, device):
         logger.info(f"Activations (first row) BEFORE masking: {np.round(activations_before, 2)}")
         
         # Note: This zeroes out the activations of these neurons, effectively removing their contribution to the next layer (equivalent to zeroing weights for this input)
-        model.set_neuron_mask(current_top_k_indices, [0.0] * len(current_top_k_indices))            # check this operation - is it applied to top k neurons or just from the top of the layer 
+        model.set_neuron_mask(current_top_k_indices, [0.0] * len(current_top_k_indices))            #  is it applied to top k neurons or just from the top of the layer?
         
         # Log activations for the first row AFTER masking (should see zeros at masked indices)
         with torch.no_grad():
@@ -667,8 +671,12 @@ if __name__ == "__main__":
     
     _, device = initialize_seed(args.seed)
     
+    # Generate timestamp for all files (format: YYYYMMDD_HH_MM)
+    start_time = datetime.now()
+    timestamp = start_time.strftime('%Y%m%d_%H_%M')
+    
     # Init logger
-    log_path = project_root / "logs" / "stage1_bias_analysis.log"
+    log_path = project_root / "logs" / f"stage1_bias_analysis_{timestamp}.log"
     init_logger(log_path)
     
-    main(params, device)
+    main(params, device, timestamp)
