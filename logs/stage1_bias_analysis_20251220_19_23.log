@@ -1,0 +1,221 @@
+2025-12-20 19:23:57,110 | INFO     | logger_utils.py:init_logger:48 | Log file created at Fairness_Neuron_Repair/logs/stage1_bias_analysis_20251220_19_23.log. Console will show WARNING level messages and above (default).
+2025-12-20 19:23:57,111 | INFO     | stage1_bias_analysis.py:main:365 | STAGE 1: BIAS ANALYSIS AND INLP REPAIR
+2025-12-20 19:23:57,111 | INFO     | stage1_bias_analysis.py:main:366 | Process start time: 2025-12-20 19:23:57
+2025-12-20 19:23:57,153 | INFO     | preprocess.py:preprocess_data_for_ml_models:99 | Preprocessing data for ML Network training
+2025-12-20 19:23:57,153 | INFO     | preprocess.py:preprocess_data_for_ml_models:100 | Loading pre-split train/test data created by download_split_dataset_router
+2025-12-20 19:23:57,191 | INFO     | preprocess.py:preprocess_data_for_ml_models:115 | Data loaded - Train: 24128, Test: 6032
+2025-12-20 19:23:57,194 | INFO     | preprocess.py:preprocess_data_for_ml_models:131 | Initializing and fitting HyperTransformer on training features...
+2025-12-20 19:23:57,509 | INFO     | preprocess.py:preprocess_data_for_ml_models:134 | HyperTransformer fitted successfully on training features
+2025-12-20 19:23:57,515 | INFO     | preprocess.py:preprocess_data_for_ml_models:141 | HyperTransformer saved to: Fairness_Neuron_Repair/ml_models/adult/adult_train_hypertransformer.pkl
+2025-12-20 19:23:57,515 | INFO     | preprocess.py:preprocess_data_for_ml_models:143 | Skipping sensitive attribute balancing for Fader Network to ensure consistent comparison with ML models.
+2025-12-20 19:23:57,515 | INFO     | preprocess.py:preprocess_data_for_ml_models:144 | X_train length: 24128, column headers (original distribution): Index(['age', 'workclass', 'education', 'marital-status', 'occupation',
+       'relationship', 'race', 'sex', 'capital-gain', 'capital-loss',
+       'hours-per-week', 'native-country'],
+      dtype='object')
+2025-12-20 19:23:57,515 | INFO     | preprocess.py:preprocess_data_for_ml_models:147 | Loading existing HyperTransformer from ML training stage...
+2025-12-20 19:23:57,521 | INFO     | preprocess.py:load_hypertransformer:44 | Successfully loaded HyperTransformer from: Fairness_Neuron_Repair/ml_models/adult/adult_train_hypertransformer.pkl
+2025-12-20 19:23:57,522 | INFO     | preprocess.py:preprocess_data_for_ml_models:149 | Successfully loaded pre-trained HyperTransformer - no retraining needed
+2025-12-20 19:23:57,532 | INFO     | preprocess.py:patch_test_categories:188 | Column native-country has 2 categories in training data that are missing in test data
+2025-12-20 19:23:57,535 | INFO     | preprocess.py:patch_test_categories:202 | Added 2 dummy rows to test data for categories missing in test set
+2025-12-20 19:23:57,535 | INFO     | preprocess.py:patch_test_categories:204 |   - native-country: 2 categories
+2025-12-20 19:23:57,808 | INFO     | preprocess.py:preprocess_data_for_ml_models:165 | X_train_transformed column headers: Index(['age', 'workclass.value0', 'workclass.value1', 'workclass.value2',
+       'workclass.value3', 'workclass.value4', 'workclass.value5',
+       'workclass.value6', 'education.value0', 'education.value1',
+       ...
+       'native-country.value31', 'native-country.value32',
+       'native-country.value33', 'native-country.value34',
+       'native-country.value35', 'native-country.value36',
+       'native-country.value37', 'native-country.value38',
+       'native-country.value39', 'native-country.value40'],
+      dtype='object', length=102)
+2025-12-20 19:23:58,007 | INFO     | stage1_bias_analysis.py:main:396 | Training data: 24128 samples
+2025-12-20 19:23:58,028 | INFO     | stage1_bias_analysis.py:main:397 | Gender distribution (Train): {'Male': 16355, 'Female': 7773}
+2025-12-20 19:23:58,030 | INFO     | stage1_bias_analysis.py:main:429 | 
+Data split: 20509 training samples, 3619 validation samples
+2025-12-20 19:23:58,030 | INFO     | stage1_bias_analysis.py:main:430 | Created DataLoaders: 81 train batches, 15 val batches (batch_size=256)
+2025-12-20 19:23:58,035 | INFO     | stage1_bias_analysis.py:main:436 | Class distribution: Class 0=18122, Class 1=6006, pos_weight=3.0173
+2025-12-20 19:23:59,196 | INFO     | stage1_bias_analysis.py:main:443 | 
+Training neural network (Baseline) with early stopping...
+2025-12-20 19:23:59,860 | INFO     | stage1_bias_analysis.py:train_model:145 | Epoch   0 | Train Loss: 0.823578 | Val Loss: 0.634620
+2025-12-20 19:24:00,313 | INFO     | stage1_bias_analysis.py:train_model:154 | Epoch   1 | New best validation loss: 0.609347
+2025-12-20 19:24:00,764 | INFO     | stage1_bias_analysis.py:train_model:154 | Epoch   2 | New best validation loss: 0.591756
+2025-12-20 19:24:01,218 | INFO     | stage1_bias_analysis.py:train_model:154 | Epoch   3 | New best validation loss: 0.580360
+2025-12-20 19:24:01,668 | INFO     | stage1_bias_analysis.py:train_model:154 | Epoch   4 | New best validation loss: 0.573940
+2025-12-20 19:24:03,613 | INFO     | stage1_bias_analysis.py:train_model:154 | Epoch   8 | New best validation loss: 0.567256
+2025-12-20 19:24:04,070 | INFO     | stage1_bias_analysis.py:train_model:154 | Epoch   9 | New best validation loss: 0.565494
+2025-12-20 19:24:06,320 | INFO     | stage1_bias_analysis.py:train_model:154 | Epoch  14 | New best validation loss: 0.563665
+2025-12-20 19:24:07,223 | INFO     | stage1_bias_analysis.py:train_model:154 | Epoch  16 | New best validation loss: 0.560956
+2025-12-20 19:24:09,166 | INFO     | stage1_bias_analysis.py:train_model:145 | Epoch  20 | Train Loss: 0.566496 | Val Loss: 0.562861
+2025-12-20 19:24:12,756 | INFO     | stage1_bias_analysis.py:train_model:154 | Epoch  28 | New best validation loss: 0.560429
+2025-12-20 19:24:14,692 | INFO     | stage1_bias_analysis.py:train_model:154 | Epoch  32 | New best validation loss: 0.559564
+2025-12-20 19:24:16,047 | INFO     | stage1_bias_analysis.py:train_model:154 | Epoch  35 | New best validation loss: 0.559004
+2025-12-20 19:24:16,499 | INFO     | stage1_bias_analysis.py:train_model:154 | Epoch  36 | New best validation loss: 0.558928
+2025-12-20 19:24:18,302 | INFO     | stage1_bias_analysis.py:train_model:145 | Epoch  40 | Train Loss: 0.558998 | Val Loss: 0.561794
+2025-12-20 19:24:21,583 | INFO     | stage1_bias_analysis.py:train_model:154 | Epoch  47 | New best validation loss: 0.558086
+2025-12-20 19:24:26,684 | INFO     | stage1_bias_analysis.py:train_model:154 | Epoch  58 | New best validation loss: 0.557196
+2025-12-20 19:24:27,586 | INFO     | stage1_bias_analysis.py:train_model:145 | Epoch  60 | Train Loss: 0.554798 | Val Loss: 0.568075
+2025-12-20 19:24:30,745 | INFO     | stage1_bias_analysis.py:train_model:154 | Epoch  67 | New best validation loss: 0.556622
+2025-12-20 19:24:36,727 | INFO     | stage1_bias_analysis.py:train_model:145 | Epoch  80 | Train Loss: 0.559032 | Val Loss: 0.579329
+2025-12-20 19:24:42,750 | INFO     | stage1_bias_analysis.py:train_model:154 | Epoch  93 | New best validation loss: 0.556434
+2025-12-20 19:24:46,057 | INFO     | stage1_bias_analysis.py:train_model:145 | Epoch 100 | Train Loss: 0.551096 | Val Loss: 0.556731
+2025-12-20 19:24:49,689 | INFO     | stage1_bias_analysis.py:train_model:154 | Epoch 108 | New best validation loss: 0.555198
+2025-12-20 19:24:50,143 | INFO     | stage1_bias_analysis.py:train_model:154 | Epoch 109 | New best validation loss: 0.555136
+2025-12-20 19:24:55,260 | INFO     | stage1_bias_analysis.py:train_model:145 | Epoch 120 | Train Loss: 0.551132 | Val Loss: 0.558089
+2025-12-20 19:25:01,320 | INFO     | stage1_bias_analysis.py:train_model:154 | Epoch 133 | New best validation loss: 0.554352
+2025-12-20 19:25:04,624 | INFO     | stage1_bias_analysis.py:train_model:145 | Epoch 140 | Train Loss: 0.553941 | Val Loss: 0.562914
+2025-12-20 19:25:13,845 | INFO     | stage1_bias_analysis.py:train_model:145 | Epoch 160 | Train Loss: 0.545665 | Val Loss: 0.569978
+2025-12-20 19:25:19,444 | INFO     | stage1_bias_analysis.py:train_model:154 | Epoch 172 | New best validation loss: 0.554287
+2025-12-20 19:25:23,201 | INFO     | stage1_bias_analysis.py:train_model:145 | Epoch 180 | Train Loss: 0.547694 | Val Loss: 0.560483
+2025-12-20 19:25:28,328 | INFO     | stage1_bias_analysis.py:train_model:154 | Epoch 191 | New best validation loss: 0.553606
+2025-12-20 19:25:32,431 | INFO     | stage1_bias_analysis.py:train_model:145 | Epoch 200 | Train Loss: 0.547296 | Val Loss: 0.563607
+2025-12-20 19:25:41,334 | INFO     | stage1_bias_analysis.py:train_model:154 | Epoch 219 | New best validation loss: 0.552887
+2025-12-20 19:25:41,791 | INFO     | stage1_bias_analysis.py:train_model:145 | Epoch 220 | Train Loss: 0.547626 | Val Loss: 0.555645
+2025-12-20 19:25:51,045 | INFO     | stage1_bias_analysis.py:train_model:145 | Epoch 240 | Train Loss: 0.547587 | Val Loss: 0.556373
+2025-12-20 19:26:00,417 | INFO     | stage1_bias_analysis.py:train_model:145 | Epoch 260 | Train Loss: 0.549455 | Val Loss: 0.563493
+2025-12-20 19:26:04,647 | INFO     | stage1_bias_analysis.py:train_model:160 | Early stopping triggered at epoch 269. No improvement for 50 epochs.
+2025-12-20 19:26:04,647 | INFO     | stage1_bias_analysis.py:train_model:161 | Best validation loss: 0.552887 at epoch 219
+2025-12-20 19:26:04,647 | INFO     | stage1_bias_analysis.py:train_model:167 | Restored best model with validation loss: 0.552887
+2025-12-20 19:26:04,648 | INFO     | stage1_bias_analysis.py:main:449 | Training completed. Best validation loss: 0.552887
+2025-12-20 19:26:04,649 | INFO     | stage1_bias_analysis.py:main:454 | Original Model saved to: /home/arjun/remote_github/Fairness_Testing/Fairness_Neuron_Repair/ml_models/adult/adult__nn_stage1_original__20251220_19_23.pth
+2025-12-20 19:26:04,650 | INFO     | stage1_bias_analysis.py:main:459 | 
+--- BASELINE EVALUATION (Before Surgery) ---
+2025-12-20 19:26:04,656 | INFO     | stage1_bias_analysis.py:main:475 | Baseline Income Accuracy: 82.1618%
+2025-12-20 19:26:04,657 | INFO     | stage1_bias_analysis.py:main:484 | Baseline Accuracy (Class 0): 80.9755% (4531 samples)
+2025-12-20 19:26:04,658 | INFO     | stage1_bias_analysis.py:main:487 | Baseline Accuracy (Class 1): 85.7428% (1501 samples)
+2025-12-20 19:26:04,675 | INFO     | preprocess.py:patch_test_categories:188 | Column native-country has 2 categories in training data that are missing in test data
+2025-12-20 19:26:04,678 | INFO     | preprocess.py:patch_test_categories:202 | Added 2 dummy rows to test data for categories missing in test set
+2025-12-20 19:26:04,678 | INFO     | preprocess.py:patch_test_categories:204 |   - native-country: 2 categories
+2025-12-20 19:26:04,689 | INFO     | preprocess.py:patch_test_categories:188 | Column native-country has 2 categories in training data that are missing in test data
+2025-12-20 19:26:04,691 | INFO     | preprocess.py:patch_test_categories:202 | Added 2 dummy rows to test data for categories missing in test set
+2025-12-20 19:26:04,691 | INFO     | preprocess.py:patch_test_categories:204 |   - native-country: 2 categories
+2025-12-20 19:26:04,998 | INFO     | stage1_bias_analysis.py:main:498 | Baseline Counterfactual Discrimination: 597/6032 (9.90%)
+2025-12-20 19:26:04,998 | INFO     | stage1_bias_analysis.py:main:507 | Baseline AOD: 0.141299
+2025-12-20 19:26:04,999 | INFO     | stage1_bias_analysis.py:main:508 | Baseline EOD: 0.089206
+2025-12-20 19:26:04,999 | INFO     | stage1_bias_analysis.py:main:513 | 
+--- STARTING INLP PROCESS ---
+2025-12-20 19:26:04,999 | INFO     | stage1_bias_analysis.py:main:516 | Extracting raw activations from layer 3...
+2025-12-20 19:26:05,096 | INFO     | stage1_bias_analysis.py:main:521 | 
+--- Activation Statistics (Before Projection) ---
+2025-12-20 19:26:05,096 | INFO     | stage1_bias_analysis.py:main:522 | Train activations shape: (24128, 64)
+2025-12-20 19:26:05,099 | INFO     | stage1_bias_analysis.py:main:523 | Train activations - Mean: 0.212743, Std: 0.229075
+2025-12-20 19:26:05,100 | INFO     | stage1_bias_analysis.py:main:524 | Train activations - L2 norm: 388.486084
+2025-12-20 19:26:05,100 | INFO     | stage1_bias_analysis.py:main:525 | Train activations - Min: 0.000000, Max: 1.659448
+2025-12-20 19:26:05,100 | INFO     | stage1_bias_analysis.py:main:526 | Test activations shape: (6032, 64)
+2025-12-20 19:26:05,101 | INFO     | stage1_bias_analysis.py:main:527 | Test activations - Mean: 0.213526, Std: 0.231415
+2025-12-20 19:26:05,101 | INFO     | stage1_bias_analysis.py:main:528 | Test activations - L2 norm: 195.640381
+2025-12-20 19:26:05,101 | INFO     | stage1_bias_analysis.py:main:529 | ================================================================================
+2025-12-20 19:26:05,104 | INFO     | stage1_bias_analysis.py:main:542 | Computing Projection Matrix (P) and Training Gender SVM...
+2025-12-20 19:26:05,104 | INFO     | stage1_bias_analysis.py:main:543 | Using same validation set as NN training: 20509 train, 3619 val
+2025-12-20 19:26:05,106 | INFO     | inlp_core.py:get_projection_and_svm:19 | Training Initial Gender Detector (SVM)...
+2025-12-20 19:26:05,237 | INFO     | inlp_core.py:get_projection_and_svm:31 | Using validation set: 20509 train, 3619 val
+2025-12-20 19:26:05,237 | INFO     | inlp_core.py:get_projection_and_svm:33 | Starting INLP (n_iter=10, alpha=0.8)...
+2025-12-20 19:26:05,364 | INFO     | inlp_core.py:get_projection_and_svm:42 | Iter 1: SVM Acc = 0.6538
+2025-12-20 19:26:05,471 | INFO     | inlp_core.py:get_projection_and_svm:42 | Iter 2: SVM Acc = 0.6529
+2025-12-20 19:26:05,608 | INFO     | inlp_core.py:get_projection_and_svm:42 | Iter 3: SVM Acc = 0.6532
+2025-12-20 19:26:05,751 | INFO     | inlp_core.py:get_projection_and_svm:42 | Iter 4: SVM Acc = 0.6535
+2025-12-20 19:26:05,900 | INFO     | inlp_core.py:get_projection_and_svm:42 | Iter 5: SVM Acc = 0.6618
+2025-12-20 19:26:06,040 | INFO     | inlp_core.py:get_projection_and_svm:42 | Iter 6: SVM Acc = 0.6731
+2025-12-20 19:26:06,147 | INFO     | inlp_core.py:get_projection_and_svm:42 | Iter 7: SVM Acc = 0.6737
+2025-12-20 19:26:06,234 | INFO     | inlp_core.py:get_projection_and_svm:42 | Iter 8: SVM Acc = 0.6739
+2025-12-20 19:26:06,321 | INFO     | inlp_core.py:get_projection_and_svm:42 | Iter 9: SVM Acc = 0.6739
+2025-12-20 19:26:06,409 | INFO     | inlp_core.py:get_projection_and_svm:42 | Iter 10: SVM Acc = 0.6739
+2025-12-20 19:26:06,417 | INFO     | inlp_core.py:get_projection_and_svm:75 | 
+--- Projection Matrix Analysis ---
+2025-12-20 19:26:06,418 | INFO     | inlp_core.py:get_projection_and_svm:78 | Projection matrix rank: 64/64
+2025-12-20 19:26:06,418 | INFO     | inlp_core.py:get_projection_and_svm:79 | ==================================================
+2025-12-20 19:26:06,424 | INFO     | stage1_bias_analysis.py:main:552 | 
+--- EVALUATING GENDER INFORMATION (SVM) ---
+2025-12-20 19:26:06,447 | INFO     | stage1_bias_analysis.py:main:563 | Gender SVM Accuracy (Before Projection):
+2025-12-20 19:26:06,448 | INFO     | stage1_bias_analysis.py:main:564 |    Train: 67.3201%
+2025-12-20 19:26:06,448 | INFO     | stage1_bias_analysis.py:main:565 |    Test:  66.0643% (Indicates bias presence)
+2025-12-20 19:26:06,448 | INFO     | stage1_bias_analysis.py:main:566 |    Test Female (class 0): 77.4900%
+2025-12-20 19:26:06,449 | INFO     | stage1_bias_analysis.py:main:567 |    Test Male (class 1):   60.3628%
+2025-12-20 19:26:06,476 | INFO     | stage1_bias_analysis.py:main:578 | 
+--- Activation Statistics (After Projection) ---
+2025-12-20 19:26:06,477 | INFO     | stage1_bias_analysis.py:main:579 | Train activations (projected) shape: (24128, 64)
+2025-12-20 19:26:06,491 | INFO     | stage1_bias_analysis.py:main:580 | Train activations (projected) - Mean: -0.000000, Std: 0.014387
+2025-12-20 19:26:06,492 | INFO     | stage1_bias_analysis.py:main:581 | Train activations (projected) - L2 norm: 17.878497
+2025-12-20 19:26:06,493 | INFO     | stage1_bias_analysis.py:main:582 | Test activations (projected) shape: (6032, 64)
+2025-12-20 19:26:06,493 | INFO     | stage1_bias_analysis.py:main:583 | Test activations (projected) - L2 norm: 8.934146
+2025-12-20 19:26:06,498 | INFO     | stage1_bias_analysis.py:main:590 | Train activation norm change: 222.900360 -> 17.878497 (-91.98%)
+2025-12-20 19:26:06,498 | INFO     | stage1_bias_analysis.py:main:591 | Test activation norm change: 111.859528 -> 8.934146 (-92.01%)
+2025-12-20 19:26:06,498 | INFO     | stage1_bias_analysis.py:main:592 | ================================================================================
+2025-12-20 19:26:06,510 | INFO     | stage1_bias_analysis.py:main:601 | Gender SVM Accuracy (After Projection):
+2025-12-20 19:26:06,510 | INFO     | stage1_bias_analysis.py:main:602 |    Train: 67.2994%
+2025-12-20 19:26:06,510 | INFO     | stage1_bias_analysis.py:main:603 |    Test:  66.0477% (Should be ~50% if successful)
+2025-12-20 19:26:06,510 | INFO     | stage1_bias_analysis.py:main:604 |    Test Female (class 0): 77.4900%
+2025-12-20 19:26:06,511 | INFO     | stage1_bias_analysis.py:main:605 |    Test Male (class 1):   60.3380%
+2025-12-20 19:26:06,511 | INFO     | stage1_bias_analysis.py:main:610 | 
+--- APPLYING WEIGHT SURGERY ---
+2025-12-20 19:26:06,511 | INFO     | inlp_core.py:perform_weight_surgery:93 | 
+--- Performing Weight Surgery ---
+2025-12-20 19:26:06,549 | INFO     | inlp_core.py:perform_weight_surgery:102 | W_old shape: torch.Size([1, 64]), norm: 1.914898
+2025-12-20 19:26:06,549 | INFO     | inlp_core.py:perform_weight_surgery:103 | P_tensor shape: torch.Size([64, 64]), norm: 7.811202
+2025-12-20 19:26:06,550 | INFO     | inlp_core.py:perform_weight_surgery:104 | P_tensor symmetry error: 1.57e-01
+2025-12-20 19:26:06,589 | INFO     | inlp_core.py:perform_weight_surgery:117 | Weights updated successfully. W_new shape: torch.Size([1, 64]), norm: 0.038799
+2025-12-20 19:26:06,589 | INFO     | inlp_core.py:perform_weight_surgery:118 | Weight change magnitude: 1.930091
+2025-12-20 19:26:06,591 | INFO     | inlp_core.py:perform_weight_surgery:138 | Bias updated to account for data centering.
+2025-12-20 19:26:06,592 | INFO     | inlp_core.py:perform_weight_surgery:139 |   Bias correction magnitude: 0.009282, Bias norm: 0.002676 -> 0.006606
+2025-12-20 19:26:06,597 | INFO     | stage1_bias_analysis.py:main:616 | Repaired Model saved to: /home/arjun/remote_github/Fairness_Testing/Fairness_Neuron_Repair/ml_models/adult/adult__nn_stage1_inlp_repaired__20251220_19_23.pth
+2025-12-20 19:26:06,598 | INFO     | stage1_bias_analysis.py:main:621 | 
+--- FINAL EVALUATION (After Surgery) ---
+2025-12-20 19:26:06,608 | INFO     | stage1_bias_analysis.py:main:634 | Final Income Accuracy: 28.2328%
+2025-12-20 19:26:06,608 | INFO     | stage1_bias_analysis.py:main:635 | Accuracy Drop: 53.9290%
+2025-12-20 19:26:06,610 | INFO     | stage1_bias_analysis.py:main:644 | Final Accuracy (Class 0): 36.6144% (4531 samples)
+2025-12-20 19:26:06,611 | INFO     | stage1_bias_analysis.py:main:647 | Final Accuracy (Class 1): 2.9314% (1501 samples)
+2025-12-20 19:26:06,631 | INFO     | preprocess.py:patch_test_categories:188 | Column native-country has 2 categories in training data that are missing in test data
+2025-12-20 19:26:06,634 | INFO     | preprocess.py:patch_test_categories:202 | Added 2 dummy rows to test data for categories missing in test set
+2025-12-20 19:26:06,634 | INFO     | preprocess.py:patch_test_categories:204 |   - native-country: 2 categories
+2025-12-20 19:26:06,644 | INFO     | preprocess.py:patch_test_categories:188 | Column native-country has 2 categories in training data that are missing in test data
+2025-12-20 19:26:06,647 | INFO     | preprocess.py:patch_test_categories:202 | Added 2 dummy rows to test data for categories missing in test set
+2025-12-20 19:26:06,647 | INFO     | preprocess.py:patch_test_categories:204 |   - native-country: 2 categories
+2025-12-20 19:26:06,931 | INFO     | stage1_bias_analysis.py:main:656 | Final Counterfactual Discrimination: 576/6032 (9.55%)
+2025-12-20 19:26:06,931 | INFO     | stage1_bias_analysis.py:main:664 | Final AOD: 0.194190
+2025-12-20 19:26:06,931 | INFO     | stage1_bias_analysis.py:main:665 | Final EOD: 0.069641
+2025-12-20 19:26:06,931 | INFO     | stage1_bias_analysis.py:main:686 | 
+Improvement Ratios:
+2025-12-20 19:26:06,932 | INFO     | stage1_bias_analysis.py:main:688 |   Accuracy Change Ratio: 65.64%
+2025-12-20 19:26:06,952 | INFO     | stage1_bias_analysis.py:main:693 |   Discrimination Change Ratio: 3.52%
+2025-12-20 19:26:06,952 | INFO     | stage1_bias_analysis.py:main:703 | 
+================================================================================
+2025-12-20 19:26:06,952 | INFO     | stage1_bias_analysis.py:main:704 | SUMMARY (Requested Ordering)
+2025-12-20 19:26:06,952 | INFO     | stage1_bias_analysis.py:main:705 | Before fix:
+2025-12-20 19:26:06,952 | INFO     | stage1_bias_analysis.py:main:706 |   Accuracy: 82.1618%
+2025-12-20 19:26:06,952 | INFO     | stage1_bias_analysis.py:main:707 |   Classwise Accuracy (Class 0): 80.9755%
+2025-12-20 19:26:06,952 | INFO     | stage1_bias_analysis.py:main:708 |   Classwise Accuracy (Class 1): 85.7428%
+2025-12-20 19:26:06,952 | INFO     | stage1_bias_analysis.py:main:709 |   Avg Prob (Pred Class 0): 0.129042
+2025-12-20 19:26:06,952 | INFO     | stage1_bias_analysis.py:main:710 |   Avg Prob (Pred Class 1): 0.778983
+2025-12-20 19:26:06,952 | INFO     | stage1_bias_analysis.py:main:711 |   SVM Accuracy (Gender) Test: 66.0643%
+2025-12-20 19:26:06,952 | INFO     | stage1_bias_analysis.py:main:712 |   SVM Classwise Accuracy (Female): 77.4900%
+2025-12-20 19:26:06,952 | INFO     | stage1_bias_analysis.py:main:713 |   SVM Classwise Accuracy (Male):   60.3628%
+2025-12-20 19:26:06,952 | INFO     | stage1_bias_analysis.py:main:714 |   Counterfactual Fairness (Discrimination %): 9.90%
+2025-12-20 19:26:06,953 | INFO     | stage1_bias_analysis.py:main:715 |   AOD: 0.141299
+2025-12-20 19:26:06,953 | INFO     | stage1_bias_analysis.py:main:716 |   EOD: 0.089206
+2025-12-20 19:26:06,953 | INFO     | stage1_bias_analysis.py:main:718 | After fix:
+2025-12-20 19:26:06,953 | INFO     | stage1_bias_analysis.py:main:719 |   Accuracy: 28.2328%
+2025-12-20 19:26:06,953 | INFO     | stage1_bias_analysis.py:main:720 |   Classwise Accuracy (Class 0): 36.6144%
+2025-12-20 19:26:06,953 | INFO     | stage1_bias_analysis.py:main:721 |   Classwise Accuracy (Class 1): 2.9314%
+2025-12-20 19:26:06,953 | INFO     | stage1_bias_analysis.py:main:722 |   Avg Prob (Pred Class 0): 0.495704
+2025-12-20 19:26:06,953 | INFO     | stage1_bias_analysis.py:main:723 |   Avg Prob (Pred Class 1): 0.503439
+2025-12-20 19:26:06,953 | INFO     | stage1_bias_analysis.py:main:724 |   SVM Accuracy (Gender) Test: 66.0477%
+2025-12-20 19:26:06,953 | INFO     | stage1_bias_analysis.py:main:725 |   SVM Classwise Accuracy (Female): 77.4900%
+2025-12-20 19:26:06,953 | INFO     | stage1_bias_analysis.py:main:726 |   SVM Classwise Accuracy (Male):   60.3380%
+2025-12-20 19:26:06,953 | INFO     | stage1_bias_analysis.py:main:727 |   Counterfactual Fairness (Discrimination %): 9.55%
+2025-12-20 19:26:06,953 | INFO     | stage1_bias_analysis.py:main:728 |   AOD: 0.194190
+2025-12-20 19:26:06,953 | INFO     | stage1_bias_analysis.py:main:729 |   EOD: 0.069641
+2025-12-20 19:26:06,953 | INFO     | stage1_bias_analysis.py:main:731 | Change before and after fix:
+2025-12-20 19:26:06,953 | INFO     | stage1_bias_analysis.py:main:732 |   Accuracy (% change): -65.64%
+2025-12-20 19:26:06,953 | INFO     | stage1_bias_analysis.py:main:733 |   Class 0 Accuracy (% change): -54.78%
+2025-12-20 19:26:06,953 | INFO     | stage1_bias_analysis.py:main:734 |   Class 1 Accuracy (% change): -96.58%
+2025-12-20 19:26:06,953 | INFO     | stage1_bias_analysis.py:main:735 |   Avg Prob (Pred Class 0) (% change): 284.14%
+2025-12-20 19:26:06,953 | INFO     | stage1_bias_analysis.py:main:736 |   Avg Prob (Pred Class 1) (% change): -35.37%
+2025-12-20 19:26:06,953 | INFO     | stage1_bias_analysis.py:main:737 |   SVM Accuracy (% change): -0.03%
+2025-12-20 19:26:06,953 | INFO     | stage1_bias_analysis.py:main:738 |   SVM Female (% change): 0.00%
+2025-12-20 19:26:06,953 | INFO     | stage1_bias_analysis.py:main:739 |   SVM Male (% change):   -0.04%
+2025-12-20 19:26:06,953 | INFO     | stage1_bias_analysis.py:main:740 |   Counterfactual Fairness (Discrimination %) (% change): -3.52%
+2025-12-20 19:26:06,953 | INFO     | stage1_bias_analysis.py:main:741 |   AOD (% change): 37.43%
+2025-12-20 19:26:06,954 | INFO     | stage1_bias_analysis.py:main:742 |   EOD (% change): -21.93%
+2025-12-20 19:26:06,954 | INFO     | stage1_bias_analysis.py:main:743 | ================================================================================
+2025-12-20 19:26:06,954 | INFO     | stage1_bias_analysis.py:main:785 | Process end time: 2025-12-20 19:26:06
+2025-12-20 19:26:06,954 | INFO     | stage1_bias_analysis.py:main:786 | Total execution time: 2 minutes 9 seconds (129.84 seconds)
+2025-12-20 19:26:06,954 | INFO     | stage1_bias_analysis.py:main:787 | ================================================================================
