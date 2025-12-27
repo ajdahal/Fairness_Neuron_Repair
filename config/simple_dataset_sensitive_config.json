@@ -1,0 +1,61 @@
+{
+    "dataset_name": "simple_dataset_sensitive",
+    "dataset_dir": "dataset/simple_dataset_sensitive",
+    "downloaded_dataset_file": "simple_dataset_sensitive_all.csv",
+    "all_data": "dataset/simple_dataset_sensitive/simple_dataset_sensitive_all.csv",
+    "train_file_path": "simple_dataset_sensitive_train.csv",
+    "test_file_path": "simple_dataset_sensitive_test.csv",
+    "number_of_rows": 20000,
+    "balance": "['race','sex', 'sl', 'yc']",
+    "max_attempts": 100,
+    "seed": 42,
+    "columns_to_keep": ["race", "sex", "sl", "yc", "y", "h_cm", "hw_k", "es"],
+    "continuous_cols": ["h_cm", "hw_k", "es"],
+    "categorical_cols": ["race", "sex", "sl", "yc"],
+    "ml_models_dir": "ml_models/simple_dataset_sensitive",
+    "counterfactual_dir": "counterfactuals/simple_dataset_sensitive",
+    "log_loss_dir": "log_loss/simple_dataset_sensitive",
+    "results_dir": "results/simple_dataset_sensitive",
+    "train_fader_network": "no",
+    "output_column_name": "y",
+    "sensitive_attr": "sex",
+    "run_archive_dir": "deterministic_run/simple_dataset_sensitive",
+    "privileged_sex": ["M"],
+    "unprivileged_sex": ["F"],
+    "privileged_race": ["W"],
+    "unprivileged_race": ["A", "B"],
+    "hidden_dim": 128,
+    "lambda_adv": 2,
+    "batch_size": 64,
+    "num_epochs": 300,
+    "latent_dim": [4],
+    "column_specs": [
+        ["race", "categorical", 3],
+        ["sex", "categorical", 2],
+        ["sl", "categorical", 2],
+        ["yc", "categorical", 2],
+        ["h_cm", "continuous", null],
+        ["hw_k", "continuous", null],
+        ["es", "continuous", null]
+    ],
+    "hypertransformer_config": {
+        "sdtypes": {
+            "race": "categorical",
+            "sex": "categorical",
+            "sl": "categorical",
+            "yc": "categorical",
+            "h_cm": "numerical",
+            "hw_k": "numerical",
+            "es": "numerical"
+        },
+        "transformers": {
+            "race": "OneHotEncoder",
+            "sex": "OneHotEncoder",
+            "sl": "OneHotEncoder",
+            "yc": "OneHotEncoder",
+            "h_cm": "GaussianNormalizer",
+            "hw_k": "GaussianNormalizer",
+            "es": "GaussianNormalizer"
+        }
+    }
+}

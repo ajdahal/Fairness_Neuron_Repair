@@ -88,14 +88,14 @@ class SimpleNeuralNetwork(nn.Module):
         self.neuron_mask.fill_(1.0)            # in-place operation that sets all the elements of the tensor to 1.0
 
 
-def train_model(model, train_loader, val_loader, criterion, optimizer, device, n_epochs=300, 
+def train_model(model, train_loader, val_loader, criterion, optimizer, device, n_epochs=200, 
                 early_stopping_patience=50, min_delta_ratio=0.0001):
     """
-    Train model with validation monitoring and early stopping to prevent overfitting.
+    Train model for fixed epochs with validation monitoring. Tracks and restores best validation model.
     """
     best_val_loss = float('inf')
-    patience_counter = 0
     best_model_state = None
+    best_epoch = 0
     
     for epoch in range(n_epochs):
         # Training phase
@@ -144,32 +144,24 @@ def train_model(model, train_loader, val_loader, criterion, optimizer, device, n
         if epoch % 20 == 0 or epoch == n_epochs - 1:
             logger.info(f"Epoch {epoch:3d} | Train Loss: {avg_train_loss:.6f} | Val Loss: {avg_val_loss:.6f}")
         
-        # Early stopping and best model tracking (relative improvement)
+        # Track best model based on validation loss
         if avg_val_loss < best_val_loss * (1 - min_delta_ratio):
             best_val_loss = avg_val_loss
-            patience_counter = 0
+            best_epoch = epoch
             # Save best model state
             best_model_state = copy.deepcopy(model.state_dict())
             if epoch % 20 != 0:  # Log if we didn't already log this epoch
                 logger.info(f"Epoch {epoch:3d} | New best validation loss: {best_val_loss:.6f}")
-        else:
-            patience_counter += 1
-        
-        # Early stopping
-        if patience_counter >= early_stopping_patience:
-            logger.info(f"Early stopping triggered at epoch {epoch}. No improvement for {early_stopping_patience} epochs.")
-            logger.info(f"Best validation loss: {best_val_loss:.6f} at epoch {epoch - early_stopping_patience}")
-            break
     
     # Restore best model
     if best_model_state is not None:
         model.load_state_dict(best_model_state)
-        logger.info(f"Restored best model with validation loss: {best_val_loss:.6f}")
+        logger.info(f"Restored best model from epoch {best_epoch} with validation loss: {best_val_loss:.6f}")
     
     return best_val_loss
 
 
-def extract_activations_batch(model, X_tensor, device, batch_size=256):
+def extract_activations_batch(model, X_tensor, device, batch_size):
     """Extract activations in batches to handle large datasets."""
     model.eval()
     activations_list = []
@@ -400,7 +392,9 @@ def main(params, device, timestamp):
     # 2. Train Original Model
     # -------------------------------------------------------------------------
     input_size = X_train_tensor.shape[1]
-    batch_size = getattr(params, 'batch_size', 256)
+    batch_size = params.batch_size
+    if batch_size is None:
+        raise ValueError("batch_size must be specified in the config file")
     val_split_ratio = getattr(params, 'val_split_ratio', 0.15)
     if val_split_ratio is None:
         val_split_ratio = 0.15
@@ -423,7 +417,7 @@ def main(params, device, timestamp):
         generator=torch.Generator().manual_seed(DETERMINISTIC_SEED)
     )
     
-    train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
+    train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=False)
     val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False)
     
     logger.info(f"\nData split: {n_train} training samples, {n_val} validation samples")
@@ -440,10 +434,10 @@ def main(params, device, timestamp):
     criterion = nn.BCEWithLogitsLoss(pos_weight=pos_weight)
     optimizer = optim.Adam(model.parameters(), lr=0.0005, weight_decay=1e-2)
     
-    logger.info("\nTraining neural network (Baseline) with early stopping...")
+    logger.info("\nTraining neural network (Baseline) for fixed epochs with validation monitoring...")
     best_val_loss = train_model(
         model, train_loader, val_loader, criterion, optimizer, device, 
-        n_epochs=300, early_stopping_patience=early_stopping_patience, 
+        n_epochs=200, early_stopping_patience=early_stopping_patience, 
         min_delta_ratio=min_delta_ratio
     )
     logger.info(f"Training completed. Best validation loss: {best_val_loss:.6f}")
@@ -514,8 +508,8 @@ def main(params, device, timestamp):
     
     # Extract RAW Activations (No normalization needed for weight surgery)
     logger.info("Extracting raw activations from layer 3...")
-    activations_train = extract_activations_batch(model, X_train_tensor, device)
-    activations_test = extract_activations_batch(model, X_test_tensor, device)
+    activations_train = extract_activations_batch(model, X_train_tensor, device, batch_size)
+    activations_test = extract_activations_batch(model, X_test_tensor, device, batch_size)
     
     # Enhancement 2: Add activation statistics before projection
     logger.info("\n--- Activation Statistics (Before Projection) ---")
@@ -793,7 +787,6 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Stage 1: Bias Analysis and INLP Repair")
     parser.add_argument("--config", required=True, help="Path to config file")
     parser.add_argument("--seed", type=int, default=42, help="Random seed")
-    parser.add_argument("--batch_size", type=int, default=256, help="Batch size")
     parser.add_argument("--inlp_iters", type=int, default=5, help="Number of INLP iterations")
     parser.add_argument("--inlp_alpha", type=float, default=1.0, help="INLP projection strength (alpha)")
     args = parser.parse_args()
@@ -802,7 +795,9 @@ if __name__ == "__main__":
         config = json.load(f)
     
     params = Params(config)
-    params.batch_size = args.batch_size
+    # batch_size must be specified in the config file 
+    if not hasattr(params, 'batch_size') or params.batch_size is None:
+        raise ValueError("batch_size must be specified in the config file")
     params.inlp_iters = args.inlp_iters
     params.inlp_alpha = args.inlp_alpha
     
@@ -822,12 +817,12 @@ if __name__ == "__main__":
     os.makedirs(params.ml_models_dir, exist_ok=True)
     _, device = initialize_seed(args.seed)
     
-    # Generate timestamp for all files (format: YYYYMMDD_HH_MM)
+    # Generate timestamp for all files (format: YYYYMMDD_HH_MM_SS)
     start_time = datetime.now()
-    timestamp = start_time.strftime('%Y%m%d_%H_%M')
+    timestamp = start_time.strftime('%Y%m%d_%H_%M_%S')
     
     # Init logger
-    log_path = project_root / "logs" / f"stage1_bias_analysis_{timestamp}.log"
+    log_path = project_root / "logs" / params.dataset_name / f"stage1_bias_analysis_{timestamp}_inlp_iters_{params.inlp_iters}_inlp_alpha_{params.inlp_alpha}.log"
     init_logger(log_path)
     
     main(params, device, timestamp)

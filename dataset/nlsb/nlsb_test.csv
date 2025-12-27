@@ -1,0 +1,983 @@
+age,race,sex,grade90,partner,height,weight,famsize,genhealth,illegalact,charged,jobsnum90,afqt89,typejob90,jobtrain90,income96gt17
+18,AMERICAN,Female,12TH GRADE,No,502.0,125.0,6,Fair,0,0,3,58,pub,No,1
+19,FRENCH,Female,12TH GRADE,No,505.0,125.0,1,Good,0,1,17,47,personal,No,0
+16,NATIVE-AMERICAN,Female,12TH GRADE,No,504.0,133.0,8,Very Good,0,0,7,80,pro,No,1
+20,GERMAN,Male,4TH YR COL,No,511.0,170.0,5,Very Good,0,0,4,79,fin,No,1
+15,ENGLISH,Male,12TH GRADE,No,510.0,190.0,6,Good,1,0,9,23,manuf,No,0
+15,NATIVE-AMERICAN,Female,12TH GRADE,No,500.0,115.0,5,Excellent,0,0,8,13,construction,No,0
+17,IRISH,Female,12TH GRADE,No,504.0,149.0,6,Fair,0,0,8,13,pro,No,0
+20,BLACK,Female,6TH YR COL,No,501.0,130.0,1,Very Good,0,0,10,67,pro,No,1
+19,ENGLISH,Male,4TH YR COL,No,600.0,175.0,3,Excellent,0,0,9,82,pro,No,1
+17,MEXICAN,Female,1ST YR COL,No,410.0,132.0,7,Good,0,0,5,36,pro,No,0
+14,NATIVE-AMERICAN,Male,12TH GRADE,No,602.0,170.0,5,Very Good,0,0,8,6,mining,No,0
+19,MEXICAN,Female,12TH GRADE,No,502.0,122.0,5,Very Good,0,0,5,26,wholesale,No,1
+20,BLACK,Female,12TH GRADE,No,507.0,150.0,4,Fair,0,0,4,16,pro,No,1
+17,BLACK,Female,11TH GRADE,No,500.0,235.0,4,Good,0,0,10,5,retail,No,0
+17,CHICANO,Male,12TH GRADE,No,505.0,130.0,8,Good,1,0,19,16,construction,Yes,0
+20,FRENCH,Female,12TH GRADE,No,506.0,140.0,2,Very Good,0,0,6,87,fin,No,0
+15,BLACK,Female,12TH GRADE,No,506.0,170.0,6,Fair,0,0,3,9,pro,No,0
+17,GERMAN,Male,4TH YR COL,No,509.0,154.0,5,Good,0,0,3,58,pro,Yes,1
+14,BLACK,Male,12TH GRADE,No,600.0,179.0,7,Good,3,0,12,32,manuf,No,1
+16,GERMAN,Male,9TH GRADE,No,510.0,160.0,2,Very Good,0,0,12,25,agri,No,0
+15,GERMAN,Female,12TH GRADE,No,507.0,155.0,6,Very Good,0,0,8,29,busi,Yes,1
+14,FRENCH,Male,12TH GRADE,No,511.0,140.0,5,Fair,0,0,9,15,manuf,No,0
+19,ENGLISH,Female,1ST YR COL,No,505.0,120.0,3,Very Good,0,0,3,58,pro,No,1
+18,MEXICAN-AMERICAN,Female,1ST YR COL,No,500.0,105.0,6,Good,0,0,3,43,manuf,No,1
+16,BLACK,Male,12TH GRADE,No,506.0,155.0,5,Fair,2,1,8,7,transp,No,0
+16,OTHER,Female,3RD YR COL,No,506.0,130.0,4,Good,0,0,15,33,fin,No,1
+16,BLACK,Female,12TH GRADE,No,506.0,205.0,6,Very Good,0,0,6,10,pro,No,1
+17,IRISH,Male,12TH GRADE,Yes,510.0,165.0,6,Fair,5,1,16,30,agri,No,1
+20,MEXICAN,Male,5TH GRADE,No,500.0,172.0,7,Very Good,0,0,5,1,manuf,No,1
+17,AMERICAN,Male,6TH YR COL,No,505.0,165.0,4,Very Good,0,0,5,96,pub,No,1
+17,BLACK,Male,1ST YR COL,No,506.0,150.0,6,Very Good,3,1,5,13,pub,No,0
+20,OTHER-HISPANIC,Female,2ND YR COL,No,501.0,117.0,3,Excellent,0,0,10,58,retail,No,0
+17,ENGLISH,Male,4TH YR COL,No,507.0,137.0,3,Very Good,0,0,5,89,manuf,No,1
+21,PUERTORICAN,Male,4TH GRADE,No,510.0,130.0,2,Very Good,0,1,5,8,busi,No,0
+21,OTHER-SPANISH,Male,4TH YR COL,No,509.0,160.0,6,Very Good,0,0,8,23,construction,No,1
+17,ENGLISH,Female,12TH GRADE,No,503.0,110.0,5,Excellent,0,0,10,56,construction,No,1
+16,PUERTORICAN,Female,10TH GRADE,No,500.0,150.0,9,Good,0,0,1,1,manuf,No,0
+15,ENGLISH,Male,12TH GRADE,No,505.0,135.0,6,Very Good,0,0,28,34,manuf,Yes,0
+15,BLACK,Female,2ND YR COL,No,502.0,120.0,7,Excellent,0,0,3,26,transp,No,1
+21,MEXICAN,Female,1ST YR COL,No,501.0,110.0,3,Very Good,0,0,2,64,fin,Yes,0
+18,BLACK,Female,12TH GRADE,No,504.0,135.0,7,Very Good,0,0,5,15,agri,No,0
+18,BLACK,Male,12TH GRADE,No,507.0,153.0,12,Very Good,0,0,6,26,pub,No,1
+21,ITALIAN,Male,3RD YR COL,No,603.0,170.0,1,Very Good,0,0,3,65,busi,No,1
+15,ENGLISH,Male,12TH GRADE,No,510.0,180.0,3,Excellent,1,0,12,25,pro,No,1
+15,BLACK,Male,12TH GRADE,Yes,510.0,160.0,5,Very Good,0,0,15,4,pub,No,1
+21,BLACK,Female,11TH GRADE,No,506.0,135.0,4,Excellent,0,0,6,1,manuf,No,0
+17,ENGLISH,Male,3RD YR COL,No,508.0,165.0,6,Very Good,1,0,5,78,retail,No,1
+20,ENGLISH,Male,1ST YR COL,No,602.0,200.0,3,Very Good,0,0,2,53,manuf,No,1
+15,GERMAN,Female,12TH GRADE,No,503.0,120.0,7,Very Good,0,0,12,45,pro,Yes,0
+20,BLACK,Female,12TH GRADE,No,511.0,135.0,8,Very Good,0,0,8,12,wholesale,No,0
+18,AMERICAN,Female,4TH YR COL,No,506.0,130.0,7,Good,0,0,4,96,pro,No,1
+22,FRENCH,Male,4TH YR COL,No,503.0,120.0,1,Good,0,0,6,76,pro,No,0
+15,MEXICAN-AMERICAN,Male,12TH GRADE,No,511.0,222.0,7,Good,0,0,8,27,retail,No,0
+18,OTHER,Male,1ST YR COL,No,600.0,215.0,5,Very Good,0,0,23,69,retail,Yes,1
+15,BLACK,Male,12TH GRADE,No,511.0,168.0,2,Excellent,0,0,6,58,busi,No,0
+20,ENGLISH,Female,2ND YR COL,No,501.0,192.0,1,Good,0,0,8,71,personal,No,0
+15,BLACK,Male,3RD YR COL,No,508.0,165.0,3,Very Good,2,0,5,19,manuf,No,1
+20,BLACK,Male,10TH GRADE,No,511.0,185.0,6,Fair,0,1,7,1,personal,No,0
+15,GERMAN,Female,2ND YR COL,No,504.0,110.0,5,Very Good,0,0,7,53,pro,No,0
+14,MEXICAN-AMERICAN,Male,12TH GRADE,No,506.0,148.0,6,Very Good,4,0,9,8,transp,No,1
+17,GERMAN,Male,12TH GRADE,No,507.0,165.0,5,Very Good,0,0,6,15,construction,No,0
+16,ENGLISH,Male,12TH GRADE,No,603.0,170.0,4,Very Good,0,0,5,42,mining,No,1
+18,BLACK,Female,3RD YR COL,No,503.0,125.0,7,Very Good,1,0,11,21,personal,No,0
+20,GERMAN,Female,4TH YR COL,No,506.0,125.0,3,Very Good,0,0,5,87,pro,No,0
+15,BLACK,Male,12TH GRADE,No,509.0,170.0,8,Very Good,0,0,1,5,retail,No,1
+21,BLACK,Female,12TH GRADE,No,507.0,149.0,3,Good,0,0,6,18,pro,No,1
+19,MEXICAN-AMERICAN,Female,1ST YR COL,No,502.0,140.0,7,Very Good,0,0,8,25,transp,No,0
+21,MEXICAN-AMERICAN,Male,2ND YR COL,No,600.0,215.0,5,Very Good,0,0,3,27,retail,No,0
+20,PUERTORICAN,Male,9TH GRADE,No,601.0,165.0,3,Good,0,0,9,9,personal,No,1
+14,ITALIAN,Male,11TH GRADE,No,508.0,160.0,5,Very Good,0,0,5,1,retail,No,1
+15,GERMAN,Female,4TH YR COL,No,502.0,105.0,3,Excellent,0,0,7,91,personal,No,0
+15,ENGLISH,Female,4TH YR COL,No,506.0,115.0,1,Excellent,0,0,5,88,pro,Yes,1
+18,BLACK,Male,12TH GRADE,No,511.0,155.0,6,Very Good,0,0,9,25,manuf,No,1
+15,BLACK,Female,12TH GRADE,No,507.0,115.0,5,Very Good,2,0,7,10,retail,Yes,0
+18,OTHER,Male,8TH YR COL OR MORE,No,600.0,175.0,5,Very Good,0,0,8,92,personal,Yes,1
+16,BLACK,Female,12TH GRADE,No,507.0,175.0,3,Fair,0,0,3,19,manuf,No,0
+15,MEXICAN-AMERICAN,Male,12TH GRADE,Yes,506.0,139.0,15,Very Good,1,0,4,3,enter,No,0
+19,GERMAN,Male,4TH YR COL,No,600.0,180.0,3,Good,0,0,9,80,retail,No,0
+18,MEXICAN-AMERICAN,Male,12TH GRADE,No,510.0,185.0,7,Good,0,0,14,32,transp,No,1
+15,GERMAN,Female,1ST YR COL,No,507.0,140.0,8,Very Good,0,0,7,44,retail,No,1
+20,ENGLISH,Male,5TH YR COL,No,600.0,165.0,2,Very Good,0,0,4,99,transp,No,1
+21,IRISH,Female,12TH GRADE,No,503.0,140.0,3,Fair,0,0,5,59,manuf,No,1
+14,MEXICAN,Female,12TH GRADE,No,502.0,118.0,5,Fair,0,0,12,21,retail,No,0
+15,AMERICAN,Male,11TH GRADE,No,509.0,185.0,3,Good,0,0,7,6,agri,No,1
+18,GERMAN,Female,6TH YR COL,No,505.0,150.0,5,Very Good,0,0,10,87,pro,No,0
+17,BLACK,Male,5TH YR COL,No,506.0,155.0,4,Fair,1,0,18,23,fin,Yes,1
+18,FRENCH,Male,1ST YR COL,Yes,508.0,185.0,3,Very Good,0,0,3,68,construction,No,1
+17,MEXICAN-AMERICAN,Female,7TH GRADE,No,410.0,112.0,4,Good,0,0,7,5,manuf,No,0
+16,GERMAN,Male,12TH GRADE,No,508.0,200.0,4,Excellent,2,0,6,86,manuf,No,1
+20,ENGLISH,Male,12TH GRADE,No,511.0,167.0,5,Good,0,0,5,38,transp,No,0
+19,GERMAN,Female,2ND YR COL,No,503.0,115.0,5,Very Good,0,0,4,53,pro,No,1
+17,AMERICAN,Male,4TH YR COL,No,604.0,220.0,5,Excellent,0,0,7,84,transp,No,1
+18,BLACK,Male,6TH YR COL,No,601.0,185.0,5,Good,0,0,7,13,personal,No,1
+16,OTHER-HISPANIC,Male,12TH GRADE,Yes,509.0,140.0,6,Fair,4,1,11,18,construction,Yes,0
+15,GERMAN,Male,5TH YR COL,No,504.0,130.0,4,Very Good,3,0,8,99,retail,No,1
+16,MEXICAN-AMERICAN,Female,12TH GRADE,No,500.0,121.0,5,Very Good,0,0,9,26,pro,No,0
+15,ENGLISH,Male,4TH YR COL,No,510.0,170.0,3,Excellent,0,0,13,73,manuf,No,1
+19,BLACK,Male,4TH YR COL,No,509.0,156.0,4,Excellent,0,0,7,29,pub,Yes,1
+19,BLACK,Female,12TH GRADE,No,502.0,127.0,4,Very Good,1,0,3,26,manuf,No,1
+16,BLACK,Female,12TH GRADE,No,505.0,155.0,4,Very Good,0,0,8,19,retail,No,0
+15,MEXICAN,Male,2ND YR COL,No,506.0,145.0,7,Good,0,0,6,8,transp,No,1
+21,MEXICAN-AMERICAN,Male,12TH GRADE,No,505.0,130.0,1,Very Good,0,0,12,6,agri,No,0
+17,ENGLISH,Male,4TH YR COL,No,510.0,210.0,4,Very Good,0,0,8,88,transp,Yes,1
+21,BLACK,Male,12TH GRADE,No,509.0,200.0,1,Excellent,0,0,9,18,busi,No,0
+19,ENGLISH,Female,6TH YR COL,No,507.0,150.0,3,Good,0,0,11,70,pro,No,1
+21,ENGLISH,Female,12TH GRADE,No,502.0,155.0,3,Good,0,0,9,79,pro,Yes,0
+16,BLACK,Female,12TH GRADE,No,506.0,140.0,2,Good,0,0,7,25,busi,No,1
+18,BLACK,Female,12TH GRADE,No,508.0,180.0,5,Good,0,0,10,23,transp,No,1
+16,POLISH,Female,4TH YR COL,No,504.0,115.0,4,Very Good,1,0,19,84,pro,No,0
+19,MEXICAN,Male,12TH GRADE,No,509.0,180.0,6,Very Good,0,0,10,32,pro,No,1
+16,MEXICAN-AMERICAN,Female,5TH YR COL,No,506.0,110.0,7,Very Good,0,0,9,58,pro,No,1
+18,BLACK,Male,2ND YR COL,Yes,508.0,160.0,2,Good,0,0,5,32,construction,No,1
+22,GERMAN,Female,4TH YR COL,No,505.0,120.0,1,Excellent,0,0,10,81,pub,No,1
+19,BLACK,Male,12TH GRADE,No,601.0,185.0,9,Very Good,0,0,8,27,manuf,No,0
+19,ENGLISH,Male,12TH GRADE,No,510.0,185.0,1,Good,0,0,7,56,construction,No,1
+16,FRENCH,Male,12TH GRADE,No,511.0,210.0,5,Good,2,0,3,36,busi,No,1
+14,GERMAN,Male,11TH GRADE,No,507.0,175.0,4,Good,0,1,4,22,construction,No,0
+19,BLACK,Female,3RD YR COL,No,504.0,160.0,6,Very Good,0,0,11,27,manuf,No,1
+15,ENGLISH,Male,7TH YR COL,No,509.0,175.0,6,Excellent,0,0,10,99,pro,No,1
+14,BLACK,Male,11TH GRADE,Yes,506.0,160.0,8,Good,0,0,5,5,manuf,No,0
+18,GERMAN,Male,12TH GRADE,No,601.0,240.0,4,Excellent,0,1,14,22,manuf,No,1
+16,ENGLISH,Female,6TH YR COL,No,504.0,130.0,3,Excellent,0,0,13,81,pro,No,0
+17,BLACK,Male,2ND YR COL,No,508.0,135.0,7,Very Good,0,0,4,46,manuf,No,1
+18,BLACK,Male,9TH GRADE,No,601.0,165.0,2,Excellent,4,0,16,1,manuf,No,0
+17,BLACK,Female,12TH GRADE,No,505.0,232.0,4,Very Good,0,0,8,23,pro,No,0
+18,PORTUGUESE,Male,12TH GRADE,No,504.0,147.0,6,Very Good,0,0,10,2,pro,No,1
+16,AMERICAN,Male,12TH GRADE,No,508.0,160.0,5,Very Good,0,0,4,30,retail,Yes,1
+19,ENGLISH,Female,12TH GRADE,No,502.0,250.0,6,Fair,0,1,5,4,personal,No,0
+19,MEXICAN-AMERICAN,Female,3RD YR COL,No,502.0,130.0,7,Good,0,0,3,84,fin,No,1
+19,OTHER,Male,12TH GRADE,No,509.0,160.0,4,Very Good,0,0,6,70,construction,No,0
+21,OTHER,Male,4TH YR COL,No,510.0,175.0,4,Excellent,0,0,3,87,manuf,Yes,1
+20,ENGLISH,Female,4TH YR COL,No,509.0,140.0,4,Excellent,0,0,6,92,retail,No,1
+15,GERMAN,Female,12TH GRADE,No,504.0,120.0,3,Excellent,0,0,8,25,pro,No,1
+14,BLACK,Female,12TH GRADE,No,501.0,125.0,11,Good,0,0,8,14,retail,Yes,0
+19,ENGLISH,Male,3RD YR COL,No,600.0,300.0,5,Good,0,1,11,79,retail,No,1
+16,ENGLISH,Female,12TH GRADE,No,504.0,150.0,5,Very Good,1,0,4,63,fin,No,1
+15,ENGLISH,Male,1ST YR COL,No,511.0,210.0,5,Good,2,0,14,67,manuf,No,1
+18,GERMAN,Female,12TH GRADE,No,501.0,110.0,3,Very Good,0,0,9,74,retail,No,1
+19,ENGLISH,Male,12TH GRADE,No,507.0,188.0,3,Very Good,0,0,22,67,retail,No,1
+19,MEXICAN-AMERICAN,Male,12TH GRADE,No,509.0,180.0,3,Very Good,0,0,6,31,pub,No,1
+22,BLACK,Female,12TH GRADE,No,508.0,149.0,2,Very Good,0,0,2,42,pub,No,1
+15,BLACK,Female,2ND YR COL,No,504.0,135.0,6,Good,0,0,9,7,pro,No,0
+15,MEXICAN-AMERICAN,Male,1ST YR COL,No,508.0,140.0,2,Very Good,0,0,3,49,transp,No,1
+19,BLACK,Female,12TH GRADE,No,503.0,170.0,4,Good,0,0,18,41,retail,No,1
+21,BLACK,Female,2ND YR COL,No,504.0,150.0,2,Very Good,0,0,6,45,pro,No,1
+20,BLACK,Male,12TH GRADE,No,601.0,215.0,1,Very Good,0,0,2,30,mining,No,0
+21,PUERTORICAN,Male,2ND YR COL,No,506.0,134.0,4,Very Good,0,0,8,23,pro,No,1
+17,BLACK,Female,12TH GRADE,No,502.0,110.0,6,Excellent,0,0,15,22,pub,Yes,1
+19,ENGLISH,Male,12TH GRADE,No,600.0,155.0,4,Very Good,0,0,7,47,manuf,No,1
+17,GERMAN,Female,12TH GRADE,No,503.0,118.0,4,Good,0,0,19,17,construction,No,0
+14,ENGLISH,Female,12TH GRADE,No,502.0,110.0,4,Fair,0,0,14,29,retail,Yes,0
+22,MEXICAN,Male,2ND YR COL,No,511.0,210.0,2,Very Good,0,0,3,48,pub,No,1
+14,SCOTTISH,Male,4TH YR COL,No,500.0,190.0,5,Good,0,0,8,42,pro,No,1
+14,GERMAN,Female,3RD YR COL,No,503.0,115.0,4,Very Good,0,0,6,51,transp,No,0
+15,MEXICAN-AMERICAN,Male,8TH GRADE,No,507.0,165.0,4,Good,2,0,20,6,construction,No,1
+14,MEXICAN-AMERICAN,Male,5TH YR COL,No,503.0,150.0,1,Good,1,0,4,40,fin,No,1
+18,PUERTORICAN,Male,11TH GRADE,No,501.0,135.0,6,Excellent,0,0,8,3,manuf,No,0
+16,MEXICAN-AMERICAN,Male,12TH GRADE,No,509.0,165.0,6,Very Good,0,0,5,64,manuf,No,1
+16,BLACK,Male,12TH GRADE,No,511.0,135.0,6,Good,0,0,6,9,retail,No,0
+17,BLACK,Female,3RD YR COL,No,506.0,145.0,4,Excellent,0,0,4,13,personal,Yes,0
+18,ENGLISH,Male,4TH YR COL,No,510.0,160.0,5,Very Good,1,0,11,80,retail,No,1
+14,FRENCH,Male,12TH GRADE,No,600.0,170.0,7,Very Good,2,0,6,86,agri,No,1
+21,AMERICAN,Female,2ND YR COL,Yes,506.0,150.0,4,Excellent,0,0,2,98,fin,No,1
+21,BLACK,Female,2ND YR COL,No,505.0,126.0,2,Good,0,0,8,30,retail,No,1
+22,IRISH,Male,2ND YR COL,No,511.0,185.0,3,Good,0,0,8,80,fin,No,1
+20,AMERICAN,Male,8TH YR COL OR MORE,No,508.0,150.0,5,Good,0,0,10,93,fin,No,0
+19,NATIVE-AMERICAN,Male,12TH GRADE,No,508.0,140.0,7,Good,0,0,5,56,manuf,No,1
+19,GERMAN,Male,12TH GRADE,No,600.0,180.0,3,Very Good,2,1,9,62,busi,Yes,1
+15,BLACK,Female,3RD YR COL,No,510.0,170.0,10,Excellent,0,0,2,15,transp,No,1
+18,NATIVE-AMERICAN,Female,8TH GRADE,No,506.0,115.0,4,Good,0,0,16,25,pro,No,0
+15,GERMAN,Male,7TH GRADE,No,509.0,194.0,5,Fair,0,1,15,3,personal,No,0
+15,ENGLISH,Male,4TH YR COL,No,510.0,155.0,7,Very Good,3,0,5,93,manuf,Yes,1
+16,BLACK,Male,12TH GRADE,No,508.0,149.0,11,Excellent,0,0,17,1,manuf,No,0
+15,ENGLISH,Female,5TH YR COL,No,503.0,115.0,5,Good,0,0,7,79,pro,No,1
+16,GERMAN,Male,2ND YR COL,No,600.0,160.0,4,Good,0,0,9,81,construction,No,0
+18,BLACK,Male,11TH GRADE,No,509.0,165.0,3,Good,0,1,2,16,construction,No,0
+17,BLACK,Male,11TH GRADE,No,511.0,175.0,7,Fair,0,0,7,5,busi,No,0
+17,AMERICAN,Male,12TH GRADE,No,510.0,215.0,5,Good,0,0,7,10,agri,No,0
+18,OTHER-SPANISH,Female,12TH GRADE,No,508.0,181.0,6,Fair,0,0,9,59,retail,No,1
+18,POLISH,Male,7TH YR COL,No,600.0,162.0,3,Excellent,1,0,8,99,pro,No,1
+22,BLACK,Female,1ST YR COL,No,503.0,135.0,6,Good,1,0,6,28,pro,No,1
+21,FRENCH,Female,1ST YR COL,No,506.0,270.0,4,Good,0,0,1,47,pro,No,0
+16,ENGLISH,Male,4TH YR COL,No,508.0,185.0,4,Very Good,0,0,13,84,manuf,No,0
+17,BLACK,Female,12TH GRADE,No,507.0,140.0,12,Very Good,0,0,7,50,pro,No,1
+14,POLISH,Male,6TH YR COL,No,509.0,155.0,5,Very Good,0,0,15,81,pro,No,1
+15,GERMAN,Male,8TH GRADE,Yes,509.0,170.0,5,Very Good,3,0,14,26,manuf,No,0
+15,ENGLISH,Male,3RD YR COL,No,511.0,170.0,4,Very Good,1,0,9,35,retail,No,0
+14,MEXICAN-AMERICAN,Male,8TH GRADE,No,506.0,220.0,7,Fair,0,0,9,9,agri,No,0
+20,OTHER,Female,3RD YR COL,No,508.0,145.0,7,Excellent,0,0,6,79,fin,No,0
+18,AMERICAN,Female,5TH YR COL,No,504.0,132.0,4,Excellent,0,0,17,80,pro,No,1
+21,BLACK,Male,4TH YR COL,No,602.0,175.0,2,Excellent,0,0,10,98,construction,No,1
+22,ENGLISH,Female,1ST YR COL,No,506.0,190.0,6,Excellent,0,0,2,53,pub,No,1
+15,IRISH,Female,4TH YR COL,No,506.0,115.0,5,Very Good,1,0,7,79,pro,No,0
+16,MEXICAN-AMERICAN,Female,1ST YR COL,No,507.0,150.0,4,Very Good,0,0,9,47,pub,No,1
+16,BLACK,Male,6TH YR COL,No,511.0,175.0,8,Excellent,0,0,10,66,pro,No,1
+17,ENGLISH,Female,12TH GRADE,No,502.0,110.0,7,Excellent,0,1,12,15,personal,No,0
+14,BLACK,Male,11TH GRADE,Yes,600.0,186.0,5,Fair,0,0,14,9,manuf,No,0
+18,BLACK,Male,4TH YR COL,No,509.0,160.0,6,Very Good,0,1,3,56,retail,No,0
+19,MEXICAN,Female,6TH GRADE,No,506.0,170.0,2,Very Good,0,0,3,3,manuf,No,0
+18,MEXICAN-AMERICAN,Male,1ST YR COL,No,509.0,150.0,5,Good,1,0,7,66,retail,Yes,1
+18,ITALIAN,Male,4TH YR COL,No,600.0,219.0,5,Fair,1,0,9,86,manuf,No,1
+20,ENGLISH,Male,4TH YR COL,No,511.0,162.0,4,Good,0,0,8,93,enter,No,1
+17,GERMAN,Female,4TH YR COL,No,507.0,135.0,4,Excellent,0,0,9,94,busi,No,1
+21,BLACK,Female,12TH GRADE,No,501.0,103.0,3,Good,0,1,9,3,retail,No,0
+17,FRENCH,Female,4TH YR COL,No,506.0,120.0,7,Excellent,0,0,10,87,pro,No,1
+14,ENGLISH,Male,5TH YR COL,No,509.0,183.0,5,Very Good,0,0,12,33,manuf,Yes,1
+21,ENGLISH,Male,12TH GRADE,No,508.0,150.0,6,Excellent,0,1,5,84,construction,No,1
+14,PUERTORICAN,Female,2ND YR COL,No,504.0,120.0,5,Very Good,0,0,7,35,pro,Yes,1
+17,CHICANO,Female,12TH GRADE,No,411.0,130.0,3,Very Good,0,0,11,68,pro,No,0
+18,CHICANO,Male,12TH GRADE,No,507.0,157.0,4,Good,0,0,7,41,transp,Yes,1
+14,ENGLISH,Female,8TH YR COL OR MORE,No,506.0,115.0,6,Good,1,0,13,92,pro,No,1
+16,BLACK,Female,1ST YR COL,No,511.0,185.0,4,Good,0,0,9,34,pro,No,1
+21,MEXICAN,Female,12TH GRADE,No,502.0,160.0,4,Good,1,1,11,32,pub,No,1
+17,BLACK,Female,2ND YR COL,No,508.0,140.0,4,Excellent,0,0,9,40,pub,No,1
+16,MEXICAN,Female,12TH GRADE,No,502.0,120.0,8,Good,0,0,4,28,retail,No,0
+21,BLACK,Female,4TH YR COL,Yes,507.0,107.0,5,Excellent,1,0,4,63,pro,No,1
+15,FRENCH,Female,12TH GRADE,No,507.0,120.0,3,Good,0,0,9,29,pro,No,0
+18,ITALIAN,Male,4TH YR COL,No,510.0,200.0,4,Very Good,3,0,5,89,wholesale,No,1
+14,GERMAN,Female,12TH GRADE,No,510.0,180.0,4,Very Good,2,0,14,31,pro,No,1
+15,BLACK,Female,2ND YR COL,No,506.0,155.0,7,Good,0,0,9,32,personal,No,0
+18,MEXICAN-AMERICAN,Female,12TH GRADE,No,508.0,255.0,6,Good,0,1,5,29,pro,No,1
+18,FILIPINO,Female,12TH GRADE,Yes,504.0,117.0,4,Good,0,0,6,64,wholesale,No,1
+20,BLACK,Female,1ST YR COL,No,508.0,220.0,6,Good,0,0,4,13,pro,No,1
+15,AMERICAN,Female,12TH GRADE,No,502.0,127.0,5,Very Good,0,0,9,41,manuf,No,0
+21,HAWAIIAN,Female,2ND YR COL,No,506.0,145.0,1,Excellent,0,0,9,52,busi,No,1
+20,ENGLISH,Male,12TH GRADE,No,601.0,165.0,8,Excellent,0,0,1,70,manuf,No,1
+19,ENGLISH,Male,12TH GRADE,No,602.0,190.0,3,Very Good,1,0,5,73,transp,No,1
+19,AMERICAN,Male,2ND YR COL,Yes,511.0,170.0,3,Excellent,4,0,5,94,manuf,Yes,1
+19,ENGLISH,Female,12TH GRADE,No,504.0,127.0,3,Good,0,0,6,24,pro,No,1
+17,BLACK,Female,3RD YR COL,No,503.0,140.0,7,Very Good,0,0,8,35,transp,No,1
+15,BLACK,Male,12TH GRADE,No,602.0,195.0,4,Good,0,0,4,71,pub,Yes,1
+20,ENGLISH,Female,12TH GRADE,No,506.0,197.0,3,Very Good,0,0,5,53,personal,No,0
+18,GERMAN,Female,12TH GRADE,No,507.0,220.0,4,Fair,0,0,8,23,pro,No,0
+14,PUERTORICAN,Female,12TH GRADE,No,502.0,125.0,7,Very Good,0,0,4,18,wholesale,No,1
+17,GERMAN,Female,7TH YR COL,No,510.0,150.0,5,Very Good,3,0,11,90,transp,Yes,1
+15,BLACK,Male,4TH YR COL,No,603.0,210.0,4,Fair,0,0,19,6,enter,No,1
+15,BLACK,Female,4TH YR COL,No,506.0,114.0,6,Excellent,0,0,15,12,retail,No,0
+14,MEXICAN-AMERICAN,Female,11TH GRADE,Yes,505.0,140.0,6,Fair,1,0,4,23,wholesale,No,1
+17,ENGLISH,Male,1ST YR COL,No,508.0,160.0,3,Very Good,0,0,8,73,transp,Yes,1
+19,PUERTORICAN,Male,12TH GRADE,No,505.0,140.0,9,Very Good,0,0,6,44,busi,No,1
+14,MEXICAN-AMERICAN,Female,12TH GRADE,No,505.0,200.0,5,Fair,0,0,4,42,retail,No,0
+17,MEXICAN-AMERICAN,Male,12TH GRADE,No,510.0,220.0,6,Very Good,1,0,12,49,pub,Yes,1
+20,GERMAN,Male,5TH YR COL,No,509.0,155.0,4,Very Good,0,0,7,97,busi,No,1
+14,GERMAN,Female,4TH YR COL,No,505.0,150.0,4,Excellent,0,0,3,78,pro,Yes,1
+18,BLACK,Female,12TH GRADE,No,503.0,125.0,4,Good,0,0,10,62,retail,No,0
+16,FRENCH,Female,11TH GRADE,No,504.0,105.0,7,Good,1,0,7,12,manuf,No,0
+19,GERMAN,Male,12TH GRADE,No,601.0,165.0,3,Excellent,3,0,2,57,retail,No,1
+14,GERMAN,Male,12TH GRADE,No,508.0,140.0,5,Very Good,0,0,8,18,manuf,Yes,1
+19,NATIVE-AMERICAN,Male,12TH GRADE,No,509.0,185.0,5,Very Good,0,0,19,62,mining,No,0
+20,ENGLISH,Female,4TH YR COL,No,502.0,123.0,1,Excellent,0,0,6,85,manuf,No,1
+15,BLACK,Male,12TH GRADE,No,601.0,167.0,3,Good,0,0,10,39,transp,No,1
+19,ENGLISH,Female,5TH YR COL,No,506.0,125.0,4,Excellent,0,0,9,73,pro,No,1
+17,BLACK,Male,2ND YR COL,No,507.0,135.0,10,Very Good,0,0,7,9,retail,No,1
+21,IRISH,Female,12TH GRADE,No,503.0,140.0,5,Very Good,0,0,4,80,pro,No,1
+21,GERMAN,Female,4TH YR COL,Yes,504.0,122.0,5,Very Good,0,0,6,88,pro,No,0
+15,NATIVE-AMERICAN,Male,12TH GRADE,No,602.0,155.0,4,Fair,0,0,17,17,pub,No,1
+21,GERMAN,Male,12TH GRADE,No,600.0,180.0,3,Very Good,0,0,5,64,transp,No,1
+20,AMERICAN,Female,12TH GRADE,No,502.0,110.0,4,Excellent,0,1,19,47,manuf,No,0
+19,ENGLISH,Female,2ND YR COL,No,508.0,117.0,3,Very Good,0,0,8,57,pro,Yes,1
+21,GERMAN,Male,9TH GRADE,No,507.0,140.0,3,Good,1,1,6,23,construction,No,1
+19,ENGLISH,Female,2ND YR COL,Yes,507.0,138.0,7,Good,0,1,7,61,fin,No,1
+18,BLACK,Female,12TH GRADE,No,502.0,150.0,6,Very Good,0,0,5,22,personal,No,0
+22,BLACK,Female,12TH GRADE,No,505.0,195.0,4,Fair,0,0,3,15,retail,No,0
+16,GERMAN,Female,4TH YR COL,No,503.0,116.0,6,Good,0,0,8,88,retail,No,0
+21,MEXICAN-AMERICAN,Female,8TH YR COL OR MORE,Yes,502.0,120.0,1,Excellent,0,0,8,72,pro,Yes,1
+15,IRISH,Female,12TH GRADE,No,504.0,155.0,3,Good,2,0,9,68,personal,No,0
+19,BLACK,Male,12TH GRADE,No,509.0,140.0,11,Fair,0,0,5,12,retail,No,0
+16,BLACK,Male,10TH GRADE,No,509.0,140.0,7,Excellent,0,0,5,3,manuf,No,1
+17,BLACK,Female,2ND YR COL,No,600.0,134.0,2,Good,0,0,6,7,pro,No,0
+15,GERMAN,Male,11TH GRADE,Yes,506.0,155.0,7,Very Good,0,0,4,29,construction,No,0
+16,BLACK,Female,2ND YR COL,No,503.0,135.0,11,Excellent,0,0,5,47,personal,No,0
+14,ENGLISH,Male,12TH GRADE,No,503.0,150.0,5,Very Good,0,0,7,19,construction,No,1
+18,GREEK,Male,4TH YR COL,No,508.0,145.0,4,Very Good,3,0,7,95,manuf,Yes,1
+15,MEXICAN,Female,12TH GRADE,No,503.0,200.0,7,Fair,0,1,13,16,pro,No,0
+17,ENGLISH,Male,12TH GRADE,No,600.0,180.0,4,Good,2,0,6,71,agri,No,1
+16,OTHER,Female,4TH YR COL,No,505.0,139.0,5,Very Good,0,0,9,91,retail,No,1
+16,ENGLISH,Female,9TH GRADE,No,503.0,151.0,1,Very Good,0,0,2,49,busi,Yes,0
+15,PUERTORICAN,Male,12TH GRADE,No,600.0,193.0,3,Very Good,0,0,6,75,fin,No,1
+17,ENGLISH,Female,12TH GRADE,No,504.0,125.0,5,Very Good,0,0,6,64,manuf,No,0
+15,ENGLISH,Female,12TH GRADE,No,506.0,115.0,6,Excellent,0,0,7,39,construction,No,0
+16,CUBAN,Male,12TH GRADE,No,509.0,145.0,4,Very Good,2,1,11,50,retail,No,1
+18,POLISH,Male,4TH YR COL,No,510.0,185.0,3,Very Good,0,0,5,94,pro,No,1
+15,BLACK,Male,12TH GRADE,No,511.0,190.0,11,Very Good,0,0,7,5,busi,No,1
+17,GERMAN,Male,4TH YR COL,No,600.0,170.0,5,Excellent,0,0,12,61,manuf,Yes,1
+14,BLACK,Female,11TH GRADE,No,501.0,140.0,4,Very Good,0,0,5,8,personal,No,0
+18,MEXICAN-AMERICAN,Female,6TH YR COL,Yes,502.0,120.0,6,Very Good,0,0,11,85,manuf,Yes,1
+17,ENGLISH,Female,12TH GRADE,No,503.0,100.0,7,Excellent,0,1,9,64,fin,No,1
+18,BLACK,Male,1ST YR COL,Yes,511.0,245.0,4,Excellent,0,0,5,34,manuf,No,1
+17,ENGLISH,Female,7TH GRADE,No,507.0,145.0,3,Good,0,0,8,3,retail,No,0
+18,ENGLISH,Female,12TH GRADE,No,503.0,120.0,7,Excellent,0,0,4,59,manuf,No,0
+21,NATIVE-AMERICAN,Female,12TH GRADE,No,506.0,177.0,3,Very Good,0,0,3,76,pro,Yes,1
+17,FRENCH,Female,12TH GRADE,No,501.0,126.0,6,Good,0,0,8,82,pro,No,1
+17,ENGLISH,Female,12TH GRADE,No,501.0,135.0,3,Excellent,0,0,10,32,retail,No,1
+16,MEXICAN-AMERICAN,Male,1ST YR COL,No,507.0,160.0,6,Very Good,6,1,5,18,busi,Yes,0
+18,BLACK,Female,4TH YR COL,No,411.0,104.0,5,Good,0,0,4,57,pro,No,1
+19,ENGLISH,Female,12TH GRADE,Yes,506.0,165.0,6,Very Good,0,0,3,48,transp,No,1
+17,AMERICAN,Male,11TH GRADE,No,510.0,150.0,7,Very Good,0,0,9,14,construction,No,1
+16,AMERICAN,Female,12TH GRADE,No,507.0,140.0,8,Excellent,0,0,2,17,retail,No,0
+15,BLACK,Male,12TH GRADE,No,600.0,173.0,6,Good,2,0,7,47,fin,Yes,1
+16,BLACK,Female,12TH GRADE,No,509.0,135.0,7,Very Good,0,0,8,10,manuf,No,0
+16,FRENCH,Female,6TH YR COL,No,502.0,128.0,7,Excellent,0,0,5,79,pro,No,1
+18,BLACK,Male,12TH GRADE,No,507.0,156.0,5,Good,3,1,7,6,busi,No,0
+14,MEXICAN-AMERICAN,Male,12TH GRADE,No,510.0,140.0,2,Very Good,0,0,8,52,transp,No,1
+16,BLACK,Female,1ST YR COL,No,600.0,145.0,3,Good,0,0,8,50,manuf,No,0
+16,ENGLISH,Male,12TH GRADE,No,509.0,137.0,5,Good,0,0,13,46,manuf,No,0
+17,OTHER-HISPANIC,Female,7TH YR COL,No,500.0,105.0,1,Very Good,0,0,6,75,pro,No,0
+16,BLACK,Male,6TH YR COL,No,510.0,160.0,6,Very Good,0,0,16,50,fin,No,1
+19,ENGLISH,Male,12TH GRADE,No,506.0,145.0,3,Good,0,0,4,16,mining,No,0
+19,BLACK,Female,2ND YR COL,No,503.0,178.0,2,Very Good,0,0,1,61,transp,No,1
+18,BLACK,Male,12TH GRADE,Yes,509.0,130.0,8,Very Good,0,1,6,3,busi,Yes,0
+15,POLISH,Female,4TH YR COL,No,507.0,136.0,5,Very Good,0,0,7,15,manuf,Yes,1
+19,GERMAN,Male,12TH GRADE,Yes,600.0,195.0,6,Good,0,0,14,28,transp,No,0
+19,GERMAN,Female,12TH GRADE,No,502.0,95.0,4,Fair,0,1,8,65,manuf,No,1
+15,AMERICAN,Male,12TH GRADE,No,601.0,175.0,6,Very Good,0,0,14,21,manuf,No,1
+15,NATIVE-AMERICAN,Male,12TH GRADE,Yes,601.0,150.0,7,Very Good,2,1,14,43,construction,No,1
+16,GERMAN,Female,12TH GRADE,No,503.0,200.0,5,Very Good,0,0,2,29,pro,No,0
+18,ENGLISH,Male,12TH GRADE,No,602.0,158.0,5,Excellent,0,0,1,54,busi,No,1
+17,IRISH,Male,11TH GRADE,No,508.0,226.0,1,Fair,0,0,7,15,pro,No,1
+16,ENGLISH,Male,2ND YR COL,No,600.0,152.0,4,Excellent,1,0,8,43,pro,No,1
+15,ENGLISH,Male,12TH GRADE,No,507.0,180.0,5,Very Good,0,0,5,13,construction,No,1
+21,FRENCH,Female,12TH GRADE,No,506.0,145.0,3,Good,0,1,3,68,retail,No,0
+20,MEXICAN,Male,10TH GRADE,No,600.0,189.0,5,Good,0,0,5,1,manuf,No,0
+19,BLACK,Female,1ST YR COL,No,506.0,175.0,4,Very Good,0,0,7,21,enter,Yes,1
+21,BLACK,Female,12TH GRADE,No,507.0,135.0,3,Excellent,0,0,4,13,fin,Yes,1
+19,GERMAN,Female,12TH GRADE,No,505.0,140.0,5,Good,0,0,4,4,personal,No,0
+17,GERMAN,Female,12TH GRADE,No,507.0,157.0,6,Good,0,0,6,9,manuf,No,0
+18,OTHER,Female,2ND YR COL,Yes,500.0,106.0,1,Very Good,0,0,8,86,retail,No,1
+18,MEXICAN-AMERICAN,Female,12TH GRADE,No,503.0,240.0,3,Good,0,0,2,29,pro,No,0
+18,GERMAN,Female,12TH GRADE,No,507.0,130.0,9,Fair,0,0,14,21,manuf,No,1
+20,BLACK,Male,11TH GRADE,Yes,600.0,160.0,4,Very Good,0,0,4,18,wholesale,No,1
+17,ENGLISH,Male,4TH YR COL,No,511.0,155.0,3,Very Good,0,0,12,89,retail,No,1
+20,MEXICAN-AMERICAN,Female,3RD YR COL,No,502.0,120.0,3,Excellent,0,0,4,73,pro,No,1
+20,GERMAN,Female,4TH YR COL,No,506.0,135.0,3,Very Good,0,0,5,55,pro,Yes,1
+14,ITALIAN,Female,4TH YR COL,No,507.0,130.0,3,Very Good,0,0,9,46,manuf,No,1
+22,BLACK,Female,1ST YR COL,No,509.0,160.0,3,Good,0,0,10,45,pro,No,1
+19,OTHER,Female,4TH YR COL,No,502.0,136.0,5,Very Good,0,0,10,79,manuf,No,0
+18,POLISH,Male,4TH YR COL,No,600.0,165.0,4,Excellent,3,0,7,79,busi,No,1
+16,OTHER-SPANISH,Male,12TH GRADE,No,506.0,180.0,10,Excellent,0,0,12,1,manuf,No,1
+17,BLACK,Female,6TH YR COL,No,507.0,145.0,3,Good,1,0,12,73,transp,No,1
+15,BLACK,Female,12TH GRADE,No,503.0,155.0,3,Good,0,0,4,8,personal,No,0
+17,GERMAN,Female,12TH GRADE,No,507.0,135.0,4,Very Good,0,0,7,76,manuf,No,1
+21,IRISH,Female,12TH GRADE,No,503.0,112.0,4,Good,0,0,19,29,retail,No,0
+14,ENGLISH,Female,4TH YR COL,No,506.0,131.0,2,Excellent,0,0,4,64,pro,No,1
+15,BLACK,Male,9TH GRADE,No,502.0,185.0,9,Very Good,0,0,15,2,construction,No,1
+16,MEXICAN-AMERICAN,Female,3RD YR COL,No,500.0,118.0,7,Good,0,0,6,27,pub,No,1
+17,BLACK,Male,12TH GRADE,No,508.0,169.0,5,Very Good,0,0,8,73,busi,No,0
+14,MEXICAN,Female,2ND YR COL,No,500.0,120.0,6,Very Good,0,0,5,63,retail,No,1
+14,IRISH,Male,12TH GRADE,No,508.0,150.0,4,Good,1,0,5,63,manuf,No,1
+16,BLACK,Female,1ST YR COL,No,504.0,130.0,5,Good,0,0,1,31,busi,Yes,0
+16,MEXICAN-AMERICAN,Male,2ND YR COL,No,511.0,185.0,4,Excellent,0,0,11,28,construction,No,1
+15,FRENCH,Male,2ND YR COL,No,510.0,140.0,5,Excellent,0,0,5,80,busi,No,1
+14,BLACK,Male,4TH YR COL,No,510.0,190.0,4,Very Good,0,0,12,33,fin,Yes,1
+15,IRISH,Female,12TH GRADE,No,507.0,125.0,5,Good,0,0,3,37,transp,No,1
+20,OTHER,Male,7TH YR COL,No,507.0,165.0,5,Very Good,0,0,16,99,pro,No,1
+15,ENGLISH,Male,12TH GRADE,No,510.0,150.0,3,Very Good,0,1,3,19,retail,No,1
+20,ITALIAN,Female,2ND YR COL,Yes,505.0,112.0,1,Good,0,0,5,26,pub,Yes,1
+16,AMERICAN,Male,11TH GRADE,Yes,507.0,125.0,2,Good,3,1,8,35,pro,Yes,1
+16,BLACK,Male,1ST YR COL,No,511.0,170.0,7,Very Good,2,0,6,33,manuf,No,1
+21,GERMAN,Male,12TH GRADE,No,602.0,175.0,3,Excellent,1,0,7,79,agri,No,0
+21,MEXICAN-AMERICAN,Female,12TH GRADE,No,504.0,165.0,2,Fair,0,1,9,20,pro,No,0
+19,FRENCH,Male,1ST YR COL,No,510.0,180.0,4,Very Good,0,0,12,33,retail,No,0
+21,MEXICAN-AMERICAN,Female,1ST YR COL,No,505.0,230.0,7,Good,0,0,11,22,personal,No,0
+14,BLACK,Female,12TH GRADE,No,503.0,127.0,3,Fair,0,0,6,9,retail,No,0
+17,MEXICAN-AMERICAN,Female,12TH GRADE,No,505.0,121.0,6,Very Good,0,0,9,29,manuf,No,0
+17,ENGLISH,Female,4TH YR COL,No,504.0,145.0,5,Good,0,0,13,90,pro,No,0
+15,IRISH,Male,7TH YR COL,Yes,604.0,169.0,4,Good,0,0,20,90,enter,No,0
+19,ENGLISH,Male,12TH GRADE,No,510.0,180.0,5,Very Good,0,0,4,48,transp,No,1
+20,BLACK,Female,3RD YR COL,No,500.0,103.0,1,Very Good,0,1,16,33,pro,No,0
+17,FRENCH,Male,3RD YR COL,No,507.0,150.0,2,Excellent,0,0,10,85,retail,No,1
+18,IRISH,Male,12TH GRADE,No,509.0,155.0,3,Very Good,0,0,5,67,busi,No,1
+20,OTHER,Female,2ND YR COL,No,600.0,160.0,4,Very Good,0,0,8,35,pro,No,0
+17,MEXICAN,Male,12TH GRADE,No,511.0,175.0,5,Very Good,4,0,1,3,construction,No,1
+14,GERMAN,Male,1ST YR COL,No,510.0,180.0,6,Excellent,0,0,11,84,busi,No,0
+20,GERMAN,Male,1ST YR COL,No,511.0,200.0,3,Good,0,0,1,17,construction,No,1
+18,ITALIAN,Female,12TH GRADE,No,505.0,127.0,4,Very Good,0,0,6,26,retail,No,0
+21,BLACK,Male,3RD YR COL,No,511.0,170.0,1,Good,0,0,13,11,wholesale,No,0
+16,BLACK,Female,12TH GRADE,No,502.0,110.0,4,Very Good,0,0,7,7,busi,No,0
+20,BLACK,Male,12TH GRADE,No,504.0,145.0,6,Excellent,0,1,8,5,construction,Yes,0
+17,ENGLISH,Female,12TH GRADE,No,503.0,140.0,7,Excellent,0,0,8,27,pro,No,1
+20,ENGLISH,Male,12TH GRADE,No,600.0,165.0,1,Excellent,0,0,5,54,retail,Yes,1
+16,BLACK,Male,12TH GRADE,No,603.0,195.0,5,Good,2,0,7,10,manuf,No,1
+20,BLACK,Male,12TH GRADE,No,506.0,160.0,10,Very Good,0,0,8,5,construction,No,0
+15,GERMAN,Female,6TH YR COL,No,509.0,135.0,6,Very Good,0,0,8,78,retail,Yes,1
+15,BLACK,Male,12TH GRADE,No,510.0,165.0,6,Very Good,0,0,12,8,construction,No,1
+17,OTHER-SPANISH,Female,3RD YR COL,No,501.0,163.0,4,Very Good,0,0,6,67,pro,No,1
+20,AMERICAN,Male,10TH GRADE,No,507.0,165.0,7,Good,0,0,7,2,construction,No,0
+18,IRISH,Female,12TH GRADE,No,505.0,122.0,3,Very Good,0,1,3,69,construction,No,0
+16,ENGLISH,Male,12TH GRADE,No,507.0,130.0,5,Very Good,0,0,21,35,construction,No,1
+21,AMERICAN,Male,4TH YR COL,Yes,507.0,150.0,2,Excellent,0,0,6,93,busi,No,1
+17,BLACK,Female,12TH GRADE,No,502.0,114.0,6,Poor,0,0,4,5,manuf,No,0
+20,AMERICAN,Male,4TH YR COL,No,604.0,225.0,2,Excellent,0,0,7,65,busi,No,1
+17,GREEK,Female,12TH GRADE,No,508.0,175.0,2,Excellent,0,0,6,35,enter,No,0
+20,BLACK,Male,12TH GRADE,No,602.0,245.0,6,Excellent,0,0,6,9,manuf,Yes,1
+20,IRISH,Male,3RD YR COL,No,601.0,178.0,3,Good,0,0,7,90,agri,No,1
+15,ENGLISH,Male,2ND YR COL,No,511.0,180.0,7,Fair,0,0,23,53,manuf,No,1
+15,NATIVE-AMERICAN,Male,4TH YR COL,No,510.0,225.0,6,Fair,0,1,11,96,manuf,Yes,1
+14,AMERICAN,Male,5TH YR COL,No,510.0,160.0,6,Very Good,0,0,11,62,agri,No,1
+19,BLACK,Male,12TH GRADE,No,605.0,235.0,8,Very Good,0,1,13,38,enter,Yes,1
+15,FRENCH,Male,12TH GRADE,No,602.0,180.0,6,Excellent,2,0,7,41,busi,No,1
+19,GERMAN,Female,1ST YR COL,No,504.0,182.0,7,Good,0,0,6,55,pro,Yes,1
+20,BLACK,Male,10TH GRADE,Yes,507.0,125.0,6,Excellent,5,1,5,34,retail,No,0
+17,ENGLISH,Female,1ST YR COL,Yes,503.0,135.0,8,Very Good,4,0,7,53,fin,No,1
+19,AMERICAN,Female,2ND YR COL,No,502.0,107.0,4,Good,0,0,6,84,pro,Yes,0
+14,MEXICAN,Male,11TH GRADE,No,508.0,165.0,7,Good,0,0,12,11,wholesale,No,0
+17,BLACK,Female,2ND YR COL,No,505.0,127.0,10,Very Good,0,0,5,27,pro,Yes,1
+14,GERMAN,Male,10TH GRADE,No,510.0,155.0,6,Very Good,2,1,14,23,construction,No,0
+20,IRISH,Female,5TH YR COL,No,510.0,160.0,4,Excellent,0,0,5,74,pro,Yes,1
+15,FRENCH,Male,11TH GRADE,No,600.0,160.0,6,Excellent,4,0,8,61,pro,No,1
+18,OTHER-HISPANIC,Male,1ST YR COL,No,505.0,155.0,4,Fair,0,0,5,35,fin,No,1
+18,BLACK,Female,1ST YR COL,Yes,501.0,159.0,8,Good,0,0,9,13,manuf,No,0
+16,NATIVE-AMERICAN,Female,4TH YR COL,No,506.0,110.0,3,Excellent,0,0,12,98,retail,No,1
+21,GERMAN,Female,4TH YR COL,No,500.0,100.0,5,Very Good,0,0,5,79,pro,No,1
+19,BLACK,Female,1ST YR COL,No,503.0,130.0,3,Good,0,0,8,5,busi,No,1
+21,ENGLISH,Female,12TH GRADE,No,502.0,103.0,7,Very Good,0,0,3,27,pro,No,0
+16,ENGLISH,Male,5TH YR COL,No,600.0,165.0,6,Excellent,0,0,4,94,manuf,No,1
+21,AMERICAN,Female,4TH YR COL,No,507.0,122.0,5,Excellent,0,0,3,65,pro,No,1
+15,MEXICAN,Male,6TH GRADE,No,506.0,169.0,6,Very Good,0,0,4,19,agri,No,1
+20,BLACK,Male,12TH GRADE,No,511.0,155.0,3,Very Good,0,0,3,25,manuf,No,1
+17,GERMAN,Female,12TH GRADE,No,508.0,130.0,5,Very Good,0,0,7,35,pro,No,0
+15,IRISH,Male,2ND YR COL,Yes,510.0,168.0,5,Excellent,0,0,7,80,enter,No,1
+20,ENGLISH,Male,9TH GRADE,No,511.0,220.0,1,Fair,0,0,10,2,transp,No,1
+19,POLISH,Male,12TH GRADE,No,510.0,170.0,1,Very Good,3,0,4,64,pub,No,1
+18,IRISH,Male,4TH YR COL,No,601.0,165.0,6,Very Good,0,0,4,97,busi,No,1
+18,BLACK,Male,1ST YR COL,No,604.0,198.0,7,Very Good,1,0,9,52,manuf,No,1
+16,MEXICAN,Male,12TH GRADE,No,508.0,160.0,9,Very Good,0,0,8,6,agri,No,1
+17,BLACK,Female,12TH GRADE,No,504.0,161.0,10,Good,0,0,3,10,fin,No,0
+20,NATIVE-AMERICAN,Female,1ST YR COL,No,503.0,125.0,3,Very Good,0,0,7,31,retail,No,1
+17,NATIVE-AMERICAN,Female,12TH GRADE,No,503.0,222.0,3,Very Good,1,0,4,36,pro,Yes,0
+16,BLACK,Male,12TH GRADE,Yes,504.0,175.0,4,Very Good,0,0,11,11,manuf,No,0
+15,NATIVE-AMERICAN,Male,8TH YR COL OR MORE,No,510.0,150.0,4,Very Good,0,0,4,91,wholesale,No,1
+21,ENGLISH,Male,12TH GRADE,No,507.0,185.0,6,Excellent,0,0,5,57,manuf,No,1
+15,FRENCH,Female,11TH GRADE,No,506.0,145.0,4,Good,0,0,9,52,busi,No,1
+15,GERMAN,Female,12TH GRADE,No,501.0,98.0,5,Good,0,0,3,48,pro,No,1
+18,MEXICAN-AMERICAN,Male,8TH GRADE,No,502.0,135.0,5,Good,0,1,4,6,mining,No,1
+21,BLACK,Female,12TH GRADE,No,503.0,200.0,7,Very Good,0,0,5,1,pub,No,0
+17,ENGLISH,Male,12TH GRADE,No,601.0,150.0,5,Very Good,3,0,6,41,manuf,No,1
+15,BLACK,Male,10TH GRADE,Yes,511.0,153.0,7,Very Good,0,0,10,7,busi,No,1
+14,FRENCH,Female,1ST YR COL,No,507.0,120.0,4,Excellent,0,0,5,31,pro,No,0
+15,BLACK,Female,12TH GRADE,No,503.0,117.0,13,Good,1,0,5,5,manuf,No,1
+14,NONE,Female,12TH GRADE,Yes,503.0,110.0,4,Very Good,0,0,4,25,manuf,No,0
+17,FRENCH,Male,11TH GRADE,No,505.0,148.0,3,Fair,0,0,17,1,manuf,No,0
+15,BLACK,Female,2ND YR COL,No,503.0,116.0,2,Very Good,0,0,8,36,personal,No,0
+16,BLACK,Female,12TH GRADE,No,505.0,137.0,8,Excellent,0,0,6,5,personal,No,0
+21,ENGLISH,Male,1ST YR COL,No,604.0,210.0,6,Very Good,1,0,6,84,manuf,No,1
+21,BLACK,Female,12TH GRADE,No,506.0,122.0,3,Good,0,0,2,13,manuf,No,0
+17,BLACK,Male,2ND YR COL,No,602.0,150.0,4,Good,0,0,5,16,manuf,Yes,0
+16,GERMAN,Female,1ST YR COL,No,501.0,110.0,3,Very Good,0,0,9,69,pro,No,1
+19,ENGLISH,Male,12TH GRADE,No,509.0,235.0,3,Very Good,0,0,10,42,retail,Yes,1
+20,ENGLISH,Male,6TH YR COL,No,507.0,148.0,3,Very Good,2,0,6,86,manuf,Yes,1
+20,AMERICAN,Male,2ND YR COL,Yes,511.0,170.0,4,Very Good,1,1,5,99,pub,Yes,1
+21,BLACK,Female,4TH YR COL,No,504.0,152.0,7,Very Good,0,0,2,58,pro,No,0
+17,ENGLISH,Female,4TH YR COL,No,507.0,141.0,4,Very Good,0,0,16,91,pro,No,0
+19,ITALIAN,Male,12TH GRADE,No,506.0,130.0,6,Very Good,1,0,10,70,construction,No,1
+18,BLACK,Female,3RD YR COL,Yes,503.0,130.0,5,Very Good,0,0,4,38,pro,Yes,1
+21,GERMAN,Male,8TH GRADE,No,505.0,160.0,3,Fair,0,1,15,19,construction,No,1
+14,BLACK,Male,12TH GRADE,No,600.0,160.0,7,Excellent,0,0,3,4,busi,No,0
+19,ENGLISH,Female,4TH YR COL,No,508.0,140.0,3,Excellent,0,0,8,26,wholesale,No,1
+19,BLACK,Male,12TH GRADE,No,511.0,180.0,4,Excellent,0,0,10,47,retail,No,1
+21,BLACK,Male,2ND YR COL,No,511.0,180.0,3,Excellent,1,0,4,85,retail,No,0
+14,NATIVE-AMERICAN,Male,12TH GRADE,No,511.0,185.0,5,Very Good,0,0,10,36,manuf,No,1
+17,MEXICAN-AMERICAN,Male,12TH GRADE,No,600.0,155.0,2,Excellent,0,1,21,5,retail,No,0
+20,ENGLISH,Male,1ST YR COL,No,510.0,200.0,4,Very Good,1,0,15,13,retail,No,1
+15,AMERICAN,Male,12TH GRADE,No,510.0,154.0,4,Very Good,0,0,8,22,transp,Yes,1
+20,ENGLISH,Female,12TH GRADE,No,500.0,107.0,3,Good,1,0,13,54,retail,No,0
+17,FRENCH,Male,3RD YR COL,No,509.0,170.0,5,Very Good,0,0,15,94,pub,No,1
+20,GERMAN,Female,4TH YR COL,No,504.0,135.0,5,Very Good,0,0,6,70,pro,No,1
+15,NATIVE-AMERICAN,Female,12TH GRADE,No,500.0,103.0,3,Very Good,0,0,2,34,pro,No,1
+17,BLACK,Female,12TH GRADE,No,505.0,145.0,6,Very Good,0,0,9,23,retail,No,1
+15,ENGLISH,Male,3RD YR COL,No,602.0,175.0,4,Good,1,0,7,74,personal,No,0
+21,ENGLISH,Male,12TH GRADE,No,510.0,180.0,1,Good,0,0,7,55,manuf,No,1
+19,NATIVE-AMERICAN,Male,12TH GRADE,No,511.0,140.0,5,Very Good,0,0,10,58,manuf,No,1
+19,FRENCH,Male,2ND YR COL,No,603.0,180.0,6,Excellent,1,0,13,95,wholesale,No,1
+15,BLACK,Male,12TH GRADE,No,506.0,148.0,4,Very Good,0,0,3,43,transp,No,1
+18,IRISH,Male,4TH YR COL,No,509.0,175.0,4,Good,0,0,2,57,pub,Yes,1
+15,OTHER,Male,4TH YR COL,No,511.0,160.0,6,Very Good,1,0,8,67,fin,No,1
+16,GERMAN,Female,4TH YR COL,No,502.0,135.0,5,Good,0,0,6,74,retail,No,1
+18,MEXICAN-AMERICAN,Female,12TH GRADE,No,503.0,165.0,8,Good,0,0,16,11,manuf,No,0
+15,GERMAN,Female,12TH GRADE,No,506.0,148.0,3,Very Good,0,0,6,86,fin,No,1
+21,BLACK,Male,12TH GRADE,No,603.0,225.0,5,Very Good,0,0,13,7,construction,No,1
+20,SCOTTISH,Female,4TH YR COL,Yes,505.0,130.0,5,Excellent,0,0,10,67,busi,No,1
+17,BLACK,Male,4TH YR COL,Yes,510.0,145.0,3,Very Good,0,0,5,39,pub,No,1
+16,NATIVE-AMERICAN,Male,10TH GRADE,No,505.0,125.0,7,Good,0,1,11,6,construction,No,0
+19,BLACK,Male,8TH YR COL OR MORE,No,602.0,143.0,3,Very Good,0,0,13,86,pro,No,1
+16,CUBAN,Female,1ST YR COL,No,501.0,170.0,3,Excellent,0,0,2,40,pro,No,1
+20,BLACK,Female,12TH GRADE,No,504.0,160.0,11,Good,0,0,4,7,retail,No,0
+21,BLACK,Male,12TH GRADE,No,603.0,170.0,2,Excellent,0,1,9,6,construction,No,1
+21,PUERTORICAN,Female,12TH GRADE,No,410.0,130.0,3,Excellent,0,0,1,1,pro,Yes,0
+18,FILIPINO,Male,1ST YR COL,No,510.0,140.0,9,Excellent,1,0,9,36,pub,Yes,1
+17,BLACK,Female,5TH YR COL,No,502.0,135.0,8,Very Good,0,0,6,76,pro,Yes,1
+14,AMERICAN,Female,4TH YR COL,No,503.0,160.0,6,Very Good,3,0,6,47,transp,No,1
+16,IRISH,Male,12TH GRADE,No,507.0,155.0,4,Very Good,3,0,9,53,pro,No,1
+17,BLACK,Male,12TH GRADE,No,506.0,138.0,6,Excellent,1,0,12,13,pro,No,1
+16,MEXICAN-AMERICAN,Female,2ND YR COL,Yes,505.0,135.0,10,Very Good,0,0,3,63,pub,No,0
+18,GERMAN,Male,12TH GRADE,No,600.0,172.0,2,Excellent,3,1,8,9,transp,No,1
+22,BLACK,Male,4TH YR COL,Yes,507.0,151.0,1,Very Good,0,1,8,74,fin,No,1
+17,SCOTTISH,Male,6TH YR COL,No,601.0,180.0,4,Very Good,0,0,4,93,pro,No,1
+20,BLACK,Male,12TH GRADE,No,511.0,172.0,7,Poor,0,0,5,4,manuf,No,0
+17,IRISH,Male,4TH YR COL,No,603.0,200.0,10,Excellent,0,0,9,99,busi,No,1
+20,ENGLISH,Female,12TH GRADE,No,504.0,143.0,8,Good,0,0,5,40,retail,No,0
+18,BLACK,Female,4TH YR COL,No,501.0,145.0,6,Good,0,0,11,72,wholesale,No,1
+18,FRENCH,Female,2ND YR COL,No,504.0,130.0,1,Very Good,0,0,14,22,pro,No,1
+19,GERMAN,Male,12TH GRADE,No,511.0,185.0,2,Fair,0,0,2,70,manuf,No,1
+20,BLACK,Male,12TH GRADE,Yes,510.0,150.0,2,Fair,0,0,7,28,busi,No,1
+19,ENGLISH,Female,4TH YR COL,No,500.0,120.0,2,Very Good,0,0,7,88,retail,No,1
+15,ENGLISH,Female,2ND YR COL,No,503.0,115.0,4,Good,0,0,4,68,pro,No,1
+15,ENGLISH,Male,12TH GRADE,No,511.0,195.0,6,Good,3,0,4,63,wholesale,No,1
+15,CUBAN,Female,12TH GRADE,No,503.0,150.0,5,Excellent,0,0,10,16,fin,Yes,1
+16,BLACK,Female,2ND YR COL,No,504.0,120.0,9,Very Good,0,0,12,9,pro,No,1
+16,GERMAN,Female,4TH YR COL,No,505.0,122.0,4,Excellent,0,0,9,40,pub,No,1
+17,PUERTORICAN,Male,8TH GRADE,No,508.0,145.0,3,Very Good,0,0,7,17,manuf,No,1
+18,GERMAN,Male,4TH YR COL,No,511.0,170.0,4,Good,3,0,13,57,busi,No,1
+16,ENGLISH,Male,2ND YR COL,No,511.0,195.0,5,Very Good,0,0,3,40,transp,No,1
+17,MEXICAN-AMERICAN,Male,11TH GRADE,No,508.0,175.0,4,Very Good,0,0,4,19,busi,Yes,1
+20,ENGLISH,Male,5TH YR COL,Yes,600.0,170.0,1,Very Good,3,0,16,85,enter,No,0
+17,GERMAN,Male,12TH GRADE,No,507.0,155.0,5,Very Good,1,0,8,42,manuf,No,1
+14,RUSSIAN,Male,6TH YR COL,No,504.0,145.0,5,Very Good,0,0,8,89,pro,No,1
+20,IRISH,Female,12TH GRADE,No,504.0,180.0,8,Very Good,0,0,4,50,transp,Yes,1
+15,BLACK,Female,4TH YR COL,No,503.0,125.0,4,Very Good,0,0,3,22,pub,No,1
+15,BLACK,Male,3RD YR COL,Yes,606.0,205.0,11,Good,2,1,8,4,manuf,Yes,0
+21,MEXICAN-AMERICAN,Female,6TH YR COL,No,503.0,115.0,12,Excellent,0,0,4,70,pro,No,1
+16,GERMAN,Male,12TH GRADE,No,511.0,140.0,3,Excellent,3,0,5,27,manuf,No,1
+15,ENGLISH,Female,12TH GRADE,No,503.0,143.0,4,Very Good,0,0,8,30,pro,No,1
+19,BLACK,Female,1ST YR COL,No,505.0,227.0,6,Good,0,0,7,10,pro,No,1
+14,BLACK,Male,12TH GRADE,No,510.0,170.0,3,Poor,4,0,5,5,manuf,No,0
+14,ENGLISH,Male,9TH GRADE,No,504.0,115.0,7,Good,0,0,11,10,construction,No,0
+17,MEXICAN-AMERICAN,Female,3RD YR COL,No,508.0,130.0,7,Excellent,0,0,10,38,busi,No,1
+21,BLACK,Female,4TH YR COL,No,504.0,120.0,9,Fair,0,0,4,34,transp,No,1
+22,ENGLISH,Female,1ST YR COL,No,505.0,149.0,3,Very Good,0,0,5,70,construction,No,1
+17,ENGLISH,Male,12TH GRADE,No,600.0,145.0,10,Very Good,0,0,17,1,retail,No,0
+14,BLACK,Male,12TH GRADE,No,503.0,145.0,11,Fair,0,0,12,63,construction,No,1
+15,BLACK,Male,2ND YR COL,No,510.0,138.0,4,Very Good,0,0,17,32,pub,No,1
+20,ENGLISH,Female,2ND YR COL,No,504.0,118.0,5,Very Good,0,0,9,29,retail,No,0
+19,BLACK,Male,4TH YR COL,No,510.0,200.0,4,Fair,0,0,12,54,transp,No,1
+21,NATIVE-AMERICAN,Male,11TH GRADE,Yes,506.0,145.0,3,Good,1,1,10,2,manuf,No,1
+15,MEXICAN-AMERICAN,Female,12TH GRADE,Yes,501.0,124.0,6,Fair,0,0,7,22,manuf,No,1
+18,NATIVE-AMERICAN,Female,1ST YR COL,No,507.0,240.0,2,Fair,0,0,12,97,pro,No,1
+14,MEXICAN,Female,11TH GRADE,No,503.0,190.0,8,Poor,0,0,7,4,personal,No,0
+20,BLACK,Female,4TH YR COL,No,508.0,150.0,11,Fair,0,0,7,7,transp,No,1
+14,MEXICAN-AMERICAN,Male,12TH GRADE,No,508.0,140.0,7,Very Good,0,0,10,32,transp,Yes,1
+19,BLACK,Female,11TH GRADE,No,503.0,148.0,6,Very Good,0,0,5,23,pub,No,0
+16,ENGLISH,Female,9TH GRADE,No,411.0,110.0,8,Very Good,0,0,6,8,retail,No,0
+21,OTHER,Female,4TH YR COL,No,601.0,225.0,5,Good,0,0,7,96,manuf,No,1
+20,GERMAN,Male,12TH GRADE,No,600.0,215.0,1,Excellent,0,1,6,74,transp,No,1
+14,BLACK,Male,12TH GRADE,No,604.0,150.0,9,Very Good,0,0,13,11,retail,No,0
+20,OTHER-HISPANIC,Male,6TH YR COL,No,507.0,175.0,1,Excellent,0,0,8,17,pro,Yes,1
+14,NATIVE-AMERICAN,Male,4TH YR COL,No,603.0,200.0,3,Very Good,4,0,11,66,manuf,No,1
+19,OTHER,Male,4TH YR COL,No,511.0,175.0,2,Very Good,0,0,9,93,manuf,No,1
+18,ENGLISH,Female,2ND YR COL,No,506.0,128.0,7,Very Good,0,0,5,53,fin,No,1
+18,IRISH,Male,12TH GRADE,No,507.0,220.0,6,Good,0,1,16,42,manuf,No,1
+21,AMERICAN,Female,12TH GRADE,No,506.0,136.0,2,Very Good,0,0,2,8,fin,No,1
+21,ENGLISH,Female,7TH YR COL,No,501.0,135.0,1,Very Good,0,0,5,78,retail,No,0
+19,BLACK,Female,2ND YR COL,No,503.0,145.0,1,Very Good,0,0,24,39,busi,No,1
+16,BLACK,Female,12TH GRADE,No,503.0,190.0,6,Very Good,0,0,1,19,pro,No,0
+19,AMERICAN,Female,12TH GRADE,No,506.0,159.0,6,Very Good,0,0,4,54,wholesale,No,1
+20,ENGLISH,Male,12TH GRADE,No,601.0,198.0,3,Excellent,2,1,7,77,manuf,Yes,1
+15,FRENCH,Male,12TH GRADE,No,507.0,145.0,8,Very Good,0,0,7,23,manuf,No,1
+15,BLACK,Female,4TH YR COL,No,508.0,125.0,6,Very Good,0,0,9,19,busi,No,0
+15,IRISH,Male,6TH YR COL,No,511.0,145.0,5,Very Good,3,0,18,32,manuf,Yes,1
+16,BLACK,Female,1ST YR COL,No,504.0,135.0,6,Very Good,0,0,4,18,retail,No,0
+16,SCOTTISH,Male,5TH YR COL,No,601.0,180.0,5,Good,0,0,7,99,pro,No,1
+20,BLACK,Male,2ND YR COL,No,600.0,170.0,1,Very Good,0,0,11,32,retail,No,1
+16,PUERTORICAN,Male,12TH GRADE,Yes,502.0,135.0,8,Poor,0,0,9,1,manuf,No,0
+20,BLACK,Male,3RD YR COL,No,600.0,160.0,5,Very Good,0,0,6,69,retail,Yes,1
+16,GERMAN,Male,12TH GRADE,No,600.0,180.0,2,Excellent,0,0,10,41,construction,No,1
+21,IRISH,Female,5TH YR COL,No,508.0,160.0,2,Excellent,0,0,1,79,pro,No,1
+16,GERMAN,Female,12TH GRADE,No,500.0,178.0,5,Good,0,0,9,79,retail,No,1
+22,MEXICAN-AMERICAN,Female,10TH GRADE,No,508.0,152.0,1,Good,0,0,4,8,retail,No,0
+18,BLACK,Female,10TH GRADE,Yes,507.0,200.0,7,Very Good,0,0,11,3,retail,No,0
+19,BLACK,Female,2ND YR COL,No,504.0,137.0,1,Good,0,1,6,27,pro,No,1
+18,OTHER-SPANISH,Female,12TH GRADE,No,500.0,102.0,2,Very Good,0,0,10,62,retail,No,0
+21,MEXICAN-AMERICAN,Male,12TH GRADE,No,508.0,198.0,5,Good,1,0,1,20,retail,No,0
+18,MEXICAN,Male,9TH GRADE,No,509.0,160.0,6,Fair,0,0,7,16,manuf,No,1
+20,MEXICAN-AMERICAN,Male,12TH GRADE,No,506.0,155.0,4,Very Good,1,0,1,25,busi,No,0
+15,BLACK,Female,4TH YR COL,Yes,503.0,121.0,5,Good,0,0,9,11,transp,No,0
+14,BLACK,Female,12TH GRADE,No,505.0,143.0,6,Good,0,0,6,13,manuf,No,0
+15,ENGLISH,Female,12TH GRADE,No,501.0,164.0,4,Good,0,0,12,45,pro,No,0
+16,MEXICAN-AMERICAN,Female,12TH GRADE,No,505.0,118.0,11,Excellent,0,0,13,10,manuf,No,0
+18,ENGLISH,Female,5TH YR COL,No,502.0,124.0,5,Very Good,0,0,2,66,pro,No,1
+17,GERMAN,Male,12TH GRADE,No,601.0,180.0,8,Good,0,0,9,64,transp,No,0
+18,BLACK,Male,3RD YR COL,No,510.0,155.0,5,Very Good,3,1,6,27,busi,No,1
+17,BLACK,Male,4TH YR COL,No,510.0,175.0,3,Very Good,0,0,10,77,pub,Yes,1
+18,OTHER,Male,4TH YR COL,No,600.0,200.0,5,Excellent,1,0,13,96,pro,No,1
+15,MEXICAN-AMERICAN,Female,12TH GRADE,No,501.0,107.0,6,Very Good,0,0,6,15,pub,No,0
+20,GERMAN,Male,11TH GRADE,Yes,601.0,220.0,1,Very Good,6,1,7,32,transp,No,0
+19,ENGLISH,Male,12TH GRADE,Yes,600.0,215.0,4,Good,0,0,1,90,manuf,No,1
+21,POLISH,Female,12TH GRADE,No,504.0,165.0,6,Very Good,0,0,14,35,pro,Yes,0
+17,BLACK,Female,12TH GRADE,No,506.0,160.0,11,Fair,0,0,4,8,personal,No,0
+17,OTHER,Male,5TH YR COL,No,509.0,210.0,3,Very Good,0,0,11,34,pro,No,1
+16,MEXICAN-AMERICAN,Male,1ST YR COL,No,510.0,150.0,4,Very Good,1,1,6,52,pub,No,1
+14,POLISH,Female,5TH YR COL,No,504.0,130.0,3,Very Good,0,0,7,93,pro,No,0
+16,MEXICAN,Male,12TH GRADE,Yes,508.0,150.0,5,Poor,2,0,9,42,fin,No,0
+16,OTHER,Male,12TH GRADE,No,504.0,130.0,6,Excellent,0,0,5,5,manuf,Yes,1
+19,GERMAN,Male,12TH GRADE,No,510.0,180.0,7,Very Good,0,0,1,15,wholesale,No,1
+17,ENGLISH,Male,2ND YR COL,No,605.0,202.0,8,Excellent,1,0,6,80,manuf,No,0
+20,MEXICAN-AMERICAN,Female,2ND YR COL,No,503.0,116.0,6,Very Good,0,0,3,49,pro,No,1
+21,BLACK,Male,6TH YR COL,No,601.0,195.0,4,Good,0,0,15,29,manuf,No,0
+21,GERMAN,Male,2ND YR COL,No,510.0,145.0,2,Very Good,2,0,4,75,fin,No,1
+18,BLACK,Male,12TH GRADE,Yes,601.0,156.0,4,Fair,3,1,15,6,agri,No,0
+16,FRENCH,Male,12TH GRADE,No,510.0,165.0,4,Very Good,5,1,10,63,fin,No,0
+20,FRENCH,Female,12TH GRADE,No,507.0,118.0,2,Very Good,0,0,19,38,transp,No,1
+17,GERMAN,Male,1ST YR COL,No,510.0,220.0,5,Very Good,5,0,7,57,manuf,No,1
+15,ENGLISH,Female,12TH GRADE,No,508.0,160.0,6,Good,0,0,21,54,construction,No,1
+14,OTHER,Female,4TH YR COL,No,501.0,90.0,4,Very Good,0,0,6,53,wholesale,No,0
+21,GERMAN,Female,4TH YR COL,Yes,511.0,130.0,5,Very Good,0,1,15,81,pro,No,1
+22,GERMAN,Male,4TH YR COL,Yes,607.0,225.0,1,Excellent,0,0,8,84,manuf,No,1
+18,GERMAN,Female,12TH GRADE,No,505.0,115.0,5,Very Good,0,0,2,61,manuf,No,1
+17,FILIPINO,Male,12TH GRADE,No,504.0,120.0,5,Excellent,0,1,5,11,construction,No,1
+15,GERMAN,Female,1ST YR COL,No,506.0,165.0,5,Very Good,0,0,2,80,agri,No,0
+18,PUERTORICAN,Female,11TH GRADE,No,506.0,225.0,7,Fair,0,0,8,10,pro,No,0
+15,ENGLISH,Male,12TH GRADE,Yes,600.0,170.0,4,Good,1,0,9,71,busi,No,0
+15,GERMAN,Female,3RD YR COL,No,508.0,185.0,4,Good,0,0,8,71,pub,No,1
+16,BLACK,Male,12TH GRADE,No,601.0,186.0,8,Good,0,0,12,5,transp,No,1
+17,FRENCH,Female,4TH YR COL,No,508.0,135.0,6,Very Good,0,0,13,54,pro,No,1
+21,PUERTORICAN,Male,12TH GRADE,No,508.0,185.0,3,Excellent,0,0,1,12,manuf,No,1
+15,GERMAN,Female,4TH YR COL,No,504.0,115.0,4,Excellent,0,0,10,78,pro,No,1
+21,GERMAN,Female,4TH YR COL,No,504.0,129.0,4,Very Good,0,0,13,94,pro,No,1
+22,BLACK,Male,2ND YR COL,Yes,508.0,170.0,7,Good,0,1,11,36,agri,No,0
+17,GERMAN,Male,2ND YR COL,No,601.0,185.0,4,Excellent,0,0,13,69,retail,No,1
+17,ENGLISH,Male,12TH GRADE,No,602.0,165.0,2,Good,0,0,11,75,manuf,No,1
+14,OTHER,Female,4TH YR COL,No,503.0,140.0,8,Excellent,0,0,10,43,wholesale,Yes,0
+15,OTHER,Male,4TH YR COL,No,601.0,188.0,5,Excellent,0,0,10,79,personal,No,1
+19,MEXICAN,Male,12TH GRADE,No,506.0,230.0,4,Good,0,0,6,13,manuf,No,1
+21,MEXICAN,Female,6TH GRADE,No,503.0,127.0,4,Good,0,0,2,1,personal,No,0
+18,OTHER,Male,12TH GRADE,No,511.0,170.0,3,Excellent,1,0,2,81,agri,No,1
+21,ENGLISH,Female,10TH GRADE,No,504.0,140.0,3,Good,0,0,6,13,retail,No,0
+14,BLACK,Male,12TH GRADE,No,508.0,158.0,5,Very Good,3,0,6,27,retail,No,1
+15,BLACK,Male,12TH GRADE,No,509.0,150.0,4,Excellent,1,0,8,5,pro,Yes,1
+15,NATIVE-AMERICAN,Female,8TH YR COL OR MORE,No,502.0,117.0,3,Very Good,0,0,18,37,pro,No,1
+15,FRENCH,Male,8TH YR COL OR MORE,No,509.0,160.0,4,Very Good,0,0,9,89,pro,No,1
+20,OTHER-SPANISH,Male,12TH GRADE,No,600.0,235.0,3,Excellent,0,0,8,67,manuf,No,1
+20,BLACK,Male,4TH YR COL,No,602.0,230.0,2,Good,0,0,7,64,transp,No,1
+17,IRISH,Male,9TH GRADE,No,507.0,200.0,3,Very Good,0,0,4,27,construction,No,1
+20,BLACK,Male,2ND YR COL,No,506.0,135.0,5,Excellent,0,0,10,13,retail,No,0
+15,ENGLISH,Male,12TH GRADE,No,602.0,159.0,5,Very Good,0,0,15,21,transp,No,1
+17,BLACK,Male,12TH GRADE,No,600.0,165.0,6,Good,0,1,9,25,retail,No,0
+17,OTHER-SPANISH,Female,12TH GRADE,No,508.0,133.0,3,Very Good,0,0,5,45,retail,No,1
+15,FRENCH,Female,12TH GRADE,Yes,505.0,130.0,4,Fair,1,1,13,40,manuf,Yes,0
+20,ENGLISH,Female,12TH GRADE,Yes,505.0,155.0,3,Good,0,0,8,42,fin,No,1
+16,FRENCH,Male,10TH GRADE,No,508.0,155.0,2,Good,2,0,14,39,construction,No,1
+15,FRENCH,Male,12TH GRADE,No,506.0,140.0,3,Excellent,1,0,8,66,manuf,Yes,1
+14,OTHER,Male,12TH GRADE,No,503.0,130.0,5,Very Good,0,0,14,19,manuf,No,1
+17,GERMAN,Female,4TH YR COL,No,505.0,130.0,5,Very Good,0,0,6,99,manuf,No,1
+18,GERMAN,Male,12TH GRADE,Yes,510.0,180.0,7,Fair,0,0,2,72,construction,No,1
+15,GERMAN,Male,2ND YR COL,No,601.0,230.0,4,Fair,0,0,8,69,wholesale,No,1
+17,MEXICAN-AMERICAN,Male,11TH GRADE,No,508.0,155.0,8,Poor,0,1,13,12,manuf,No,0
+17,CUBAN,Male,4TH YR COL,Yes,601.0,150.0,6,Excellent,1,0,3,72,manuf,No,1
+15,BLACK,Female,2ND YR COL,No,500.0,112.0,8,Good,1,0,9,23,fin,No,1
+18,ENGLISH,Male,12TH GRADE,No,601.0,220.0,4,Very Good,1,0,5,79,manuf,No,1
+15,BLACK,Male,12TH GRADE,No,601.0,210.0,7,Excellent,0,0,4,18,busi,No,1
+17,AMERICAN,Male,4TH YR COL,No,511.0,190.0,4,Very Good,0,0,7,90,fin,No,1
+19,GERMAN,Male,4TH YR COL,No,508.0,155.0,2,Good,0,0,7,86,manuf,Yes,1
+18,GERMAN,Female,1ST YR COL,No,506.0,120.0,6,Very Good,0,0,4,84,transp,No,1
+20,ITALIAN,Male,12TH GRADE,No,602.0,170.0,1,Very Good,0,1,8,92,wholesale,No,1
+18,IRISH,Male,1ST YR COL,No,510.0,165.0,4,Very Good,3,0,3,32,pro,No,1
+20,ENGLISH,Male,12TH GRADE,No,602.0,245.0,4,Very Good,1,0,4,52,manuf,No,1
+17,BLACK,Male,5TH YR COL,No,510.0,180.0,4,Excellent,0,0,8,12,manuf,Yes,1
+19,BLACK,Female,12TH GRADE,No,500.0,145.0,13,Good,0,1,2,6,manuf,No,0
+20,BLACK,Male,12TH GRADE,No,509.0,174.0,1,Very Good,3,0,2,34,transp,No,1
+18,IRISH,Male,4TH YR COL,No,600.0,165.0,3,Excellent,0,0,10,64,manuf,No,1
+21,MEXICAN-AMERICAN,Female,3RD YR COL,No,503.0,145.0,2,Very Good,1,0,8,87,pro,No,1
+17,MEXICAN-AMERICAN,Male,12TH GRADE,No,510.0,169.0,6,Good,0,0,6,28,retail,No,0
+20,FRENCH,Female,2ND YR COL,No,508.0,145.0,3,Good,3,0,7,86,pro,No,0
+19,AMERICAN,Male,9TH GRADE,No,602.0,155.0,2,Good,0,0,7,4,transp,No,0
+18,AMERICAN,Female,12TH GRADE,No,506.0,187.0,4,Very Good,0,0,5,63,pro,No,1
+18,SCOTTISH,Female,4TH YR COL,No,501.0,98.0,3,Excellent,1,0,16,45,pro,No,1
+15,ENGLISH,Male,9TH GRADE,Yes,500.0,120.0,4,Very Good,1,0,1,3,pro,No,0
+19,GERMAN,Female,10TH GRADE,No,502.0,119.0,2,Fair,0,0,8,16,manuf,No,0
+22,ENGLISH,Male,4TH YR COL,No,511.0,150.0,4,Very Good,0,0,10,86,fin,No,0
+16,FRENCH,Male,7TH YR COL,No,509.0,220.0,6,Good,0,0,8,99,pro,Yes,1
+14,BLACK,Female,12TH GRADE,No,502.0,118.0,5,Good,0,0,6,32,retail,No,1
+20,BLACK,Male,3RD YR COL,No,602.0,217.0,3,Very Good,0,0,3,62,transp,No,1
+17,BLACK,Female,12TH GRADE,No,510.0,160.0,3,Fair,0,0,10,6,busi,No,0
+17,CHICANO,Female,12TH GRADE,No,509.0,117.0,6,Very Good,0,0,7,44,pro,No,1
+14,GERMAN,Male,12TH GRADE,No,600.0,210.0,6,Good,2,0,12,7,manuf,No,1
+17,AMERICAN,Male,9TH GRADE,No,602.0,220.0,7,Very Good,0,0,4,2,wholesale,No,0
+15,FRENCH,Male,2ND YR COL,No,510.0,185.0,5,Very Good,4,0,17,57,retail,Yes,1
+17,GERMAN,Male,2ND YR COL,No,601.0,227.0,3,Very Good,4,1,19,38,pro,No,1
+16,ITALIAN,Male,3RD YR COL,No,602.0,205.0,3,Very Good,5,0,12,54,busi,No,1
+15,GERMAN,Male,5TH YR COL,No,603.0,180.0,5,Good,1,0,8,49,retail,No,0
+18,GERMAN,Female,12TH GRADE,No,506.0,135.0,5,Good,0,0,3,27,manuf,No,1
+16,GERMAN,Male,6TH YR COL,No,602.0,170.0,5,Very Good,0,0,6,61,pro,No,1
+16,NATIVE-AMERICAN,Female,12TH GRADE,Yes,506.0,110.0,5,Good,0,0,6,25,retail,Yes,1
+15,BLACK,Female,1ST YR COL,No,504.0,134.0,6,Good,0,0,4,2,manuf,No,1
+17,GERMAN,Female,1ST YR COL,No,511.0,133.0,7,Very Good,0,0,18,62,fin,No,1
+16,BLACK,Female,1ST YR COL,No,509.0,130.0,6,Good,0,0,11,28,retail,No,0
+16,OTHER,Male,3RD YR COL,No,510.0,240.0,2,Good,1,0,8,84,agri,No,1
+20,IRISH,Female,12TH GRADE,No,506.0,155.0,4,Good,0,0,4,35,pro,No,0
+19,MEXICAN-AMERICAN,Male,11TH GRADE,No,508.0,190.0,7,Good,0,0,11,10,pro,No,1
+17,AMERICAN,Male,12TH GRADE,No,510.0,220.0,6,Excellent,2,0,22,21,manuf,No,1
+14,ENGLISH,Male,1ST YR COL,No,508.0,150.0,4,Good,1,0,9,29,construction,No,1
+20,GERMAN,Female,5TH YR COL,No,502.0,132.0,8,Very Good,0,0,7,56,pro,No,1
+21,GERMAN,Female,4TH YR COL,Yes,509.0,105.0,5,Good,0,0,6,33,pro,No,1
+14,GERMAN,Male,12TH GRADE,Yes,507.0,150.0,4,Good,4,0,10,58,pub,Yes,1
+16,BLACK,Male,8TH GRADE,Yes,511.0,185.0,7,Fair,0,0,3,1,manuf,Yes,1
+18,MEXICAN-AMERICAN,Female,8TH GRADE,No,407.0,125.0,6,Good,1,0,6,24,construction,No,0
+18,BLACK,Female,5TH YR COL,No,502.0,120.0,7,Very Good,2,0,9,46,fin,Yes,0
+15,GERMAN,Female,1ST YR COL,No,505.0,140.0,4,Excellent,0,0,10,22,retail,No,0
+16,BLACK,Male,4TH YR COL,No,601.0,235.0,3,Very Good,0,0,2,41,fin,No,1
+19,GERMAN,Male,3RD YR COL,No,602.0,180.0,4,Very Good,0,0,7,74,manuf,Yes,0
+17,AMERICAN,Female,2ND YR COL,No,508.0,220.0,3,Good,0,0,16,70,pro,Yes,0
+19,IRISH,Male,4TH YR COL,No,600.0,190.0,5,Very Good,2,0,12,88,fin,No,1
+18,IRISH,Female,2ND YR COL,No,502.0,100.0,4,Very Good,0,0,6,58,wholesale,No,0
+19,GERMAN,Male,12TH GRADE,Yes,507.0,160.0,1,Excellent,1,1,4,32,manuf,No,1
+16,ENGLISH,Male,12TH GRADE,No,601.0,180.0,4,Very Good,0,1,2,59,manuf,No,1
+22,NATIVE-AMERICAN,Female,12TH GRADE,No,504.0,165.0,2,Very Good,0,0,7,75,fin,No,1
+17,GERMAN,Male,1ST YR COL,No,600.0,175.0,2,Very Good,0,0,4,86,wholesale,No,1
+16,MEXICAN,Male,6TH YR COL,No,505.0,130.0,8,Excellent,0,0,3,27,retail,No,1
+16,NATIVE-AMERICAN,Male,12TH GRADE,No,508.0,170.0,6,Good,0,0,8,61,transp,Yes,1
+16,ENGLISH,Female,1ST YR COL,No,503.0,149.0,4,Excellent,0,0,7,52,pro,No,1
+18,MEXICAN-AMERICAN,Female,9TH GRADE,No,502.0,120.0,4,Excellent,0,0,10,9,pub,Yes,0
+17,ENGLISH,Female,12TH GRADE,No,505.0,123.0,6,Very Good,0,0,13,53,pro,Yes,1
+19,ENGLISH,Female,12TH GRADE,No,504.0,230.0,3,Fair,0,0,1,53,retail,No,0
+17,ENGLISH,Female,10TH GRADE,No,505.0,115.0,3,Good,0,1,7,13,busi,No,0
+20,BLACK,Female,3RD YR COL,No,506.0,130.0,2,Excellent,0,0,4,71,manuf,No,1
+21,GERMAN,Male,12TH GRADE,No,601.0,155.0,7,Excellent,0,0,2,39,manuf,No,1
+15,BLACK,Female,2ND YR COL,No,501.0,170.0,6,Good,0,0,6,19,transp,No,1
+14,BLACK,Male,1ST YR COL,No,506.0,165.0,6,Excellent,0,0,4,7,retail,No,1
+19,ENGLISH,Female,4TH YR COL,No,508.0,120.0,6,Excellent,0,0,11,84,manuf,No,0
+20,GERMAN,Male,4TH YR COL,No,508.0,144.0,6,Excellent,0,0,5,99,pub,Yes,1
+19,AMERICAN,Female,3RD YR COL,No,504.0,120.0,4,Good,0,0,13,68,busi,No,1
+14,FRENCH,Male,2ND YR COL,No,510.0,150.0,6,Excellent,3,0,7,82,mining,No,0
+14,MEXICAN-AMERICAN,Female,12TH GRADE,No,502.0,108.0,4,Fair,0,0,8,44,retail,No,0
+19,BLACK,Female,11TH GRADE,No,504.0,133.0,3,Fair,0,0,7,1,retail,No,0
+17,INDIAN,Female,6TH YR COL,No,503.0,118.0,4,Fair,0,0,8,73,pub,No,0
+19,BLACK,Female,7TH GRADE,No,500.0,100.0,6,Good,0,0,3,3,personal,No,0
+19,BLACK,Female,1ST YR COL,Yes,504.0,168.0,4,Good,0,0,11,16,manuf,No,0
+15,ENGLISH,Female,12TH GRADE,No,503.0,125.0,7,Very Good,5,0,15,61,retail,No,0
+20,ENGLISH,Male,1ST YR COL,No,510.0,160.0,1,Very Good,0,0,5,98,transp,No,1
+19,ENGLISH,Female,1ST YR COL,No,505.0,160.0,4,Excellent,0,0,6,25,retail,No,0
+14,BLACK,Male,1ST YR COL,No,509.0,130.0,5,Excellent,0,0,5,8,agri,No,0
+18,GERMAN,Female,4TH YR COL,No,508.0,127.0,6,Very Good,0,0,10,89,pro,Yes,1
+15,ENGLISH,Female,12TH GRADE,No,504.0,130.0,5,Very Good,0,0,6,13,manuf,No,1
+19,ENGLISH,Male,11TH GRADE,Yes,600.0,220.0,4,Very Good,1,1,8,17,construction,No,0
+20,GERMAN,Male,2ND YR COL,No,511.0,175.0,6,Excellent,0,0,3,96,pro,Yes,1
+20,GERMAN,Male,12TH GRADE,No,600.0,220.0,8,Very Good,5,0,14,21,construction,No,1
+17,ENGLISH,Male,6TH YR COL,No,600.0,180.0,3,Excellent,0,0,12,93,pro,Yes,1
+18,POLISH,Male,1ST YR COL,No,602.0,240.0,5,Excellent,0,0,8,55,manuf,No,1
+17,GERMAN,Female,3RD YR COL,No,505.0,158.0,5,Good,0,0,16,50,pro,No,0
+15,BLACK,Male,12TH GRADE,No,508.0,178.0,3,Good,0,0,9,22,retail,No,0
+20,MEXICAN-AMERICAN,Female,12TH GRADE,Yes,507.0,190.0,7,Good,0,0,13,41,construction,No,0
+19,BLACK,Female,12TH GRADE,No,506.0,150.0,9,Good,0,0,12,5,busi,No,1
+17,BLACK,Female,12TH GRADE,Yes,504.0,158.0,6,Very Good,0,0,5,19,transp,Yes,1
+17,BLACK,Male,11TH GRADE,No,511.0,190.0,5,Excellent,0,0,5,22,pro,No,1
+18,BLACK,Female,9TH GRADE,No,504.0,132.0,11,Very Good,0,0,7,21,manuf,No,0
+17,OTHER-HISPANIC,Male,1ST YR COL,No,506.0,180.0,4,Excellent,0,0,19,56,agri,Yes,1
+14,ENGLISH,Female,5TH YR COL,No,503.0,130.0,4,Very Good,0,0,8,98,pro,No,1
+20,ENGLISH,Female,2ND YR COL,No,505.0,115.0,6,Very Good,1,0,20,67,wholesale,No,1
+16,OTHER,Female,2ND YR COL,No,505.0,150.0,4,Good,0,0,5,57,fin,No,0
+14,ENGLISH,Female,4TH YR COL,No,506.0,140.0,4,Very Good,0,0,5,27,manuf,No,0
+20,ENGLISH,Male,1ST YR COL,No,511.0,200.0,5,Excellent,3,1,12,72,construction,No,0
+17,BLACK,Male,2ND YR COL,No,509.0,180.0,5,Very Good,0,0,1,58,pro,No,0
+20,GERMAN,Female,4TH YR COL,No,506.0,110.0,5,Excellent,0,0,6,93,pro,No,0
+15,RUSSIAN,Male,4TH YR COL,No,504.0,140.0,4,Excellent,0,0,7,80,manuf,Yes,1
+16,GERMAN,Male,8TH GRADE,No,508.0,160.0,5,Good,0,0,26,4,busi,No,1
+18,NATIVE-AMERICAN,Male,12TH GRADE,No,510.0,170.0,1,Fair,0,0,4,42,mining,No,1
+19,ENGLISH,Female,12TH GRADE,No,504.0,160.0,3,Very Good,0,1,5,62,manuf,No,0
+15,GERMAN,Male,1ST YR COL,No,511.0,175.0,4,Excellent,1,0,8,37,busi,Yes,1
+19,AMERICAN,Female,12TH GRADE,No,503.0,111.0,1,Good,0,0,8,57,manuf,No,0
+15,GERMAN,Male,12TH GRADE,No,601.0,160.0,6,Good,0,0,9,76,manuf,Yes,1
+19,BLACK,Female,12TH GRADE,No,502.0,110.0,5,Very Good,0,0,3,51,pub,Yes,1
+16,BLACK,Male,12TH GRADE,No,508.0,153.0,4,Excellent,1,0,8,19,busi,No,1
+20,ENGLISH,Female,12TH GRADE,No,503.0,165.0,4,Very Good,0,0,8,57,pro,No,1
+14,NATIVE-AMERICAN,Female,11TH GRADE,No,505.0,154.0,5,Good,3,0,4,9,manuf,No,0
+18,OTHER,Male,12TH GRADE,No,507.0,180.0,6,Good,0,0,13,54,busi,No,1
+16,BLACK,Female,4TH YR COL,No,507.0,138.0,8,Very Good,0,0,9,27,manuf,No,1
+20,BLACK,Female,6TH YR COL,No,500.0,135.0,2,Very Good,0,0,5,65,pro,No,1
+19,GERMAN,Male,3RD YR COL,No,511.0,176.0,3,Very Good,0,0,7,70,personal,No,1
+17,BLACK,Female,12TH GRADE,No,506.0,128.0,8,Good,0,0,8,5,personal,No,0
+18,ENGLISH,Male,3RD YR COL,No,511.0,165.0,4,Very Good,0,0,12,51,busi,No,1
+17,IRISH,Female,1ST YR COL,No,506.0,119.0,2,Very Good,0,0,8,26,pro,Yes,1
+21,GERMAN,Female,3RD YR COL,No,502.0,120.0,2,Excellent,0,0,10,66,agri,No,0
+21,GERMAN,Female,12TH GRADE,Yes,503.0,160.0,5,Excellent,0,0,6,23,wholesale,No,0
+18,BLACK,Female,12TH GRADE,Yes,504.0,135.0,3,Fair,0,0,5,5,retail,No,0
+16,ENGLISH,Male,10TH GRADE,No,601.0,180.0,7,Good,0,0,5,14,transp,No,1
+16,AMERICAN,Female,4TH YR COL,No,508.0,140.0,4,Very Good,0,0,5,47,busi,No,0
+19,ENGLISH,Female,12TH GRADE,No,505.0,135.0,8,Very Good,0,0,6,1,pro,No,0
+18,ENGLISH,Female,12TH GRADE,No,504.0,122.0,8,Excellent,0,0,6,71,pro,No,0
+15,ENGLISH,Male,10TH GRADE,Yes,510.0,155.0,4,Excellent,3,1,16,22,construction,No,1
+17,MEXICAN-AMERICAN,Male,1ST YR COL,No,507.0,170.0,6,Very Good,0,0,8,9,transp,No,1
+17,BLACK,Male,4TH YR COL,No,511.0,152.0,4,Good,3,0,11,73,retail,No,0
+16,BLACK,Female,12TH GRADE,No,501.0,127.0,4,Good,1,0,5,35,manuf,No,0
+21,MEXICAN,Female,9TH GRADE,No,504.0,140.0,8,Excellent,0,0,9,15,busi,No,0
+18,MEXICAN,Female,3RD YR COL,No,503.0,106.0,3,Very Good,0,0,4,27,retail,No,1
+15,OTHER-SPANISH,Male,9TH GRADE,No,504.0,165.0,5,Very Good,3,1,5,31,transp,No,1
+19,PUERTORICAN,Male,12TH GRADE,No,506.0,145.0,9,Poor,2,0,9,21,construction,No,0
+18,OTHER,Female,4TH YR COL,Yes,506.0,139.0,7,Excellent,2,0,8,78,pro,No,1
+16,ENGLISH,Male,1ST YR COL,Yes,601.0,180.0,4,Good,0,0,9,63,construction,No,1
+15,GERMAN,Female,12TH GRADE,No,506.0,150.0,4,Good,0,0,7,52,personal,No,0
+21,PUERTORICAN,Male,1ST YR COL,No,511.0,164.0,5,Excellent,3,1,4,12,personal,No,1
+22,PUERTORICAN,Male,12TH GRADE,No,503.0,145.0,4,Fair,0,1,4,21,retail,No,1
+18,ENGLISH,Male,12TH GRADE,No,600.0,194.0,3,Very Good,0,0,5,16,manuf,Yes,1
+17,BLACK,Male,12TH GRADE,No,509.0,165.0,9,Fair,0,0,11,4,pro,No,1
+15,NATIVE-AMERICAN,Female,12TH GRADE,No,507.0,122.0,8,Fair,0,0,4,13,manuf,No,0
+14,ENGLISH,Male,6TH YR COL,No,505.0,161.0,5,Very Good,0,0,13,42,retail,No,0
+18,NATIVE-AMERICAN,Female,12TH GRADE,No,505.0,112.0,13,Poor,1,0,4,7,agri,No,0
+21,BLACK,Female,12TH GRADE,Yes,508.0,149.0,2,Good,0,0,5,21,personal,No,0
+16,BLACK,Female,12TH GRADE,No,508.0,135.0,6,Very Good,3,0,15,50,fin,No,1
+19,GERMAN,Female,12TH GRADE,Yes,501.0,98.0,3,Poor,0,0,6,22,pro,No,0
+20,GERMAN,Female,11TH GRADE,No,501.0,120.0,3,Very Good,0,0,6,52,retail,No,0
+15,BLACK,Female,12TH GRADE,No,502.0,155.0,5,Good,0,0,8,8,fin,No,0
+21,BLACK,Female,4TH YR COL,No,506.0,190.0,3,Very Good,0,0,3,31,personal,No,0
+19,OTHER,Male,8TH YR COL OR MORE,No,511.0,205.0,3,Excellent,0,0,9,99,manuf,No,1
+17,BLACK,Male,2ND YR COL,No,600.0,200.0,3,Very Good,0,0,6,33,pub,No,0
+20,BLACK,Female,8TH GRADE,No,504.0,199.0,8,Fair,0,0,5,10,personal,No,0
+17,ENGLISH,Male,1ST YR COL,No,509.0,225.0,5,Very Good,3,0,9,91,pro,No,0
+15,GERMAN,Male,11TH GRADE,No,508.0,150.0,4,Fair,4,1,13,85,manuf,No,1
+18,GERMAN,Male,12TH GRADE,No,511.0,198.0,6,Excellent,0,0,7,42,construction,No,1
+15,AMERICAN,Female,1ST YR COL,No,502.0,110.0,1,Excellent,0,0,8,27,busi,No,1
+14,ENGLISH,Male,12TH GRADE,No,601.0,173.0,3,Good,4,0,3,46,wholesale,No,1
+15,IRISH,Male,12TH GRADE,No,506.0,145.0,5,Good,0,0,7,35,wholesale,No,1
+21,ENGLISH,Female,4TH YR COL,No,506.0,140.0,1,Excellent,1,0,9,89,pro,No,1
+21,BLACK,Female,12TH GRADE,No,507.0,150.0,4,Fair,0,0,6,15,manuf,No,0
+14,AMERICAN,Male,12TH GRADE,No,508.0,146.0,3,Good,1,0,11,36,enter,No,1
+15,ITALIAN,Female,10TH GRADE,No,500.0,118.0,4,Fair,1,0,10,22,retail,Yes,0
+14,AMERICAN,Female,12TH GRADE,No,505.0,135.0,4,Very Good,0,0,6,38,pub,No,1
+17,BLACK,Male,11TH GRADE,No,506.0,140.0,5,Excellent,0,0,6,1,agri,No,0
+19,OTHER-HISPANIC,Male,1ST YR COL,No,508.0,152.0,9,Very Good,0,0,5,78,personal,Yes,1
+20,BLACK,Female,12TH GRADE,No,504.0,130.0,3,Fair,0,0,5,46,pub,No,1
+20,BLACK,Female,1ST YR COL,No,507.0,130.0,4,Fair,0,0,14,8,retail,No,0
+21,IRISH,Male,4TH YR COL,No,508.0,180.0,5,Very Good,3,0,13,59,retail,No,1
+16,GERMAN,Male,12TH GRADE,No,600.0,165.0,6,Excellent,0,0,3,35,construction,No,1
+20,ENGLISH,Female,12TH GRADE,No,509.0,160.0,6,Excellent,0,0,9,31,manuf,No,1
+20,MEXICAN-AMERICAN,Male,12TH GRADE,No,509.0,240.0,9,Good,0,0,15,13,pro,No,1
+20,BLACK,Female,3RD YR COL,No,511.0,178.0,3,Fair,0,0,12,77,pro,No,1
+15,MEXICAN-AMERICAN,Female,1ST YR COL,No,504.0,139.0,6,Good,0,0,4,73,fin,No,1
+16,POLISH,Male,5TH YR COL,No,508.0,185.0,5,Very Good,0,0,7,87,manuf,No,1
+17,ENGLISH,Female,12TH GRADE,No,505.0,160.0,4,Very Good,0,0,9,52,wholesale,Yes,0
+17,ENGLISH,Female,2ND YR COL,No,501.0,189.0,4,Very Good,1,0,11,30,busi,No,1
+18,ENGLISH,Female,1ST YR COL,No,505.0,160.0,5,Very Good,0,0,10,90,personal,No,0
+17,OTHER,Male,4TH YR COL,No,602.0,200.0,3,Very Good,2,0,12,73,fin,No,1
+19,FRENCH,Male,12TH GRADE,No,509.0,175.0,5,Excellent,0,0,5,35,busi,Yes,1
+21,ENGLISH,Male,11TH GRADE,No,508.0,134.0,4,Excellent,0,0,3,37,retail,No,0
+21,BLACK,Female,12TH GRADE,No,504.0,204.0,2,Excellent,0,0,2,9,manuf,No,0
+18,BLACK,Male,12TH GRADE,No,507.0,135.0,9,Very Good,3,1,9,36,wholesale,No,0
+18,BLACK,Male,9TH GRADE,No,501.0,138.0,8,Very Good,0,0,10,12,busi,No,0
+21,AMERICAN,Female,12TH GRADE,No,503.0,115.0,3,Poor,0,0,8,2,pro,No,0
+17,CHICANO,Female,12TH GRADE,No,506.0,140.0,5,Good,0,0,3,8,pro,No,0
+15,MEXICAN-AMERICAN,Male,1ST YR COL,No,505.0,141.0,7,Very Good,0,0,6,49,busi,No,0
+20,BLACK,Female,11TH GRADE,No,506.0,125.0,4,Excellent,0,0,9,2,personal,No,0
+21,GERMAN,Male,4TH YR COL,No,603.0,185.0,1,Excellent,0,0,8,59,manuf,No,1
+16,MEXICAN-AMERICAN,Female,9TH GRADE,No,506.0,128.0,8,Very Good,0,0,3,13,personal,No,0
+18,OTHER-HISPANIC,Male,11TH GRADE,No,510.0,170.0,4,Very Good,0,0,13,21,transp,No,1
+20,CUBAN,Female,5TH YR COL,No,506.0,175.0,6,Fair,0,0,10,34,pro,No,1
+17,ENGLISH,Female,4TH YR COL,No,507.0,135.0,6,Excellent,0,0,11,74,manuf,No,0
+14,ENGLISH,Male,12TH GRADE,No,507.0,168.0,4,Good,0,0,7,40,construction,No,1
+14,BLACK,Male,11TH GRADE,Yes,510.0,140.0,5,Excellent,0,0,16,5,construction,No,1
+15,MEXICAN-AMERICAN,Male,12TH GRADE,No,508.0,180.0,4,Very Good,3,0,20,18,transp,No,1
+16,IRISH,Male,12TH GRADE,No,600.0,150.0,5,Very Good,0,0,13,80,busi,No,1
+21,MEXICAN-AMERICAN,Male,10TH GRADE,No,507.0,137.0,2,Very Good,0,0,11,16,construction,No,1
+19,MEXICAN,Male,3RD GRADE,No,504.0,130.0,1,Fair,0,0,4,1,manuf,No,1
+18,MEXICAN-AMERICAN,Female,6TH GRADE,No,505.0,145.0,2,Poor,0,0,17,1,agri,No,0
+14,ENGLISH,Female,12TH GRADE,Yes,504.0,114.0,6,Very Good,0,0,2,57,transp,No,1
+17,ENGLISH,Male,12TH GRADE,No,600.0,220.0,5,Good,1,0,10,82,manuf,No,0
+16,GERMAN,Female,6TH YR COL,No,502.0,99.0,5,Good,0,0,1,75,pro,No,1
+19,MEXICAN-AMERICAN,Female,12TH GRADE,No,502.0,118.0,1,Excellent,0,0,4,8,fin,No,1
+17,GERMAN,Male,2ND YR COL,No,602.0,197.0,4,Good,0,0,3,85,pub,Yes,1
+19,MEXICAN,Male,9TH GRADE,No,505.0,137.0,3,Very Good,0,0,6,25,manuf,No,1
+17,BLACK,Male,12TH GRADE,No,507.0,164.0,9,Good,2,0,11,7,construction,No,1
+16,NATIVE-AMERICAN,Male,12TH GRADE,No,603.0,195.0,9,Very Good,0,0,26,50,retail,No,0
+14,BLACK,Female,1ST YR COL,No,508.0,148.0,4,Good,1,0,10,15,pub,Yes,1
+18,BLACK,Female,12TH GRADE,No,503.0,207.0,6,Good,0,0,2,13,pro,Yes,0
+15,GERMAN,Male,8TH YR COL OR MORE,No,600.0,140.0,5,Very Good,4,0,5,97,pro,No,1
+16,MEXICAN-AMERICAN,Male,6TH YR COL,No,507.0,140.0,6,Very Good,0,0,10,89,busi,No,1
+21,OTHER,Male,1ST YR COL,No,507.0,164.0,4,Fair,0,0,3,29,fin,No,1
+14,GERMAN,Female,1ST YR COL,No,503.0,145.0,4,Very Good,0,0,13,50,retail,No,0
+20,BLACK,Male,12TH GRADE,No,506.0,145.0,2,Very Good,0,0,5,8,manuf,No,0
+17,BLACK,Female,4TH YR COL,No,409.0,115.0,4,Very Good,0,0,4,15,pro,No,1
+18,MEXICAN-AMERICAN,Male,8TH GRADE,No,509.0,190.0,3,Excellent,0,1,14,10,manuf,No,0
+18,BLACK,Female,12TH GRADE,No,508.0,185.0,10,Very Good,0,0,5,15,personal,No,0
+14,OTHER,Female,4TH YR COL,No,501.0,107.0,5,Excellent,0,0,5,84,manuf,No,1
+19,ENGLISH,Male,10TH GRADE,No,505.0,110.0,4,Excellent,0,0,12,9,wholesale,No,0
+20,BLACK,Male,2ND YR COL,No,508.0,189.0,5,Very Good,0,0,8,46,pub,Yes,1
+18,GERMAN,Male,12TH GRADE,No,505.0,190.0,6,Very Good,0,0,2,69,manuf,No,1
+20,BLACK,Female,12TH GRADE,No,411.0,131.0,6,Very Good,0,0,3,7,manuf,Yes,1
+15,MEXICAN-AMERICAN,Female,12TH GRADE,No,503.0,145.0,10,Very Good,0,0,10,15,pro,No,0
+19,ENGLISH,Male,4TH YR COL,No,510.0,165.0,3,Excellent,0,0,7,89,construction,Yes,1
+20,CUBAN,Female,1ST YR COL,No,503.0,150.0,5,Good,0,0,5,31,fin,No,1
+16,BLACK,Female,12TH GRADE,No,500.0,135.0,8,Fair,2,0,3,2,retail,No,0
+14,BLACK,Male,3RD YR COL,No,505.0,130.0,4,Very Good,3,0,7,25,retail,No,1
+14,IRISH,Female,4TH YR COL,No,504.0,120.0,5,Excellent,0,0,9,82,manuf,No,1
+19,GERMAN,Male,12TH GRADE,No,600.0,150.0,2,Good,0,0,7,61,manuf,No,1
+18,ENGLISH,Female,2ND YR COL,No,501.0,170.0,7,Fair,0,0,17,87,pro,No,0
+17,CHICANO,Male,5TH YR COL,No,507.0,160.0,3,Good,0,0,13,28,pro,No,1
+17,ENGLISH,Female,12TH GRADE,No,501.0,117.0,4,Excellent,0,0,4,80,pub,No,0
+18,GERMAN,Male,2ND YR COL,No,601.0,165.0,4,Good,0,0,22,75,agri,No,1
+14,POLISH,Female,12TH GRADE,Yes,504.0,150.0,5,Good,0,0,5,29,retail,No,0
+16,BLACK,Female,3RD YR COL,No,504.0,150.0,5,Good,1,0,15,31,retail,No,0
+21,CHICANO,Male,12TH GRADE,No,504.0,180.0,4,Excellent,1,0,7,3,manuf,No,1
+14,ENGLISH,Female,10TH GRADE,No,502.0,130.0,6,Very Good,0,0,4,3,pro,No,0
+19,POLISH,Male,8TH GRADE,No,507.0,145.0,1,Very Good,1,0,10,16,retail,No,1
+18,GERMAN,Male,3RD YR COL,No,510.0,150.0,5,Very Good,0,0,13,97,busi,Yes,1
+17,AMERICAN,Male,12TH GRADE,No,600.0,185.0,2,Good,4,1,9,9,busi,No,1
+21,ENGLISH,Female,1ST YR COL,No,501.0,144.0,2,Fair,0,0,7,64,pro,No,0
+18,BLACK,Male,11TH GRADE,No,508.0,135.0,5,Good,0,1,7,3,pro,No,1
+16,NATIVE-AMERICAN,Male,12TH GRADE,No,510.0,190.0,3,Very Good,3,0,4,64,fin,Yes,1
+18,NATIVE-AMERICAN,Female,12TH GRADE,No,500.0,110.0,3,Excellent,0,0,7,45,manuf,No,0
+21,BLACK,Male,12TH GRADE,No,509.0,190.0,4,Fair,0,0,11,9,retail,Yes,0
+19,BLACK,Female,12TH GRADE,No,502.0,120.0,9,Good,0,0,3,2,manuf,No,1
+22,ENGLISH,Female,12TH GRADE,No,505.0,127.0,1,Very Good,0,0,2,64,manuf,No,1
+17,BLACK,Female,12TH GRADE,Yes,504.0,120.0,4,Good,0,0,9,16,manuf,Yes,1
+18,GERMAN,Male,2ND YR COL,No,511.0,180.0,6,Very Good,0,0,13,90,pro,No,1
+17,ENGLISH,Female,12TH GRADE,No,500.0,98.0,6,Excellent,0,0,4,59,manuf,No,0
+21,BLACK,Male,2ND YR COL,No,511.0,250.0,4,Good,0,0,8,32,pub,Yes,0
+14,BLACK,Male,12TH GRADE,No,510.0,173.0,5,Good,2,0,9,13,retail,No,0
+15,ITALIAN,Female,4TH YR COL,No,503.0,105.0,5,Very Good,2,0,5,61,fin,No,1
+14,BLACK,Female,2ND YR COL,No,508.0,123.0,4,Very Good,0,0,7,16,retail,No,0
+19,GERMAN,Female,2ND YR COL,No,507.0,120.0,3,Excellent,1,0,3,57,pro,No,1
+17,BLACK,Male,12TH GRADE,Yes,511.0,140.0,6,Good,0,0,8,15,construction,No,1
+14,AMERICAN,Female,1ST YR COL,No,503.0,118.0,3,Fair,0,0,9,58,pro,No,1
+16,ENGLISH,Male,8TH GRADE,No,602.0,200.0,4,Very Good,2,1,7,35,busi,No,1
+17,BLACK,Female,1ST YR COL,No,503.0,120.0,8,Very Good,0,0,7,18,personal,No,0
+16,BLACK,Female,12TH GRADE,No,507.0,137.0,1,Very Good,0,0,8,21,transp,No,1
+15,GERMAN,Male,12TH GRADE,No,508.0,140.0,4,Very Good,1,0,10,16,construction,Yes,1
+15,GERMAN,Male,12TH GRADE,No,603.0,205.0,6,Excellent,3,0,7,22,pro,No,1
+17,AMERICAN,Female,12TH GRADE,No,502.0,105.0,3,Fair,0,0,4,13,retail,Yes,0
+16,BLACK,Female,1ST YR COL,No,500.0,120.0,8,Good,0,0,5,21,busi,No,1
+20,ENGLISH,Female,12TH GRADE,No,503.0,130.0,4,Good,0,0,5,22,personal,No,0
+16,MEXICAN-AMERICAN,Female,12TH GRADE,No,503.0,98.0,5,Excellent,0,0,8,31,pub,No,1
+19,ENGLISH,Male,12TH GRADE,No,508.0,160.0,5,Very Good,0,0,4,23,construction,No,1
+14,MEXICAN-AMERICAN,Female,12TH GRADE,No,503.0,100.0,5,Excellent,0,0,7,35,fin,No,1
+16,ITALIAN,Female,12TH GRADE,No,502.0,120.0,4,Good,0,0,12,13,manuf,No,0
+19,MEXICAN-AMERICAN,Male,12TH GRADE,No,601.0,175.0,6,Excellent,3,0,7,16,retail,No,1
+14,AMERICAN,Male,4TH YR COL,No,604.0,220.0,5,Very Good,0,0,10,75,fin,No,1
+16,GERMAN,Female,12TH GRADE,No,510.0,145.0,3,Excellent,0,0,8,46,pro,No,0
+18,ENGLISH,Female,12TH GRADE,No,502.0,125.0,5,Excellent,0,0,3,50,pro,No,1
+15,NATIVE-AMERICAN,Male,12TH GRADE,No,600.0,145.0,7,Excellent,2,0,16,17,construction,No,0
+15,BLACK,Male,12TH GRADE,No,509.0,160.0,7,Excellent,0,1,12,20,pro,No,0
+16,MEXICAN-AMERICAN,Female,2ND YR COL,No,500.0,107.0,7,Good,0,0,7,49,fin,No,1
+16,ENGLISH,Female,4TH YR COL,No,505.0,109.0,3,Excellent,0,0,7,74,busi,No,0
+14,GERMAN,Female,2ND YR COL,No,504.0,115.0,5,Excellent,3,0,13,70,pro,No,1
+20,GERMAN,Male,6TH YR COL,No,600.0,170.0,3,Excellent,3,0,7,88,busi,No,1
+15,BLACK,Male,12TH GRADE,No,601.0,178.0,8,Excellent,0,0,5,5,manuf,No,1
+16,PUERTORICAN,Male,8TH GRADE,No,500.0,139.0,4,Fair,0,0,15,1,transp,No,0
+17,OTHER,Male,4TH YR COL,No,510.0,150.0,4,Very Good,0,0,10,98,retail,No,1
+17,FRENCH,Male,12TH GRADE,No,508.0,200.0,6,Very Good,0,0,9,21,construction,No,1
+18,BLACK,Female,1ST YR COL,No,503.0,160.0,5,Fair,0,0,4,13,retail,No,0
+18,GERMAN,Male,2ND YR COL,No,507.0,150.0,5,Excellent,0,0,15,64,wholesale,Yes,1
+19,MEXICAN-AMERICAN,Male,12TH GRADE,No,509.0,205.0,3,Very Good,0,0,3,49,pub,Yes,1
+20,BLACK,Female,2ND YR COL,No,507.0,175.0,5,Very Good,0,0,3,89,transp,No,1
+18,BLACK,Male,11TH GRADE,No,601.0,200.0,4,Very Good,2,0,5,2,pro,No,0
+14,IRISH,Male,12TH GRADE,No,511.0,145.0,6,Very Good,1,0,7,4,pub,No,0
+16,OTHER,Female,12TH GRADE,No,506.0,130.0,4,Very Good,0,0,6,19,manuf,No,1
+16,ENGLISH,Female,12TH GRADE,No,504.0,125.0,6,Excellent,1,0,3,40,retail,No,1
+15,GERMAN,Female,4TH YR COL,No,508.0,140.0,5,Excellent,0,0,4,78,busi,No,1
+19,ENGLISH,Female,12TH GRADE,No,507.0,180.0,1,Good,0,0,5,34,enter,No,0
+16,ENGLISH,Male,11TH GRADE,No,506.0,140.0,5,Good,0,1,8,13,busi,No,0
+14,GERMAN,Male,4TH YR COL,No,602.0,180.0,4,Very Good,0,0,6,93,manuf,Yes,1
+17,ENGLISH,Male,12TH GRADE,No,600.0,180.0,6,Very Good,0,0,12,41,pub,No,1
+17,NATIVE-AMERICAN,Female,12TH GRADE,No,504.0,170.0,4,Excellent,0,0,8,38,retail,No,0
+15,FRENCH,Female,12TH GRADE,No,502.0,125.0,5,Very Good,0,0,5,45,pro,Yes,0
+21,GERMAN,Female,2ND YR COL,No,506.0,200.0,2,Very Good,0,0,13,81,retail,No,0
+17,PUERTORICAN,Male,2ND YR COL,No,505.0,130.0,3,Excellent,0,0,4,62,manuf,Yes,1
+21,MEXICAN-AMERICAN,Female,2ND YR COL,No,506.0,125.0,6,Fair,0,0,13,15,busi,No,0
+19,GERMAN,Female,12TH GRADE,No,503.0,113.0,3,Very Good,0,0,5,41,retail,No,0
+18,BLACK,Male,12TH GRADE,No,600.0,195.0,6,Very Good,0,0,10,12,construction,No,0
+19,ENGLISH,Male,6TH YR COL,No,508.0,155.0,1,Excellent,0,0,13,92,pub,No,1
+19,MEXICAN-AMERICAN,Male,12TH GRADE,No,508.0,135.0,7,Very Good,1,1,10,35,transp,No,1
+16,BLACK,Male,12TH GRADE,No,509.0,180.0,10,Very Good,0,0,7,28,busi,No,0
+14,CUBAN,Male,11TH GRADE,No,506.0,185.0,3,Very Good,2,0,3,13,manuf,No,1
+17,MEXICAN-AMERICAN,Male,12TH GRADE,No,508.0,145.0,5,Very Good,1,0,14,21,manuf,Yes,1
+14,ENGLISH,Male,12TH GRADE,No,511.0,165.0,6,Very Good,1,0,13,27,retail,No,0
+21,OTHER,Male,6TH YR COL,No,510.0,148.0,5,Excellent,0,0,14,90,pro,No,1
+16,IRISH,Female,2ND YR COL,No,504.0,105.0,7,Very Good,0,0,6,21,pro,No,0
+20,BLACK,Male,12TH GRADE,No,508.0,150.0,1,Good,0,0,8,3,busi,No,0
+20,GERMAN,Female,1ST YR COL,No,502.0,185.0,3,Very Good,0,0,24,54,busi,Yes,0
+19,ENGLISH,Male,3RD YR COL,No,510.0,190.0,4,Good,1,0,8,93,fin,Yes,1
+17,ENGLISH,Male,4TH YR COL,No,600.0,180.0,5,Very Good,0,0,7,76,fin,Yes,1
+17,BLACK,Female,12TH GRADE,No,506.0,110.0,7,Very Good,0,0,2,52,pub,No,1
+20,MEXICAN,Female,12TH GRADE,No,502.0,110.0,9,Excellent,0,0,6,17,personal,Yes,1
+15,BLACK,Male,12TH GRADE,No,506.0,140.0,7,Excellent,0,0,8,23,manuf,No,1
+15,BLACK,Female,2ND YR COL,No,503.0,140.0,7,Good,0,0,10,25,retail,No,0
+18,AMERICAN,Male,12TH GRADE,No,509.0,165.0,4,Very Good,0,0,10,36,retail,No,1
+20,FRENCH,Male,12TH GRADE,Yes,602.0,190.0,4,Fair,1,1,18,29,construction,No,0
+17,BLACK,Female,11TH GRADE,Yes,501.0,105.0,1,Excellent,0,0,6,8,retail,No,1
+19,GERMAN,Male,2ND YR COL,Yes,601.0,175.0,2,Fair,0,0,16,72,manuf,No,1
+17,ENGLISH,Male,8TH YR COL OR MORE,No,602.0,180.0,3,Very Good,0,0,9,78,busi,Yes,1
+18,MEXICAN-AMERICAN,Female,12TH GRADE,No,504.0,140.0,5,Excellent,0,0,12,5,busi,No,0
+15,MEXICAN-AMERICAN,Female,12TH GRADE,No,502.0,128.0,7,Very Good,0,0,5,19,mining,No,1
+15,ENGLISH,Male,4TH YR COL,No,507.0,160.0,4,Good,0,0,7,22,pro,No,1
+17,ENGLISH,Female,1ST YR COL,No,505.0,130.0,5,Excellent,0,0,8,27,pro,No,0
+17,BLACK,Male,11TH GRADE,Yes,510.0,167.0,4,Good,2,0,10,37,manuf,No,1
+16,GERMAN,Male,12TH GRADE,No,509.0,200.0,9,Good,3,0,3,82,manuf,No,1

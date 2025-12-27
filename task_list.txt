@@ -1,0 +1,39 @@
+# Adult
+python3 stage1_bias_analysis.py --config config/adult_config.json --inlp_iters 1 --inlp_alpha 1
+python3 stage1_bias_analysis.py --config config/adult_config.json --inlp_iters 2 --inlp_alpha 1
+python3 stage1_bias_analysis.py --config config/adult_config.json --inlp_iters 3 --inlp_alpha 1
+python3 stage1_bias_analysis.py --config config/adult_config.json --inlp_iters 4 --inlp_alpha 1
+python3 stage1_bias_analysis.py --config config/adult_config.json --inlp_iters 1 --inlp_alpha 0.8
+python3 stage1_bias_analysis.py --config config/adult_config.json --inlp_iters 2 --inlp_alpha 0.8
+python3 stage1_bias_analysis.py --config config/adult_config.json --inlp_iters 3 --inlp_alpha 0.8
+python3 stage1_bias_analysis.py --config config/adult_config.json --inlp_iters 4 --inlp_alpha 0.8
+
+# Bank Marketing
+python3 stage1_bias_analysis.py --config config/bank_marketing_config.json --inlp_iters 1 --inlp_alpha 1
+python3 stage1_bias_analysis.py --config config/bank_marketing_config.json --inlp_iters 2 --inlp_alpha 1
+python3 stage1_bias_analysis.py --config config/bank_marketing_config.json --inlp_iters 3 --inlp_alpha 1
+python3 stage1_bias_analysis.py --config config/bank_marketing_config.json --inlp_iters 4 --inlp_alpha 1
+python3 stage1_bias_analysis.py --config config/bank_marketing_config.json --inlp_iters 1 --inlp_alpha 0.8
+python3 stage1_bias_analysis.py --config config/bank_marketing_config.json --inlp_iters 2 --inlp_alpha 0.8
+python3 stage1_bias_analysis.py --config config/bank_marketing_config.json --inlp_iters 3 --inlp_alpha 0.8
+python3 stage1_bias_analysis.py --config config/bank_marketing_config.json --inlp_iters 4 --inlp_alpha 0.8
+
+# NLSB
+python3 stage1_bias_analysis.py --config config/nlsb_config.json --inlp_iters 1 --inlp_alpha 1
+python3 stage1_bias_analysis.py --config config/nlsb_config.json --inlp_iters 2 --inlp_alpha 1
+python3 stage1_bias_analysis.py --config config/nlsb_config.json --inlp_iters 3 --inlp_alpha 1
+python3 stage1_bias_analysis.py --config config/nlsb_config.json --inlp_iters 4 --inlp_alpha 1
+python3 stage1_bias_analysis.py --config config/nlsb_config.json --inlp_iters 1 --inlp_alpha 0.8
+python3 stage1_bias_analysis.py --config config/nlsb_config.json --inlp_iters 2 --inlp_alpha 0.8
+python3 stage1_bias_analysis.py --config config/nlsb_config.json --inlp_iters 3 --inlp_alpha 0.8
+python3 stage1_bias_analysis.py --config config/nlsb_config.json --inlp_iters 4 --inlp_alpha 0.8
+
+# ACS Public Coverage
+python3 stage1_bias_analysis.py --config config/acs_public_coverage_config.json --inlp_iters 1 --inlp_alpha 1
+python3 stage1_bias_analysis.py --config config/acs_public_coverage_config.json --inlp_iters 2 --inlp_alpha 1
+python3 stage1_bias_analysis.py --config config/acs_public_coverage_config.json --inlp_iters 3 --inlp_alpha 1
+python3 stage1_bias_analysis.py --config config/acs_public_coverage_config.json --inlp_iters 4 --inlp_alpha 1
+python3 stage1_bias_analysis.py --config config/acs_public_coverage_config.json --inlp_iters 1 --inlp_alpha 0.8
+python3 stage1_bias_analysis.py --config config/acs_public_coverage_config.json --inlp_iters 2 --inlp_alpha 0.8
+python3 stage1_bias_analysis.py --config config/acs_public_coverage_config.json --inlp_iters 3 --inlp_alpha 0.8
+python3 stage1_bias_analysis.py --config config/acs_public_coverage_config.json --inlp_iters 4 --inlp_alpha 0.8

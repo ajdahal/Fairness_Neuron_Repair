@@ -1,0 +1,63 @@
+{   
+    "dataset_name": "compas",
+    "dataset_dir": "dataset/compas",
+    "dataset_download_url" : "https://raw.githubusercontent.com/propublica/compas-analysis/master/compas-scores-two-years.csv",
+    "train_file_path": "compas_train.csv",
+    "test_file_path": "compas_test.csv",
+    "downloaded_dataset_file": "compas_downloaded_data.csv",
+    "all_data": "dataset/compas/compas_all.csv",
+    "columns_to_keep" : ["sex","age","race","juv_fel_count","juv_misd_count","priors_count","c_charge_degree","two_year_recid"],
+    "continuous_cols" : ["age", "priors_count","juv_fel_count","juv_misd_count"],
+    "categorical_cols" : ["sex",  "race", "c_charge_degree"],
+    "ml_models_dir": "ml_models/compas",
+    "counterfactual_dir": "counterfactuals/compas",
+    "log_loss_dir": "log_loss/compas",
+    "results_dir": "results/compas",
+    "run_archive_dir": "deterministic_run/compas",
+    "train_fader_network": "yes",
+    "output_column_name": "two_year_recid",
+    "sensitive_attr": "sex",
+    "threshold_age": 25,
+    "low_age": 18,
+    "high_age": 96,
+    "privileged_age": [1],
+    "unprivileged_age": [0],
+    "privileged_sex": ["Male"],
+    "unprivileged_sex": ["Female"],
+    "privileged_race": ["Caucasian"],
+    "unprivileged_race": ["African-American", "Other", "Hispanic", "Asian", "Native American"],
+    "hidden_dim": 128,
+    "lambda_adv": 2,
+    "batch_size": 32,
+    "num_epochs": 300,
+    "latent_dim": [4],
+    "column_specs": [
+        ["sex", "categorical", 2],
+        ["age", "continuous", null],
+        ["race", "categorical", 6],
+        ["juv_fel_count", "continuous", null],
+        ["juv_misd_count", "continuous", null],
+        ["priors_count", "continuous", null],
+        ["c_charge_degree", "categorical", 2]
+    ],
+    "hypertransformer_config": {
+        "sdtypes": {
+          "sex": "categorical",
+          "age": "numerical",
+          "race": "categorical",
+          "juv_fel_count": "numerical",
+          "juv_misd_count": "numerical",
+          "priors_count": "numerical",
+          "c_charge_degree": "categorical"
+        },
+        "transformers": {
+          "sex": "OneHotEncoder",
+          "age": "GaussianNormalizer",
+          "race": "OneHotEncoder",
+          "juv_fel_count": "GaussianNormalizer",
+          "juv_misd_count": "GaussianNormalizer",
+          "priors_count": "GaussianNormalizer",
+          "c_charge_degree": "OneHotEncoder"
+        }
+    }
+}
