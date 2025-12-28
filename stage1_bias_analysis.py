@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """
 Stage 1: Baseline Analysis, Bias Detection, and INLP Repair
-
 This module implements:
 1. Neural network training on Income data
 2. INLP (Iterative Nullspace Projection) to compute a Gender Neutrality Matrix
@@ -41,13 +40,24 @@ DETERMINISTIC_SEED = int(os.getenv("GLOBAL_SEED", 42))
 class SimpleNeuralNetwork(nn.Module):
     """Neural network with activation extraction and neuron masking support."""
     
-    def __init__(self, input_size):
+    def __init__(self, input_size, num_layers=3):
         super(SimpleNeuralNetwork, self).__init__()
-        # Architecture: input -> 256 -> 128 -> 64 -> 1
-        self.layer1 = nn.Linear(input_size, 256)
-        self.layer2 = nn.Linear(256, 128)
-        self.layer3 = nn.Linear(128, 64)
-        self.output_layer = nn.Linear(64, 1)
+        self.num_layers = num_layers
+        
+        if num_layers == 4:
+            # Architecture: input -> 256 -> 128 -> 64 -> 1
+            self.layer1 = nn.Linear(input_size, 256)
+            self.layer2 = nn.Linear(256, 128)
+            self.layer3 = nn.Linear(128, 64)
+            self.output_layer = nn.Linear(64, 1)
+        elif num_layers == 3:
+            # Architecture: input -> 128 -> 64 -> 1
+            self.layer1 = nn.Linear(input_size, 128)
+            self.layer2 = nn.Linear(128, 64)
+            self.output_layer = nn.Linear(64, 1)
+        else:
+            raise ValueError(f"num_layers must be 3 or 4, got {num_layers}")
+        
         self.relu = nn.ReLU()
         self.sigmoid = nn.Sigmoid()
         
@@ -58,7 +68,11 @@ class SimpleNeuralNetwork(nn.Module):
         """Forward pass with optional activation extraction."""
         x = self.relu(self.layer1(x))
         x = self.relu(self.layer2(x))
-        activations_64 = self.relu(self.layer3(x))
+        
+        if self.num_layers == 4:
+            activations_64 = self.relu(self.layer3(x))
+        else:  # num_layers == 3
+            activations_64 = x  # layer2 output is already 64 neurons
         
         # Apply neuron mask (default is all 1s)
         activations_masked = activations_64 * self.neuron_mask
@@ -75,11 +89,16 @@ class SimpleNeuralNetwork(nn.Module):
         return output
     
     def extract_activations(self, x):
-        """Extract activations from layer3 (64 neurons) without computing output."""
+        """Extract activations from last hidden layer (64 neurons) without computing output."""
         with torch.no_grad():
             x = self.relu(self.layer1(x))
             x = self.relu(self.layer2(x))
-            activations_64 = self.relu(self.layer3(x))
+            
+            if self.num_layers == 4:
+                activations_64 = self.relu(self.layer3(x))
+            else:  # num_layers == 3
+                activations_64 = x  # layer2 output is already 64 neurons
+            
             # Apply current mask
             return activations_64 * self.neuron_mask
     
@@ -398,9 +417,9 @@ def main(params, device, timestamp):
     val_split_ratio = getattr(params, 'val_split_ratio', 0.15)
     if val_split_ratio is None:
         val_split_ratio = 0.15
-    early_stopping_patience = getattr(params, 'early_stopping_patience', 50)
+    early_stopping_patience = getattr(params, 'early_stopping_patience', 30)
     if early_stopping_patience is None:
-        early_stopping_patience = 50
+        early_stopping_patience = 30
     min_delta_ratio = getattr(params, 'min_delta_ratio', 0.0001)
     if min_delta_ratio is None:
         min_delta_ratio = 0.0001
@@ -429,10 +448,13 @@ def main(params, device, timestamp):
     pos_weight = torch.tensor([n_class0 / n_class1]).to(device)
     logger.info(f"Class distribution: Class 0={n_class0}, Class 1={n_class1}, pos_weight={pos_weight.item():.4f}")
     
-    model = SimpleNeuralNetwork(input_size).to(device)
+    # Get num_layers from params (default to 3 for better generalization)
+    num_layers = getattr(params, 'num_layers', 3)
+    model = SimpleNeuralNetwork(input_size, num_layers=num_layers).to(device)
+    logger.info(f"Model architecture: {num_layers} layers")
     # Use BCEWithLogitsLoss which supports pos_weight directly and is more numerically stable
     criterion = nn.BCEWithLogitsLoss(pos_weight=pos_weight)
-    optimizer = optim.Adam(model.parameters(), lr=0.0005, weight_decay=1e-2)
+    optimizer = optim.Adam(model.parameters(), lr=0.0002, weight_decay=1e-2)
     
     logger.info("\nTraining neural network (Baseline) for fixed epochs with validation monitoring...")
     best_val_loss = train_model(
@@ -443,7 +465,8 @@ def main(params, device, timestamp):
     logger.info(f"Training completed. Best validation loss: {best_val_loss:.6f}")
     
     # Save original model
-    model_path = os.path.join(params.ml_models_dir, f"{params.dataset_name}__nn_stage1_original__{timestamp}.pth")
+    num_layers = getattr(params, 'num_layers', 3)
+    model_path = os.path.join(params.ml_models_dir, f"{params.dataset_name}__nn_stage1_original_layers_{num_layers}__{timestamp}.pth")
     torch.save(model.state_dict(), model_path)
     logger.info(f"Original Model saved to: {model_path}")
 
@@ -605,7 +628,8 @@ def main(params, device, timestamp):
     perform_weight_surgery(model, P, mean_activation)
     
     # Save modified model
-    model_surgery_path = os.path.join(params.ml_models_dir, f"{params.dataset_name}__nn_stage1_inlp_repaired__{timestamp}.pth")
+    num_layers = getattr(params, 'num_layers', 3)
+    model_surgery_path = os.path.join(params.ml_models_dir, f"{params.dataset_name}__nn_stage1_inlp_repaired_layers_{num_layers}__{timestamp}.pth")
     torch.save(model.state_dict(), model_surgery_path)
     logger.info(f"Repaired Model saved to: {model_surgery_path}")
 
@@ -789,6 +813,7 @@ if __name__ == "__main__":
     parser.add_argument("--seed", type=int, default=42, help="Random seed")
     parser.add_argument("--inlp_iters", type=int, default=5, help="Number of INLP iterations")
     parser.add_argument("--inlp_alpha", type=float, default=1.0, help="INLP projection strength (alpha)")
+    parser.add_argument("--layers", type=int, choices=[3, 4], default=3, help="Number of layers in neural network (3 or 4)")
     args = parser.parse_args()
     
     with open(args.config) as f:
@@ -800,6 +825,7 @@ if __name__ == "__main__":
         raise ValueError("batch_size must be specified in the config file")
     params.inlp_iters = args.inlp_iters
     params.inlp_alpha = args.inlp_alpha
+    params.num_layers = args.layers
     
     # Path resolution logic 
     project_root = Path(__file__).resolve().parent
@@ -822,7 +848,8 @@ if __name__ == "__main__":
     timestamp = start_time.strftime('%Y%m%d_%H_%M_%S')
     
     # Init logger
-    log_path = project_root / "logs" / params.dataset_name / f"stage1_bias_analysis_{timestamp}_inlp_iters_{params.inlp_iters}_inlp_alpha_{params.inlp_alpha}.log"
+    num_layers = getattr(params, 'num_layers', 3)
+    log_path = project_root / "logs" / params.dataset_name / f"stage1_bias_analysis_{timestamp}_inlp_iters_{params.inlp_iters}_inlp_alpha_{params.inlp_alpha}_layers_{num_layers}.log"
     init_logger(log_path)
     
     main(params, device, timestamp)

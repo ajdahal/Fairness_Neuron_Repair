@@ -1,0 +1,161 @@
+====================================================================================================
+MUTUAL INFORMATION ANALYSIS FOR ALL DATASETS
+====================================================================================================
+
+====================================================================================================
+DATASET: ADULT
+====================================================================================================
+Sensitive Attribute: sex
+Output Label: income
+
+1. GENDER AND OUTPUT LABEL:
+   sex <-> income: MI = 0.0300, Index = 35, Type = mutual_info_score
+
+2. HIGHEST MI OVERALL:
+   marital-status <-> relationship: MI = 0.7300, Index = 2, Type = mutual_info_score
+
+3. ATTRIBUTES STRONGLY RELATED TO GENDER (Top 5):
+   sex <-> relationship: MI = 0.2700, Index = 3, Type = mutual_info_score
+   sex <-> marital-status: MI = 0.1200, Index = 7, Type = mutual_info_score
+   sex <-> occupation: MI = 0.1000, Index = 12, Type = mutual_info_score
+   sex <-> hours-per-week: MI = 0.0400, Index = 32, Type = mutual_info_classif
+
+4. GENDER-RELATED ATTRIBUTES AND OUTPUT LABEL:
+   relationship <-> income: MI = 0.1200, Index = 8, Type = mutual_info_score
+   marital-status <-> income: MI = 0.1100, Index = 10, Type = mutual_info_score
+   occupation <-> income: MI = 0.0600, Index = 24, Type = mutual_info_score
+   hours-per-week <-> income: MI = 0.0400, Index = 34, Type = mutual_info_classif
+
+
+====================================================================================================
+DATASET: ACS_PUBLIC_COVERAGE
+====================================================================================================
+Sensitive Attribute: sex
+Output Label: pubcov
+
+1. GENDER AND OUTPUT LABEL:
+   sex <-> pubcov: MI = 0.0100, Index = 68, Type = mutual_info_score
+
+2. HIGHEST MI OVERALL:
+   sex <-> fer: MI = 0.3100, Index = 2, Type = mutual_info_score
+
+3. ATTRIBUTES STRONGLY RELATED TO GENDER (Top 5):
+   sex <-> fer: MI = 0.3100, Index = 2, Type = mutual_info_score
+   sex <-> mar: MI = 0.0300, Index = 33, Type = mutual_info_score
+   sex <-> schl: MI = 0.0200, Index = 42, Type = mutual_info_score
+   sex <-> mil: MI = 0.0100, Index = 79, Type = mutual_info_score
+
+4. GENDER-RELATED ATTRIBUTES AND OUTPUT LABEL:
+   fer <-> pubcov: MI = 0.0000, Index = 102, Type = mutual_info_score
+   mar <-> pubcov: MI = 0.0100, Index = 81, Type = mutual_info_score
+   schl <-> pubcov: MI = 0.0100, Index = 82, Type = mutual_info_score
+   mil <-> pubcov: MI = 0.0100, Index = 57, Type = mutual_info_score
+
+
+====================================================================================================
+DATASET: COMPAS
+====================================================================================================
+Sensitive Attribute: sex
+Output Label: two_year_recid
+
+1. GENDER AND OUTPUT LABEL:
+   sex <-> two_year_recid: MI = 0.0100, Index = 22, Type = mutual_info_score
+
+2. HIGHEST MI OVERALL:
+   priors_count <-> two_year_recid: MI = 0.0500, Index = 2, Type = mutual_info_classif
+
+3. ATTRIBUTES STRONGLY RELATED TO GENDER (Top 5):
+   sex <-> priors_count: MI = 0.0100, Index = 23, Type = mutual_info_classif
+   sex <-> race: MI = 0.0000, Index = 24, Type = mutual_info_score
+   sex <-> c_charge_degree: MI = 0.0000, Index = 26, Type = mutual_info_score
+   sex <-> juv_misd_count: MI = 0.0000, Index = 27, Type = mutual_info_classif
+
+4. GENDER-RELATED ATTRIBUTES AND OUTPUT LABEL:
+   priors_count <-> two_year_recid: MI = 0.0500, Index = 2, Type = mutual_info_classif
+   race <-> two_year_recid: MI = 0.0100, Index = 17, Type = mutual_info_score
+   c_charge_degree <-> two_year_recid: MI = 0.0100, Index = 18, Type = mutual_info_score
+   juv_misd_count <-> two_year_recid: MI = 0.0200, Index = 7, Type = mutual_info_classif
+
+
+====================================================================================================
+DATASET: CREDIT
+====================================================================================================
+Sensitive Attribute: sex
+Output Label: class
+
+1. GENDER AND OUTPUT LABEL:
+   sex <-> class: MI = 0.0000, Index = 197, Type = mutual_info_score
+
+2. HIGHEST MI OVERALL:
+   Attribute2 <-> Attribute5: MI = 0.3500, Index = 2, Type = mutual_info_regression
+
+3. ATTRIBUTES STRONGLY RELATED TO GENDER (Top 5):
+   sex <-> Attribute18: MI = 0.0400, Index = 25, Type = mutual_info_classif
+   sex <-> Attribute11: MI = 0.0400, Index = 27, Type = mutual_info_classif
+   sex <-> age: MI = 0.0300, Index = 43, Type = mutual_info_score
+   sex <-> Attribute15: MI = 0.0300, Index = 45, Type = mutual_info_score
+   sex <-> Attribute7: MI = 0.0200, Index = 56, Type = mutual_info_score
+
+4. GENDER-RELATED ATTRIBUTES AND OUTPUT LABEL:
+   Attribute18 <-> class: MI = 0.0100, Index = 109, Type = mutual_info_classif
+   Attribute11 <-> class: MI = 0.0000, Index = 136, Type = mutual_info_classif
+   age <-> class: MI = 0.0100, Index = 92, Type = mutual_info_score
+   Attribute15 <-> class: MI = 0.0100, Index = 124, Type = mutual_info_score
+   Attribute7 <-> class: MI = 0.0100, Index = 86, Type = mutual_info_score
+
+
+====================================================================================================
+DATASET: NLSB
+====================================================================================================
+Sensitive Attribute: sex
+Output Label: income96gt17
+
+1. GENDER AND OUTPUT LABEL:
+   sex <-> income96gt17: MI = 0.0300, Index = 18, Type = mutual_info_score
+
+2. HIGHEST MI OVERALL:
+   sex <-> height: MI = 0.3200, Index = 2, Type = mutual_info_classif
+
+3. ATTRIBUTES STRONGLY RELATED TO GENDER (Top 5):
+   sex <-> height: MI = 0.3200, Index = 2, Type = mutual_info_classif
+   sex <-> weight: MI = 0.2200, Index = 5, Type = mutual_info_classif
+   sex <-> typejob90: MI = 0.0800, Index = 9, Type = mutual_info_score
+   sex <-> illegalact: MI = 0.0300, Index = 22, Type = mutual_info_score
+
+4. GENDER-RELATED ATTRIBUTES AND OUTPUT LABEL:
+   height <-> income96gt17: MI = 0.0200, Index = 30, Type = mutual_info_classif
+   weight <-> income96gt17: MI = 0.0200, Index = 29, Type = mutual_info_classif
+   typejob90 <-> income96gt17: MI = 0.0300, Index = 17, Type = mutual_info_score
+   illegalact <-> income96gt17: MI = 0.0000, Index = 97, Type = mutual_info_score
+
+
+====================================================================================================
+DATASET: BANK_MARKETING
+====================================================================================================
+Sensitive Attribute: age
+Output Label: y
+
+1. GENDER AND OUTPUT LABEL:
+   age <-> y: MI = 0.0100, Index = 86, Type = mutual_info_score
+
+2. HIGHEST MI OVERALL:
+   day_of_week <-> month: MI = 0.7300, Index = 2, Type = mutual_info_score
+
+3. ATTRIBUTES STRONGLY RELATED TO GENDER (Top 5):
+   age <-> job: MI = 0.1100, Index = 9, Type = mutual_info_score
+   age <-> balance: MI = 0.0400, Index = 29, Type = mutual_info_classif
+   age <-> housing: MI = 0.0400, Index = 32, Type = mutual_info_score
+   age <-> pdays: MI = 0.0300, Index = 41, Type = mutual_info_classif
+   age <-> month: MI = 0.0200, Index = 45, Type = mutual_info_score
+
+4. GENDER-RELATED ATTRIBUTES AND OUTPUT LABEL:
+   job <-> y: MI = 0.0200, Index = 54, Type = mutual_info_score
+   balance <-> y: MI = 0.0500, Index = 24, Type = mutual_info_classif
+   housing <-> y: MI = 0.0500, Index = 25, Type = mutual_info_score
+   pdays <-> y: MI = 0.0800, Index = 13, Type = mutual_info_classif
+   month <-> y: MI = 0.0600, Index = 21, Type = mutual_info_score
+
+
+====================================================================================================
+ANALYSIS COMPLETE
+====================================================================================================

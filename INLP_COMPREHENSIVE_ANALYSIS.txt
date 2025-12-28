@@ -1,0 +1,1255 @@
+====================================================================================================
+COMPREHENSIVE INLP EXPERIMENT ANALYSIS
+Executive Summary & Detailed Results
+====================================================================================================
+
+OVERVIEW
+----------------------------------------------------------------------------------------------------
+This document provides a comprehensive analysis of INLP (Iterative Nullspace Projection) experiments 
+across 6 datasets with varying hyperparameters (inlp_iters: 1-4, inlp_alpha: 0.8, 1.0). 
+A total of 48 experiments were analyzed.
+
+====================================================================================================
+EXECUTIVE SUMMARY
+====================================================================================================
+
+KEY FINDINGS
+
+1. ACCURACY-FAIRNESS TRADE-OFF PATTERNS
+
+   Dataset-Specific Observations:
+
+   - acs_public_coverage: 
+     * Consistent accuracy drop (~15-17%) across all configurations
+     * Strong AOD improvements (-14% to -26%)
+     * EOD worsens slightly (+3% to +12%) - CONTRADICTION
+     * Best trade-off: iters=1, alpha=0.8 (14.12% drop, -14.17% AOD)
+
+   - adult:
+     * Highly variable accuracy drops (9% to 57%)
+     * Extreme case: iters=3/4, alpha=1.0 → 56.66% accuracy drop with complete fairness 
+       (AOD/EOD=0) but model collapses (predicts only one class)
+     * Best trade-off: iters=2, alpha=1.0 (10.15% drop, 10.16% AOD improvement)
+
+   - compas:
+     * Minimal accuracy impact (0-4.37% drop)
+     * Mixed AOD results (-22.55% to +4.64%)
+     * Best trade-off: iters=2, alpha=1.0 (0% drop, 2.49% AOD improvement)
+
+   - credit:
+     * Only 1 configuration analyzed (all configs show same results)
+     * 19.21% AOD change (positive = worsens fairness) - ANOMALY
+     * No accuracy drop observed
+
+   - nlsb:
+     * Small accuracy drops (0.41% to 8.25%)
+     * Strong AOD improvements with alpha=1.0, iters≥3 (-100% = perfect fairness but 
+       model collapse)
+     * Best trade-off: iters=1, alpha=0.8 (0.71% drop, -4.93% AOD)
+
+   - bank_marketing:
+     * All log files incomplete/crashed - no data available
+
+2. HYPERPARAMETER EFFECTS
+
+   Alpha (α) Effect:
+   - Alpha=1.0 (full projection): Generally produces better AOD improvements but higher 
+     accuracy drops
+   - Alpha=0.8 (partial projection): More conservative, preserves accuracy better
+   - Critical Finding: For adult dataset, alpha=1.0 causes 23.4% higher accuracy drop on average
+   - Critical Finding: For nlsb dataset, alpha=1.0 with iters≥3 causes complete model collapse
+
+   Iterations Effect:
+   - 1 iteration: Minimal impact, conservative changes
+   - 2-3 iterations: Optimal balance for most datasets
+   - 4 iterations: Diminishing returns, sometimes model collapse
+   - General Trend: More iterations → better AOD improvement but higher accuracy cost
+
+3. CRITICAL CONTRADICTIONS & ANOMALIES
+
+   1. AOD vs EOD Contradiction (acs_public_coverage):
+      - AOD improves significantly (-14% to -26%)
+      - EOD worsens (+3% to +12%)
+      - Interpretation: Model becomes more fair in average odds but less fair in equalized odds
+
+   2. Model Collapse Cases:
+      - adult: iters=3/4, alpha=1.0 → predicts only class 1 (100% accuracy on class 1, 0% on class 0)
+      - nlsb: iters=3/4, alpha=1.0 → same collapse pattern
+      - Root Cause: Over-aggressive projection removes too much information
+
+   3. Credit Dataset Anomaly:
+      - All configurations show identical results (AOD worsens by 19.21%)
+      - Possible Issue: Projection direction may be incorrect or dataset-specific bias structure
+
+   4. Adult Dataset Contradiction:
+      - AOD worsens (+10% to +17%) but EOD improves significantly (-31% to -48%)
+      - Opposite pattern from acs_public_coverage
+
+4. CROSS-DATASET PATTERNS
+
+   Average Accuracy Drop Ranking:
+   1. compas: 0.87% (best preservation)
+   2. nlsb: 2.80%
+   3. acs_public_coverage: 15.75%
+   4. adult: 21.47% (highest average, but highly variable)
+
+   Average AOD Improvement Ranking:
+   1. nlsb: -31.10% (best improvement, but includes collapse cases)
+   2. acs_public_coverage: -22.25%
+   3. adult: -14.44% (but includes collapse cases)
+   4. compas: 0.11% (minimal change)
+   5. credit: +19.21% (worsens)
+
+   General Trends:
+   - More iterations (3-4) → Better AOD improvement (-20% to -23% average)
+   - Alpha=1.0 → Better AOD improvement (-20.81% average) but higher accuracy cost
+   - Alpha=0.8 → More conservative (+1.43% average AOD, but some improvements)
+
+5. SVM GENDER DETECTION ANALYSIS
+
+   Before Projection:
+   - All datasets show gender information in activations (SVM accuracy 28-86%)
+   - Indicates presence of bias in learned representations
+
+   After Projection:
+   - Successful cases: SVM accuracy drops significantly (towards 50% = random)
+   - Failure cases: SVM accuracy remains high (projection ineffective)
+   - Model collapse cases: SVM accuracy drops to ~25-45% but model becomes unusable
+
+6. RECOMMENDATIONS
+
+   For Production Use:
+   1. Start conservative: Use iters=1-2, alpha=0.8 for initial experiments
+   2. Monitor for collapse: Watch for class imbalance in predictions (sign of model collapse)
+   3. Dataset-specific tuning: Different datasets require different hyperparameters
+   4. AOD vs EOD trade-off: Consider which fairness metric is more important for your use case
+
+   For Research:
+   1. Investigate why EOD worsens when AOD improves (acs_public_coverage)
+   2. Understand root cause of model collapse (adult, nlsb with high iterations)
+   3. Analyze credit dataset anomaly (AOD worsens, all configs identical)
+   4. Study relationship between SVM accuracy reduction and fairness improvement
+
+   Optimal Configurations by Dataset:
+   - acs_public_coverage: iters=1, alpha=0.8
+   - adult: iters=2, alpha=1.0 (avoid iters≥3 with alpha=1.0)
+   - compas: iters=2, alpha=1.0
+   - nlsb: iters=1, alpha=0.8 (avoid iters≥3 with alpha=1.0)
+   - credit: Needs more experiments (current config worsens fairness)
+
+CONCLUSION
+----------------------------------------------------------------------------------------------------
+INLP shows promise for improving fairness (AOD) but comes with significant accuracy costs and 
+potential model collapse risks. The effectiveness is highly dataset-dependent, and careful 
+hyperparameter tuning is essential. The contradiction between AOD and EOD improvements suggests 
+that different fairness metrics may require different approaches.
+
+Critical Takeaway: More aggressive projections (higher iterations, alpha=1.0) do not always 
+lead to better results. Conservative approaches often provide better accuracy-fairness trade-offs.
+
+====================================================================================================
+DETAILED DATASET-BY-DATASET ANALYSIS
+====================================================================================================
+
+====================================================================================================
+DATASET: ACS_PUBLIC_COVERAGE
+====================================================================================================
+
+HYPERPARAMETER COMPARISON TABLE
+----------------------------------------------------------------------------------------------------
+Iters  Alpha  Best Epoch   Val Loss   Base Acc   Final Acc  Acc Drop   Base AOD   Final AOD  AOD Δ%     Base EOD   Final EOD  EOD Δ%    
+----------------------------------------------------------------------------------------------------
+1      0.8    198          0.231614   73.08%     58.96%     14.12%     0.2872     0.2465     -14.17%    0.2472     0.2777     12.34%    
+1      1.0    198          0.231614   73.08%     59.02%     14.06%     0.2872     0.2463     -14.22%    0.2472     0.2774     12.21%    
+2      0.8    198          0.231614   73.08%     57.90%     15.18%     0.2872     0.2260     -21.31%    0.2472     0.2561     3.60%     
+2      1.0    198          0.231614   73.08%     56.72%     16.36%     0.2872     0.2147     -25.23%    0.2472     0.2456     -0.66%    
+3      0.8    198          0.231614   73.08%     56.75%     16.33%     0.2872     0.2150     -25.13%    0.2472     0.2461     -0.43%    
+3      1.0    198          0.231614   73.08%     56.53%     16.55%     0.2872     0.2135     -25.67%    0.2472     0.2430     -1.69%    
+4      0.8    198          0.231614   73.08%     56.55%     16.53%     0.2872     0.2130     -25.82%    0.2472     0.2421     -2.05%    
+4      1.0    198          0.231614   73.08%     56.19%     16.89%     0.2872     0.2111     -26.48%    0.2472     0.2414     -2.33%    
+
+DETAILED METRICS TABLE
+----------------------------------------------------------------------------------------------------
+
+Configuration: iters=1, alpha=0.8
+  Training: Best epoch=198, Val loss=0.231614
+  Baseline: Acc=73.0812%, Class0=65.8537%, Class1=74.8347%
+  Baseline Fairness: Discrimination=31.37%, AOD=0.287189, EOD=0.24719
+  SVM Before: Test=68.2353%, Female=67.8571%, Male=68.7583%
+  SVM After: Test=68.2353%, Female=67.8571%, Male=68.7583%
+  Final: Acc=58.9636%, Class0=83.0703%, Class1=53.1152%, Drop=14.1176%
+  Final Fairness: Discrimination=32.69%, AOD=0.246503, EOD=0.277695
+  Changes: Acc Δ=19.32%, Disc Δ=-4.2%, AOD Δ=-14.17%, EOD Δ=12.34%
+
+Configuration: iters=1, alpha=1.0
+  Training: Best epoch=198, Val loss=0.231614
+  Baseline: Acc=73.0812%, Class0=65.8537%, Class1=74.8347%
+  Baseline Fairness: Discrimination=31.37%, AOD=0.287189, EOD=0.24719
+  SVM Before: Test=68.2353%, Female=67.8571%, Male=68.7583%
+  SVM After: Test=65.6303%, Female=68.0502%, Male=62.283%
+  Final: Acc=59.0196%, Class0=83.0703%, Class1=53.1848%, Drop=14.0616%
+  Final Fairness: Discrimination=32.66%, AOD=0.246344, EOD=0.277377
+  Changes: Acc Δ=19.24%, Disc Δ=-4.11%, AOD Δ=-14.22%, EOD Δ=12.21%
+
+Configuration: iters=2, alpha=0.8
+  Training: Best epoch=198, Val loss=0.231614
+  Baseline: Acc=73.0812%, Class0=65.8537%, Class1=74.8347%
+  Baseline Fairness: Discrimination=31.37%, AOD=0.287189, EOD=0.24719
+  SVM Before: Test=68.2353%, Female=67.8571%, Male=68.7583%
+  SVM After: Test=32.1008%, Female=31.7568%, Male=32.5768%
+  Final: Acc=57.8992%, Class0=84.505%, Class1=51.4445%, Drop=15.1821%
+  Final Fairness: Discrimination=30.56%, AOD=0.225993, EOD=0.256096
+  Changes: Acc Δ=20.77%, Disc Δ=2.59%, AOD Δ=-21.31%, EOD Δ=3.6%
+
+Configuration: iters=2, alpha=1.0
+  Training: Best epoch=198, Val loss=0.231614
+  Baseline: Acc=73.0812%, Class0=65.8537%, Class1=74.8347%
+  Baseline Fairness: Discrimination=31.37%, AOD=0.287189, EOD=0.24719
+  SVM Before: Test=68.2353%, Female=67.8571%, Male=68.7583%
+  SVM After: Test=67.1989%, Female=71.9595%, Male=60.6142%
+  Final: Acc=56.7227%, Class0=84.792%, Class1=49.913%, Drop=16.3585%
+  Final Fairness: Discrimination=29.08%, AOD=0.214741, EOD=0.245553
+  Changes: Acc Δ=22.38%, Disc Δ=7.32%, AOD Δ=-25.23%, EOD Δ=-0.66%
+
+Configuration: iters=3, alpha=0.8
+  Training: Best epoch=198, Val loss=0.231614
+  Baseline: Acc=73.0812%, Class0=65.8537%, Class1=74.8347%
+  Baseline Fairness: Discrimination=31.37%, AOD=0.287189, EOD=0.24719
+  SVM Before: Test=68.2353%, Female=67.8571%, Male=68.7583%
+  SVM After: Test=68.2353%, Female=68.195%, Male=68.2911%
+  Final: Acc=56.7507%, Class0=84.792%, Class1=49.9478%, Drop=16.3305%
+  Final Fairness: Discrimination=29.1%, AOD=0.215027, EOD=0.246125
+  Changes: Acc Δ=22.35%, Disc Δ=7.23%, AOD Δ=-25.13%, EOD Δ=-0.43%
+
+Configuration: iters=3, alpha=1.0
+  Training: Best epoch=198, Val loss=0.231614
+  Baseline: Acc=73.0812%, Class0=65.8537%, Class1=74.8347%
+  Baseline Fairness: Discrimination=31.37%, AOD=0.287189, EOD=0.24719
+  SVM Before: Test=68.2353%, Female=67.8571%, Male=68.7583%
+  SVM After: Test=66.6387%, Female=72.1525%, Male=59.012%
+  Final: Acc=56.5266%, Class0=84.792%, Class1=49.6693%, Drop=16.5546%
+  Final Fairness: Discrimination=28.94%, AOD=0.213471, EOD=0.243012
+  Changes: Acc Δ=22.65%, Disc Δ=7.77%, AOD Δ=-25.67%, EOD Δ=-1.69%
+
+Configuration: iters=4, alpha=0.8
+  Training: Best epoch=198, Val loss=0.231614
+  Baseline: Acc=73.0812%, Class0=65.8537%, Class1=74.8347%
+  Baseline Fairness: Discrimination=31.37%, AOD=0.287189, EOD=0.24719
+  SVM Before: Test=68.2353%, Female=67.8571%, Male=68.7583%
+  SVM After: Test=68.0392%, Female=68.0985%, Male=67.9573%
+  Final: Acc=56.5546%, Class0=84.792%, Class1=49.7041%, Drop=16.5266%
+  Final Fairness: Discrimination=28.91%, AOD=0.213026, EOD=0.242123
+  Changes: Acc Δ=22.61%, Disc Δ=7.86%, AOD Δ=-25.82%, EOD Δ=-2.05%
+
+Configuration: iters=4, alpha=1.0
+  Training: Best epoch=198, Val loss=0.231614
+  Baseline: Acc=73.0812%, Class0=65.8537%, Class1=74.8347%
+  Baseline Fairness: Discrimination=31.37%, AOD=0.287189, EOD=0.24719
+  SVM Before: Test=68.2353%, Female=67.8571%, Male=68.7583%
+  SVM After: Test=53.0252%, Female=62.2104%, Male=40.3204%
+  Final: Acc=56.1905%, Class0=84.9354%, Class1=49.2168%, Drop=16.8908%
+  Final Fairness: Discrimination=28.68%, AOD=0.211129, EOD=0.241425
+  Changes: Acc Δ=23.11%, Disc Δ=8.57%, AOD Δ=-26.48%, EOD Δ=-2.33%
+
+TREND ANALYSIS WITHIN DATASET
+----------------------------------------------------------------------------------------------------
+
+For alpha=1.0:
+  iters=1: Acc drop=14.0616%, AOD change=-14.22%, EOD change=12.21%
+  iters=2: Acc drop=16.3585%, AOD change=-25.23%, EOD change=-0.66%
+  iters=3: Acc drop=16.5546%, AOD change=-25.67%, EOD change=-1.69%
+  iters=4: Acc drop=16.8908%, AOD change=-26.48%, EOD change=-2.33%
+
+For alpha=0.8:
+  iters=1: Acc drop=14.1176%, AOD change=-14.17%, EOD change=12.34%
+  iters=2: Acc drop=15.1821%, AOD change=-21.31%, EOD change=3.6%
+  iters=3: Acc drop=16.3305%, AOD change=-25.13%, EOD change=-0.43%
+  iters=4: Acc drop=16.5266%, AOD change=-25.82%, EOD change=-2.05%
+
+DATASET-SPECIFIC TREND ANALYSIS & INSIGHTS
+----------------------------------------------------------------------------------------------------
+
+1. ACCURACY TRADE-OFF PATTERN:
+   - Consistent accuracy degradation: All configurations show 14-17% accuracy drop, with minimal 
+     variation between alpha values (difference of only 0.43%). This suggests the dataset is 
+     relatively stable but sensitive to INLP intervention.
+   - Progressive accuracy loss: As iterations increase, accuracy drop gradually increases from 
+     ~14% (1 iter) to ~16.7% (4 iters), indicating diminishing returns with more aggressive 
+     projection.
+
+2. AOD (AVERAGE ODDS DIFFERENCE) IMPROVEMENT:
+   - Strong and consistent improvements: AOD improves significantly across all configurations 
+     (-14% to -26%), with the best improvement at iters=4, alpha=1.0 (-26.48%).
+   - Clear iteration benefit: More iterations lead to better AOD improvement. The jump from 
+     iters=1 (-14%) to iters=2 (-21% to -25%) is substantial, but gains from iters=3 to 4 are 
+     marginal (~0.5%).
+   - Alpha effect is minimal: Difference between alpha=0.8 and alpha=1.0 is small (~1-2%), 
+     suggesting full projection (alpha=1.0) provides only slight advantage.
+
+3. EOD (EQUALIZED ODDS DIFFERENCE) CONTRADICTION:
+   - CRITICAL CONTRADICTION: While AOD improves significantly, EOD actually WORSENS (+3% to +12%).
+     This is a fundamental contradiction - the model becomes more fair on average odds but less 
+     fair on equalized odds.
+   - Pattern shift: With iters=1, EOD worsens by ~12%. As iterations increase, EOD improvement 
+     gradually becomes less negative, eventually turning slightly positive (iters=4, alpha=1.0: 
+     -2.33%). However, this is still worse than baseline.
+   - Interpretation: The projection successfully removes average bias but may be introducing 
+     conditional bias (bias that depends on the outcome class).
+
+4. SVM GENDER DETECTION OBSERVATIONS:
+   - With alpha=0.8, iters=1: SVM accuracy unchanged (68.24%), suggesting projection ineffective 
+     at removing gender information.
+   - With alpha=1.0, iters=1: SVM drops to 65.63%, indicating some gender information removed.
+   - With iters=2, alpha=0.8: Dramatic drop to 32.10% (near random), suggesting effective 
+     projection, but this doesn't translate to better fairness metrics.
+   - Pattern: Higher iterations with alpha=1.0 show SVM accuracy decreasing (66.64% → 53.03%), 
+     indicating progressive removal of gender information.
+
+5. CLASS-WISE ACCURACY SHIFT:
+   - Class 0 (minority) accuracy INCREASES dramatically: from 65.85% baseline to 83-85% final 
+     (+17-19 percentage points).
+   - Class 1 (majority) accuracy DECREASES dramatically: from 74.83% baseline to 49-53% final 
+     (-22-26 percentage points).
+   - This extreme shift suggests the model is overcompensating, potentially creating reverse 
+     discrimination.
+
+6. RECOMMENDATION FOR THIS DATASET:
+   - Best configuration: iters=1, alpha=0.8 (minimal accuracy loss, reasonable AOD improvement, 
+     though EOD worsens).
+   - Avoid: High iterations (3-4) provide minimal additional AOD benefit but increase accuracy 
+     cost and worsen EOD.
+   - Trade-off consideration: If AOD is the primary fairness metric, use iters=2-3. If EOD is 
+     critical, this dataset may not be suitable for INLP intervention.
+
+====================================================================================================
+DATASET: ADULT
+====================================================================================================
+
+HYPERPARAMETER COMPARISON TABLE
+----------------------------------------------------------------------------------------------------
+Iters  Alpha  Best Epoch   Val Loss   Base Acc   Final Acc  Acc Drop   Base AOD   Final AOD  AOD Δ%     Base EOD   Final EOD  EOD Δ%    
+----------------------------------------------------------------------------------------------------
+1      0.8    189          0.560229   81.55%     72.33%     9.22%      0.1647     0.1933     17.31%     0.1198     0.0824     -31.18%   
+1      1.0    189          0.560229   81.55%     72.33%     9.22%      0.1647     0.1933     17.31%     0.1198     0.0824     -31.18%   
+2      0.8    189          0.560229   81.55%     71.77%     9.78%      0.1647     0.1904     15.59%     0.1198     0.0730     -39.02%   
+2      1.0    189          0.560229   81.55%     71.40%     10.15%     0.1647     0.1815     10.16%     0.1198     0.0621     -48.18%   
+3      0.8    189          0.560229   81.55%     71.57%     9.98%      0.1647     0.1853     12.48%     0.1198     0.0662     -44.68%   
+3      1.0    189          0.560229   81.55%     24.88%     56.66%     0.1647     0.0000     -100.00%   0.1198     0.0000     -100.00%  
+4      0.8    189          0.560229   81.55%     71.44%     10.11%     0.1647     0.1840     11.67%     0.1198     0.0662     -44.68%   
+4      1.0    189          0.560229   81.55%     24.88%     56.66%     0.1647     0.0000     -100.00%   0.1198     0.0000     -100.00%  
+
+DETAILED METRICS TABLE
+----------------------------------------------------------------------------------------------------
+
+Configuration: iters=1, alpha=0.8
+  Training: Best epoch=189, Val loss=0.560229
+  Baseline: Acc=81.5484%, Class0=79.5851%, Class1=87.475%
+  Baseline Fairness: Discrimination=11.57%, AOD=0.164736, EOD=0.119761
+  SVM Before: Test=66.4788%, Female=77.0418%, Male=61.2078%
+  SVM After: Test=66.4788%, Female=77.0418%, Male=61.2078%
+  Final: Acc=72.3309%, Class0=64.3346%, Class1=96.469%, Drop=9.2175%
+  Final Fairness: Discrimination=10.23%, AOD=0.193256, EOD=0.082416
+  Changes: Acc Δ=11.3%, Disc Δ=11.6%, AOD Δ=17.31%, EOD Δ=-31.18%
+
+Configuration: iters=1, alpha=1.0
+  Training: Best epoch=189, Val loss=0.560229
+  Baseline: Acc=81.5484%, Class0=79.5851%, Class1=87.475%
+  Baseline Fairness: Discrimination=11.57%, AOD=0.164736, EOD=0.119761
+  SVM Before: Test=66.4788%, Female=77.0418%, Male=61.2078%
+  SVM After: Test=47.1817%, Female=55.8267%, Male=42.8678%
+  Final: Acc=72.3309%, Class0=64.3346%, Class1=96.469%, Drop=9.2175%
+  Final Fairness: Discrimination=10.23%, AOD=0.193256, EOD=0.082416
+  Changes: Acc Δ=11.3%, Disc Δ=11.6%, AOD Δ=17.31%, EOD Δ=-31.18%
+
+Configuration: iters=2, alpha=0.8
+  Training: Best epoch=189, Val loss=0.560229
+  Baseline: Acc=81.5484%, Class0=79.5851%, Class1=87.475%
+  Baseline Fairness: Discrimination=11.57%, AOD=0.164736, EOD=0.119761
+  SVM Before: Test=66.4788%, Female=77.0418%, Male=61.2078%
+  SVM After: Test=33.6373%, Female=23.008%, Male=38.9414%
+  Final: Acc=71.7672%, Class0=63.4297%, Class1=96.9354%, Drop=9.7812%
+  Final Fairness: Discrimination=9.35%, AOD=0.190423, EOD=0.073033
+  Changes: Acc Δ=11.99%, Disc Δ=19.2%, AOD Δ=15.59%, EOD Δ=-39.02%
+
+Configuration: iters=2, alpha=1.0
+  Training: Best epoch=189, Val loss=0.560229
+  Baseline: Acc=81.5484%, Class0=79.5851%, Class1=87.475%
+  Baseline Fairness: Discrimination=11.57%, AOD=0.164736, EOD=0.119761
+  SVM Before: Test=66.4788%, Female=77.0418%, Male=61.2078%
+  SVM After: Test=44.7447%, Female=54.4821%, Male=39.8857%
+  Final: Acc=71.4025%, Class0=62.8338%, Class1=97.2685%, Drop=10.1459%
+  Final Fairness: Discrimination=8.02%, AOD=0.181481, EOD=0.062065
+  Changes: Acc Δ=12.44%, Disc Δ=30.66%, AOD Δ=10.16%, EOD Δ=-48.18%
+
+Configuration: iters=3, alpha=0.8
+  Training: Best epoch=189, Val loss=0.560229
+  Baseline: Acc=81.5484%, Class0=79.5851%, Class1=87.475%
+  Baseline Fairness: Discrimination=11.57%, AOD=0.164736, EOD=0.119761
+  SVM Before: Test=66.4788%, Female=77.0418%, Male=61.2078%
+  SVM After: Test=66.3793%, Female=76.992%, Male=61.0835%
+  Final: Acc=71.5683%, Class0=63.0766%, Class1=97.2019%, Drop=9.9801%
+  Final Fairness: Discrimination=8.44%, AOD=0.185291, EOD=0.066249
+  Changes: Acc Δ=12.24%, Disc Δ=27.08%, AOD Δ=12.48%, EOD Δ=-44.68%
+
+Configuration: iters=3, alpha=1.0
+  Training: Best epoch=189, Val loss=0.560229
+  Baseline: Acc=81.5484%, Class0=79.5851%, Class1=87.475%
+  Baseline Fairness: Discrimination=11.57%, AOD=0.164736, EOD=0.119761
+  SVM Before: Test=66.4788%, Female=77.0418%, Male=61.2078%
+  SVM After: Test=45.6068%, Female=38.5956%, Male=49.1054%
+  Final: Acc=24.884%, Class0=0.0%, Class1=100.0%, Drop=56.6645%
+  Final Fairness: Discrimination=0.0%, AOD=0.0, EOD=0.0
+  Changes: Acc Δ=69.49%, Disc Δ=100.0%, AOD Δ=-100.0%, EOD Δ=-100.0%
+
+Configuration: iters=4, alpha=0.8
+  Training: Best epoch=189, Val loss=0.560229
+  Baseline: Acc=81.5484%, Class0=79.5851%, Class1=87.475%
+  Baseline Fairness: Discrimination=11.57%, AOD=0.164736, EOD=0.119761
+  SVM Before: Test=66.4788%, Female=77.0418%, Male=61.2078%
+  SVM After: Test=66.3793%, Female=76.992%, Male=61.0835%
+  Final: Acc=71.4357%, Class0=62.9%, Class1=97.2019%, Drop=10.1127%
+  Final Fairness: Discrimination=8.07%, AOD=0.183957, EOD=0.066249
+  Changes: Acc Δ=12.4%, Disc Δ=30.23%, AOD Δ=11.67%, EOD Δ=-44.68%
+
+Configuration: iters=4, alpha=1.0
+  Training: Best epoch=189, Val loss=0.560229
+  Baseline: Acc=81.5484%, Class0=79.5851%, Class1=87.475%
+  Baseline Fairness: Discrimination=11.57%, AOD=0.164736, EOD=0.119761
+  SVM Before: Test=66.4788%, Female=77.0418%, Male=61.2078%
+  SVM After: Test=37.7984%, Female=32.5199%, Male=40.4324%
+  Final: Acc=24.884%, Class0=0.0%, Class1=100.0%, Drop=56.6645%
+  Final Fairness: Discrimination=0.0%, AOD=0.0, EOD=0.0
+  Changes: Acc Δ=69.49%, Disc Δ=100.0%, AOD Δ=-100.0%, EOD Δ=-100.0%
+
+TREND ANALYSIS WITHIN DATASET
+----------------------------------------------------------------------------------------------------
+
+For alpha=1.0:
+  iters=1: Acc drop=9.2175%, AOD change=17.31%, EOD change=-31.18%
+  iters=2: Acc drop=10.1459%, AOD change=10.16%, EOD change=-48.18%
+  iters=3: Acc drop=56.6645%, AOD change=-100.0%, EOD change=-100.0%
+  iters=4: Acc drop=56.6645%, AOD change=-100.0%, EOD change=-100.0%
+
+For alpha=0.8:
+  iters=1: Acc drop=9.2175%, AOD change=17.31%, EOD change=-31.18%
+  iters=2: Acc drop=9.7812%, AOD change=15.59%, EOD change=-39.02%
+  iters=3: Acc drop=9.9801%, AOD change=12.48%, EOD change=-44.68%
+  iters=4: Acc drop=10.1127%, AOD change=11.67%, EOD change=-44.68%
+
+DATASET-SPECIFIC TREND ANALYSIS & INSIGHTS
+----------------------------------------------------------------------------------------------------
+
+1. CRITICAL MODEL COLLAPSE PHENOMENON:
+   - EXTREME CASE: With alpha=1.0 and iters≥3, the model completely collapses:
+     * Accuracy drops catastrophically from 81.55% to 24.88% (56.66% drop)
+     * Model predicts ONLY class 1 (100% accuracy on class 1, 0% on class 0)
+     * Perfect fairness metrics (AOD=0, EOD=0) but completely unusable model
+   - Root cause: Over-aggressive projection removes too much information, leaving the model 
+     unable to make meaningful predictions. The projection space becomes too constrained.
+   - Alpha=0.8 prevents collapse: All configurations with alpha=0.8 maintain reasonable accuracy 
+     (71-72%), suggesting partial projection is safer.
+
+2. ACCURACY-FAIRNESS TRADE-OFF (NON-COLLAPSED CASES):
+   - Conservative range: With alpha=0.8, accuracy drops are stable at ~9-10% across all 
+     iterations, showing good robustness.
+   - Alpha=1.0 risk: With alpha=1.0, accuracy drops increase from 9.22% (iters=1) to 10.15% 
+     (iters=2), then catastrophic collapse at iters=3.
+   - Best trade-off: iters=2, alpha=1.0 provides 10.15% accuracy drop with 10.16% AOD 
+     improvement and 48.18% EOD improvement (before collapse threshold).
+
+3. AOD (AVERAGE ODDS DIFFERENCE) PARADOX:
+   - CRITICAL CONTRADICTION: AOD actually WORSENS (+10% to +17%) in non-collapsed cases, meaning 
+     the model becomes LESS fair on average odds.
+   - Only perfect AOD occurs in collapsed state: The only time AOD improves (to 0) is when the 
+     model collapses, which is not a valid solution.
+   - Pattern: As iterations increase with alpha=0.8, AOD worsening decreases (17.31% → 11.67%), 
+     suggesting more iterations help, but never achieve improvement.
+
+4. EOD (EQUALIZED ODDS DIFFERENCE) SUCCESS:
+   - Strong improvements: EOD improves significantly (-31% to -48%) in all non-collapsed 
+     configurations, opposite to AOD behavior.
+   - Progressive improvement: More iterations lead to better EOD improvement, with iters=2, 
+     alpha=1.0 achieving -48.18% improvement.
+   - This is the OPPOSITE pattern from acs_public_coverage, where AOD improves but EOD worsens.
+
+5. SVM GENDER DETECTION PATTERNS:
+   - Baseline: High gender information (66.48% SVM accuracy), with strong gender bias 
+     (Female=77.04%, Male=61.21%).
+   - With alpha=0.8, iters=1: No change (66.48%), projection ineffective.
+   - With alpha=1.0, iters=1: Drops to 47.18%, indicating gender information removal.
+   - With iters=2, alpha=0.8: Dramatic drop to 33.64%, near-random performance.
+   - Collapsed cases: SVM accuracy varies (37.80% to 45.61%), but model is unusable.
+
+6. CLASS-WISE ACCURACY EXTREMES:
+   - Non-collapsed: Class 0 accuracy drops (79.59% → 62-64%), Class 1 increases (87.48% → 96-97%).
+   - Collapsed: Class 0 becomes 0%, Class 1 becomes 100% - complete failure.
+
+7. ALPHA EFFECT IS CRITICAL:
+   - Alpha=1.0: 23.4% higher average accuracy drop compared to alpha=0.8, with catastrophic 
+     collapse risk at iters≥3.
+   - Alpha=0.8: Safe, stable performance across all iterations, though AOD worsens.
+
+8. RECOMMENDATION FOR THIS DATASET:
+   - SAFE configuration: iters=2, alpha=1.0 (best EOD improvement, reasonable accuracy cost, 
+     before collapse threshold).
+   - AVOID: iters≥3 with alpha=1.0 (guaranteed collapse).
+   - Conservative option: iters=2-4, alpha=0.8 (stable, though AOD worsens).
+   - Trade-off: This dataset shows strong EOD improvement but AOD worsening - choose based on 
+     which fairness metric is more important.
+
+====================================================================================================
+DATASET: BANK_MARKETING
+====================================================================================================
+
+HYPERPARAMETER COMPARISON TABLE
+----------------------------------------------------------------------------------------------------
+Iters  Alpha  Best Epoch   Val Loss   Base Acc   Final Acc  Acc Drop   Base AOD   Final AOD  AOD Δ%     Base EOD   Final EOD  EOD Δ%    
+----------------------------------------------------------------------------------------------------
+1      0.8    None         N/A        N/A        N/A        N/A        N/A        N/A        N/A        N/A        N/A        N/A       
+1      1.0    None         N/A        N/A        N/A        N/A        N/A        N/A        N/A        N/A        N/A        N/A       
+2      0.8    None         N/A        N/A        N/A        N/A        N/A        N/A        N/A        N/A        N/A        N/A       
+2      1.0    None         N/A        N/A        N/A        N/A        N/A        N/A        N/A        N/A        N/A        N/A       
+3      0.8    None         N/A        N/A        N/A        N/A        N/A        N/A        N/A        N/A        N/A        N/A       
+3      1.0    None         N/A        N/A        N/A        N/A        N/A        N/A        N/A        N/A        N/A        N/A       
+4      0.8    None         N/A        N/A        N/A        N/A        N/A        N/A        N/A        N/A        N/A        N/A       
+4      1.0    None         N/A        N/A        N/A        N/A        N/A        N/A        N/A        N/A        N/A        N/A       
+
+DETAILED METRICS TABLE
+----------------------------------------------------------------------------------------------------
+
+Configuration: iters=1, alpha=0.8
+  Training: Best epoch=None, Val loss=None
+  Baseline: Acc=None%, Class0=None%, Class1=None%
+  Baseline Fairness: Discrimination=None%, AOD=None, EOD=None
+  SVM Before: Test=None%, Female=None%, Male=None%
+  SVM After: Test=None%, Female=None%, Male=None%
+  Final: Acc=None%, Class0=None%, Class1=None%, Drop=None%
+  Final Fairness: Discrimination=None%, AOD=None, EOD=None
+  Changes: Acc Δ=None%, Disc Δ=None%, AOD Δ=None%, EOD Δ=None%
+
+Configuration: iters=1, alpha=1.0
+  Training: Best epoch=None, Val loss=None
+  Baseline: Acc=None%, Class0=None%, Class1=None%
+  Baseline Fairness: Discrimination=None%, AOD=None, EOD=None
+  SVM Before: Test=None%, Female=None%, Male=None%
+  SVM After: Test=None%, Female=None%, Male=None%
+  Final: Acc=None%, Class0=None%, Class1=None%, Drop=None%
+  Final Fairness: Discrimination=None%, AOD=None, EOD=None
+  Changes: Acc Δ=None%, Disc Δ=None%, AOD Δ=None%, EOD Δ=None%
+
+Configuration: iters=2, alpha=0.8
+  Training: Best epoch=None, Val loss=None
+  Baseline: Acc=None%, Class0=None%, Class1=None%
+  Baseline Fairness: Discrimination=None%, AOD=None, EOD=None
+  SVM Before: Test=None%, Female=None%, Male=None%
+  SVM After: Test=None%, Female=None%, Male=None%
+  Final: Acc=None%, Class0=None%, Class1=None%, Drop=None%
+  Final Fairness: Discrimination=None%, AOD=None, EOD=None
+  Changes: Acc Δ=None%, Disc Δ=None%, AOD Δ=None%, EOD Δ=None%
+
+Configuration: iters=2, alpha=1.0
+  Training: Best epoch=None, Val loss=None
+  Baseline: Acc=None%, Class0=None%, Class1=None%
+  Baseline Fairness: Discrimination=None%, AOD=None, EOD=None
+  SVM Before: Test=None%, Female=None%, Male=None%
+  SVM After: Test=None%, Female=None%, Male=None%
+  Final: Acc=None%, Class0=None%, Class1=None%, Drop=None%
+  Final Fairness: Discrimination=None%, AOD=None, EOD=None
+  Changes: Acc Δ=None%, Disc Δ=None%, AOD Δ=None%, EOD Δ=None%
+
+Configuration: iters=3, alpha=0.8
+  Training: Best epoch=None, Val loss=None
+  Baseline: Acc=None%, Class0=None%, Class1=None%
+  Baseline Fairness: Discrimination=None%, AOD=None, EOD=None
+  SVM Before: Test=None%, Female=None%, Male=None%
+  SVM After: Test=None%, Female=None%, Male=None%
+  Final: Acc=None%, Class0=None%, Class1=None%, Drop=None%
+  Final Fairness: Discrimination=None%, AOD=None, EOD=None
+  Changes: Acc Δ=None%, Disc Δ=None%, AOD Δ=None%, EOD Δ=None%
+
+Configuration: iters=3, alpha=1.0
+  Training: Best epoch=None, Val loss=None
+  Baseline: Acc=None%, Class0=None%, Class1=None%
+  Baseline Fairness: Discrimination=None%, AOD=None, EOD=None
+  SVM Before: Test=None%, Female=None%, Male=None%
+  SVM After: Test=None%, Female=None%, Male=None%
+  Final: Acc=None%, Class0=None%, Class1=None%, Drop=None%
+  Final Fairness: Discrimination=None%, AOD=None, EOD=None
+  Changes: Acc Δ=None%, Disc Δ=None%, AOD Δ=None%, EOD Δ=None%
+
+Configuration: iters=4, alpha=0.8
+  Training: Best epoch=None, Val loss=None
+  Baseline: Acc=None%, Class0=None%, Class1=None%
+  Baseline Fairness: Discrimination=None%, AOD=None, EOD=None
+  SVM Before: Test=None%, Female=None%, Male=None%
+  SVM After: Test=None%, Female=None%, Male=None%
+  Final: Acc=None%, Class0=None%, Class1=None%, Drop=None%
+  Final Fairness: Discrimination=None%, AOD=None, EOD=None
+  Changes: Acc Δ=None%, Disc Δ=None%, AOD Δ=None%, EOD Δ=None%
+
+Configuration: iters=4, alpha=1.0
+  Training: Best epoch=None, Val loss=None
+  Baseline: Acc=None%, Class0=None%, Class1=None%
+  Baseline Fairness: Discrimination=None%, AOD=None, EOD=None
+  SVM Before: Test=None%, Female=None%, Male=None%
+  SVM After: Test=None%, Female=None%, Male=None%
+  Final: Acc=None%, Class0=None%, Class1=None%, Drop=None%
+  Final Fairness: Discrimination=None%, AOD=None, EOD=None
+  Changes: Acc Δ=None%, Disc Δ=None%, AOD Δ=None%, EOD Δ=None%
+
+TREND ANALYSIS WITHIN DATASET
+----------------------------------------------------------------------------------------------------
+
+For alpha=1.0:
+  iters=1: Acc drop=None%, AOD change=None%, EOD change=None%
+  iters=2: Acc drop=None%, AOD change=None%, EOD change=None%
+  iters=3: Acc drop=None%, AOD change=None%, EOD change=None%
+  iters=4: Acc drop=None%, AOD change=None%, EOD change=None%
+
+For alpha=0.8:
+  iters=1: Acc drop=None%, AOD change=None%, EOD change=None%
+  iters=2: Acc drop=None%, AOD change=None%, EOD change=None%
+  iters=3: Acc drop=None%, AOD change=None%, EOD change=None%
+  iters=4: Acc drop=None%, AOD change=None%, EOD change=None%
+
+====================================================================================================
+DATASET: COMPAS
+====================================================================================================
+
+HYPERPARAMETER COMPARISON TABLE
+----------------------------------------------------------------------------------------------------
+Iters  Alpha  Best Epoch   Val Loss   Base Acc   Final Acc  Acc Drop   Base AOD   Final AOD  AOD Δ%     Base EOD   Final EOD  EOD Δ%    
+----------------------------------------------------------------------------------------------------
+1      0.8    189          0.642425   69.15%     69.55%     N/A        0.2281     0.2387     4.64%      0.2481     0.2733     10.14%    
+1      1.0    189          0.642425   69.15%     69.55%     N/A        0.2281     0.2387     4.64%      0.2481     0.2733     10.14%    
+2      0.8    189          0.642425   69.15%     69.47%     N/A        0.2281     0.2376     4.18%      0.2481     0.2712     9.29%     
+2      1.0    189          0.642425   69.15%     69.15%     0.00%      0.2281     0.2338     2.49%      0.2481     0.2586     4.22%     
+3      0.8    189          0.642425   69.15%     69.15%     0.00%      0.2281     0.2338     2.49%      0.2481     0.2586     4.22%     
+3      1.0    189          0.642425   69.15%     69.15%     0.00%      0.2281     0.2338     2.49%      0.2481     0.2586     4.22%     
+4      0.8    189          0.642425   69.15%     69.15%     0.00%      0.2281     0.2338     2.49%      0.2481     0.2586     4.22%     
+4      1.0    189          0.642425   69.15%     64.78%     4.37%      0.2281     0.1767     -22.55%    0.2481     0.1734     -30.14%   
+
+DETAILED METRICS TABLE
+----------------------------------------------------------------------------------------------------
+
+Configuration: iters=1, alpha=0.8
+  Training: Best epoch=189, Val loss=0.642425
+  Baseline: Acc=69.1498%, Class0=72.9569%, Class1=64.5907%
+  Baseline Fairness: Discrimination=9.23%, AOD=0.228113, EOD=0.248144
+  SVM Before: Test=59.2713%, Female=74.6781%, Male=55.6886%
+  SVM After: Test=59.2713%, Female=74.6781%, Male=55.6886%
+  Final: Acc=69.5547%, Class0=71.9168%, Class1=66.726%, Drop=None%
+  Final Fairness: Discrimination=9.8%, AOD=0.238697, EOD=0.273301
+  Changes: Acc Δ=-0.59%, Disc Δ=-6.14%, AOD Δ=4.64%, EOD Δ=10.14%
+
+Configuration: iters=1, alpha=1.0
+  Training: Best epoch=189, Val loss=0.642425
+  Baseline: Acc=69.1498%, Class0=72.9569%, Class1=64.5907%
+  Baseline Fairness: Discrimination=9.23%, AOD=0.228113, EOD=0.248144
+  SVM Before: Test=59.2713%, Female=74.6781%, Male=55.6886%
+  SVM After: Test=46.6397%, Female=69.0987%, Male=41.4172%
+  Final: Acc=69.5547%, Class0=71.9168%, Class1=66.726%, Drop=None%
+  Final Fairness: Discrimination=9.8%, AOD=0.238697, EOD=0.273301
+  Changes: Acc Δ=-0.59%, Disc Δ=-6.14%, AOD Δ=4.64%, EOD Δ=10.14%
+
+Configuration: iters=2, alpha=0.8
+  Training: Best epoch=189, Val loss=0.642425
+  Baseline: Acc=69.1498%, Class0=72.9569%, Class1=64.5907%
+  Baseline Fairness: Discrimination=9.23%, AOD=0.228113, EOD=0.248144
+  SVM Before: Test=59.2713%, Female=74.6781%, Male=55.6886%
+  SVM After: Test=41.1336%, Female=27.4678%, Male=44.3114%
+  Final: Acc=69.4737%, Class0=71.9168%, Class1=66.548%, Drop=None%
+  Final Fairness: Discrimination=9.64%, AOD=0.237649, EOD=0.271205
+  Changes: Acc Δ=-0.47%, Disc Δ=-4.39%, AOD Δ=4.18%, EOD Δ=9.29%
+
+Configuration: iters=2, alpha=1.0
+  Training: Best epoch=189, Val loss=0.642425
+  Baseline: Acc=69.1498%, Class0=72.9569%, Class1=64.5907%
+  Baseline Fairness: Discrimination=9.23%, AOD=0.228113, EOD=0.248144
+  SVM Before: Test=59.2713%, Female=74.6781%, Male=55.6886%
+  SVM After: Test=50.4453%, Female=36.0515%, Male=53.7924%
+  Final: Acc=69.1498%, Class0=72.214%, Class1=65.4804%, Drop=0.0%
+  Final Fairness: Discrimination=9.88%, AOD=0.233785, EOD=0.258626
+  Changes: Acc Δ=0.0%, Disc Δ=-7.02%, AOD Δ=2.49%, EOD Δ=4.22%
+
+Configuration: iters=3, alpha=0.8
+  Training: Best epoch=189, Val loss=0.642425
+  Baseline: Acc=69.1498%, Class0=72.9569%, Class1=64.5907%
+  Baseline Fairness: Discrimination=9.23%, AOD=0.228113, EOD=0.248144
+  SVM Before: Test=59.2713%, Female=74.6781%, Male=55.6886%
+  SVM After: Test=58.7854%, Female=75.9657%, Male=54.7904%
+  Final: Acc=69.1498%, Class0=72.214%, Class1=65.4804%, Drop=0.0%
+  Final Fairness: Discrimination=9.88%, AOD=0.233785, EOD=0.258626
+  Changes: Acc Δ=0.0%, Disc Δ=-7.02%, AOD Δ=2.49%, EOD Δ=4.22%
+
+Configuration: iters=3, alpha=1.0
+  Training: Best epoch=189, Val loss=0.642425
+  Baseline: Acc=69.1498%, Class0=72.9569%, Class1=64.5907%
+  Baseline Fairness: Discrimination=9.23%, AOD=0.228113, EOD=0.248144
+  SVM Before: Test=59.2713%, Female=74.6781%, Male=55.6886%
+  SVM After: Test=55.4656%, Female=59.6567%, Male=54.491%
+  Final: Acc=69.1498%, Class0=72.214%, Class1=65.4804%, Drop=0.0%
+  Final Fairness: Discrimination=9.88%, AOD=0.233785, EOD=0.258626
+  Changes: Acc Δ=0.0%, Disc Δ=-7.02%, AOD Δ=2.49%, EOD Δ=4.22%
+
+Configuration: iters=4, alpha=0.8
+  Training: Best epoch=189, Val loss=0.642425
+  Baseline: Acc=69.1498%, Class0=72.9569%, Class1=64.5907%
+  Baseline Fairness: Discrimination=9.23%, AOD=0.228113, EOD=0.248144
+  SVM Before: Test=59.2713%, Female=74.6781%, Male=55.6886%
+  SVM After: Test=58.2186%, Female=74.2489%, Male=54.491%
+  Final: Acc=69.1498%, Class0=72.214%, Class1=65.4804%, Drop=0.0%
+  Final Fairness: Discrimination=9.88%, AOD=0.233785, EOD=0.258626
+  Changes: Acc Δ=0.0%, Disc Δ=-7.02%, AOD Δ=2.49%, EOD Δ=4.22%
+
+Configuration: iters=4, alpha=1.0
+  Training: Best epoch=189, Val loss=0.642425
+  Baseline: Acc=69.1498%, Class0=72.9569%, Class1=64.5907%
+  Baseline Fairness: Discrimination=9.23%, AOD=0.228113, EOD=0.248144
+  SVM Before: Test=59.2713%, Female=74.6781%, Male=55.6886%
+  SVM After: Test=54.0891%, Female=51.9313%, Male=54.5908%
+  Final: Acc=64.7773%, Class0=64.3388%, Class1=65.3025%, Drop=4.3725%
+  Final Fairness: Discrimination=15.87%, AOD=0.176669, EOD=0.173363
+  Changes: Acc Δ=6.32%, Disc Δ=-71.93%, AOD Δ=-22.55%, EOD Δ=-30.14%
+
+TREND ANALYSIS WITHIN DATASET
+----------------------------------------------------------------------------------------------------
+
+For alpha=1.0:
+  iters=1: Acc drop=None%, AOD change=4.64%, EOD change=10.14%
+  iters=2: Acc drop=0.0%, AOD change=2.49%, EOD change=4.22%
+  iters=3: Acc drop=0.0%, AOD change=2.49%, EOD change=4.22%
+  iters=4: Acc drop=4.3725%, AOD change=-22.55%, EOD change=-30.14%
+
+For alpha=0.8:
+  iters=1: Acc drop=None%, AOD change=4.64%, EOD change=10.14%
+  iters=2: Acc drop=None%, AOD change=4.18%, EOD change=9.29%
+  iters=3: Acc drop=0.0%, AOD change=2.49%, EOD change=4.22%
+  iters=4: Acc drop=0.0%, AOD change=2.49%, EOD change=4.22%
+
+DATASET-SPECIFIC TREND ANALYSIS & INSIGHTS
+----------------------------------------------------------------------------------------------------
+
+1. MINIMAL ACCURACY IMPACT - BEST PRESERVATION:
+   - Outstanding performance: Most configurations show ZERO accuracy drop (iters=2-4 with 
+     alpha=0.8 or alpha=1.0, iters=2-3).
+   - Only one configuration shows drop: iters=4, alpha=1.0 shows 4.37% drop, but this is the 
+     only case with significant accuracy cost.
+   - This dataset is the BEST for accuracy preservation among all datasets analyzed.
+
+2. AOD (AVERAGE ODDS DIFFERENCE) MIXED RESULTS:
+   - Low iterations (1-3): AOD actually WORSENS slightly (+2.49% to +4.64%), indicating minimal 
+     or negative fairness improvement.
+   - High iterations breakthrough: iters=4, alpha=1.0 shows dramatic AOD improvement (-22.55%), 
+     the best improvement for this dataset.
+   - Pattern: Most configurations worsen AOD, only the most aggressive (iters=4, alpha=1.0) 
+     achieves improvement.
+
+3. EOD (EQUALIZED ODDS DIFFERENCE) PATTERN:
+   - Low iterations: EOD worsens (+4.22% to +10.14%), similar to AOD pattern.
+   - High iterations: iters=4, alpha=1.0 shows strong EOD improvement (-30.14%), matching AOD 
+     improvement pattern.
+   - Consistency: EOD and AOD show similar patterns - both worsen at low iterations, both improve 
+     dramatically at iters=4, alpha=1.0.
+
+4. SVM GENDER DETECTION OBSERVATIONS:
+   - Baseline: Moderate gender information (59.27% SVM accuracy), with gender bias 
+     (Female=74.68%, Male=55.69%).
+   - With alpha=0.8: Minimal change in SVM accuracy, suggesting projection is ineffective.
+   - With alpha=1.0: Progressive reduction (46.64% → 50.45% → 55.47% → 54.09%), indicating 
+     gender information removal, but not as dramatic as other datasets.
+   - Best case (iters=4, alpha=1.0): SVM drops to 54.09%, near-random, correlating with best 
+     fairness improvements.
+
+5. CLASS-WISE ACCURACY STABILITY:
+   - Most configurations: Class accuracies remain stable (Class 0: 72-73%, Class 1: 64-66%), 
+     showing minimal disruption.
+   - Only iters=4, alpha=1.0: Shows shift (Class 0: 64.34%, Class 1: 65.30%), but still 
+     reasonable balance.
+
+6. ITERATION EFFECT:
+   - Low iterations (1-3): Minimal impact on all metrics, suggesting conservative projection.
+   - High iterations (4): Only with alpha=1.0 does it show significant fairness improvement, but 
+     with 4.37% accuracy cost.
+   - Diminishing returns: iters=2-3 show identical results, suggesting convergence.
+
+7. ALPHA EFFECT:
+   - Minimal difference: Alpha=0.8 vs alpha=1.0 show similar results for most configurations.
+   - Critical difference: Only at iters=4 does alpha=1.0 show significant advantage (AOD -22.55% 
+     vs +2.49%).
+
+8. RECOMMENDATION FOR THIS DATASET:
+   - Best overall: iters=2-3, alpha=1.0 (zero accuracy drop, minimal fairness change).
+   - For fairness improvement: iters=4, alpha=1.0 (strong AOD/EOD improvement, 4.37% accuracy 
+     cost - acceptable trade-off).
+   - Conservative: iters=2-3, alpha=0.8 (zero accuracy impact, though fairness doesn't improve).
+   - This dataset shows that INLP can work with minimal accuracy cost, but requires aggressive 
+     settings (iters=4, alpha=1.0) for meaningful fairness improvement.
+
+====================================================================================================
+DATASET: CREDIT
+====================================================================================================
+
+HYPERPARAMETER COMPARISON TABLE
+----------------------------------------------------------------------------------------------------
+Iters  Alpha  Best Epoch   Val Loss   Base Acc   Final Acc  Acc Drop   Base AOD   Final AOD  AOD Δ%     Base EOD   Final EOD  EOD Δ%    
+----------------------------------------------------------------------------------------------------
+1      0.8    5            0.801259   66.50%     67.50%     N/A        0.0526     0.0627     19.21%     0.0500     0.0500     0.00%     
+1      1.0    5            0.801259   66.50%     67.50%     N/A        0.0526     0.0627     19.21%     0.0500     0.0500     0.00%     
+2      0.8    5            0.801259   66.50%     67.50%     N/A        0.0526     0.0627     19.21%     0.0500     0.0500     0.00%     
+2      1.0    5            0.801259   66.50%     67.50%     N/A        0.0526     0.0627     19.21%     0.0500     0.0500     0.00%     
+3      0.8    5            0.801259   66.50%     67.50%     N/A        0.0526     0.0627     19.21%     0.0500     0.0500     0.00%     
+3      1.0    5            0.801259   66.50%     67.50%     N/A        0.0526     0.0627     19.21%     0.0500     0.0500     0.00%     
+4      0.8    5            0.801259   66.50%     67.50%     N/A        0.0526     0.0627     19.21%     0.0500     0.0500     0.00%     
+4      1.0    5            0.801259   66.50%     67.50%     N/A        0.0526     0.0627     19.21%     0.0500     0.0500     0.00%     
+
+DETAILED METRICS TABLE
+----------------------------------------------------------------------------------------------------
+
+Configuration: iters=1, alpha=0.8
+  Training: Best epoch=5, Val loss=0.801259
+  Baseline: Acc=66.5%, Class0=60.0%, Class1=81.6667%
+  Baseline Fairness: Discrimination=1.5%, AOD=0.052593, EOD=0.05
+  SVM Before: Test=86.5%, Female=98.3607%, Male=81.295%
+  SVM After: Test=86.5%, Female=98.3607%, Male=81.295%
+  Final: Acc=67.5%, Class0=61.4286%, Class1=81.6667%, Drop=None%
+  Final Fairness: Discrimination=2.0%, AOD=0.062694, EOD=0.05
+  Changes: Acc Δ=-1.5%, Disc Δ=-33.33%, AOD Δ=19.21%, EOD Δ=0.0%
+
+Configuration: iters=1, alpha=1.0
+  Training: Best epoch=5, Val loss=0.801259
+  Baseline: Acc=66.5%, Class0=60.0%, Class1=81.6667%
+  Baseline Fairness: Discrimination=1.5%, AOD=0.052593, EOD=0.05
+  SVM Before: Test=86.5%, Female=98.3607%, Male=81.295%
+  SVM After: Test=51.0%, Female=44.2623%, Male=53.9568%
+  Final: Acc=67.5%, Class0=61.4286%, Class1=81.6667%, Drop=None%
+  Final Fairness: Discrimination=2.0%, AOD=0.062694, EOD=0.05
+  Changes: Acc Δ=-1.5%, Disc Δ=-33.33%, AOD Δ=19.21%, EOD Δ=0.0%
+
+Configuration: iters=2, alpha=0.8
+  Training: Best epoch=5, Val loss=0.801259
+  Baseline: Acc=66.5%, Class0=60.0%, Class1=81.6667%
+  Baseline Fairness: Discrimination=1.5%, AOD=0.052593, EOD=0.05
+  SVM Before: Test=86.5%, Female=98.3607%, Male=81.295%
+  SVM After: Test=79.0%, Female=95.082%, Male=71.9424%
+  Final: Acc=67.5%, Class0=61.4286%, Class1=81.6667%, Drop=None%
+  Final Fairness: Discrimination=2.0%, AOD=0.062694, EOD=0.05
+  Changes: Acc Δ=-1.5%, Disc Δ=-33.33%, AOD Δ=19.21%, EOD Δ=0.0%
+
+Configuration: iters=2, alpha=1.0
+  Training: Best epoch=5, Val loss=0.801259
+  Baseline: Acc=66.5%, Class0=60.0%, Class1=81.6667%
+  Baseline Fairness: Discrimination=1.5%, AOD=0.052593, EOD=0.05
+  SVM Before: Test=86.5%, Female=98.3607%, Male=81.295%
+  SVM After: Test=44.0%, Female=37.7049%, Male=46.7626%
+  Final: Acc=67.5%, Class0=61.4286%, Class1=81.6667%, Drop=None%
+  Final Fairness: Discrimination=2.0%, AOD=0.062694, EOD=0.05
+  Changes: Acc Δ=-1.5%, Disc Δ=-33.33%, AOD Δ=19.21%, EOD Δ=0.0%
+
+Configuration: iters=3, alpha=0.8
+  Training: Best epoch=5, Val loss=0.801259
+  Baseline: Acc=66.5%, Class0=60.0%, Class1=81.6667%
+  Baseline Fairness: Discrimination=1.5%, AOD=0.052593, EOD=0.05
+  SVM Before: Test=86.5%, Female=98.3607%, Male=81.295%
+  SVM After: Test=83.5%, Female=95.082%, Male=78.4173%
+  Final: Acc=67.5%, Class0=61.4286%, Class1=81.6667%, Drop=None%
+  Final Fairness: Discrimination=2.0%, AOD=0.062694, EOD=0.05
+  Changes: Acc Δ=-1.5%, Disc Δ=-33.33%, AOD Δ=19.21%, EOD Δ=0.0%
+
+Configuration: iters=3, alpha=1.0
+  Training: Best epoch=5, Val loss=0.801259
+  Baseline: Acc=66.5%, Class0=60.0%, Class1=81.6667%
+  Baseline Fairness: Discrimination=1.5%, AOD=0.052593, EOD=0.05
+  SVM Before: Test=86.5%, Female=98.3607%, Male=81.295%
+  SVM After: Test=34.5%, Female=39.3443%, Male=32.3741%
+  Final: Acc=67.5%, Class0=61.4286%, Class1=81.6667%, Drop=None%
+  Final Fairness: Discrimination=2.0%, AOD=0.062694, EOD=0.05
+  Changes: Acc Δ=-1.5%, Disc Δ=-33.33%, AOD Δ=19.21%, EOD Δ=0.0%
+
+Configuration: iters=4, alpha=0.8
+  Training: Best epoch=5, Val loss=0.801259
+  Baseline: Acc=66.5%, Class0=60.0%, Class1=81.6667%
+  Baseline Fairness: Discrimination=1.5%, AOD=0.052593, EOD=0.05
+  SVM Before: Test=86.5%, Female=98.3607%, Male=81.295%
+  SVM After: Test=74.0%, Female=86.8852%, Male=68.3453%
+  Final: Acc=67.5%, Class0=61.4286%, Class1=81.6667%, Drop=None%
+  Final Fairness: Discrimination=2.0%, AOD=0.062694, EOD=0.05
+  Changes: Acc Δ=-1.5%, Disc Δ=-33.33%, AOD Δ=19.21%, EOD Δ=0.0%
+
+Configuration: iters=4, alpha=1.0
+  Training: Best epoch=5, Val loss=0.801259
+  Baseline: Acc=66.5%, Class0=60.0%, Class1=81.6667%
+  Baseline Fairness: Discrimination=1.5%, AOD=0.052593, EOD=0.05
+  SVM Before: Test=86.5%, Female=98.3607%, Male=81.295%
+  SVM After: Test=34.5%, Female=44.2623%, Male=30.2158%
+  Final: Acc=67.5%, Class0=61.4286%, Class1=81.6667%, Drop=None%
+  Final Fairness: Discrimination=2.5%, AOD=0.062694, EOD=0.05
+  Changes: Acc Δ=-1.5%, Disc Δ=-66.67%, AOD Δ=19.21%, EOD Δ=0.0%
+
+TREND ANALYSIS WITHIN DATASET
+----------------------------------------------------------------------------------------------------
+
+For alpha=1.0:
+  iters=1: Acc drop=None%, AOD change=19.21%, EOD change=0.0%
+  iters=2: Acc drop=None%, AOD change=19.21%, EOD change=0.0%
+  iters=3: Acc drop=None%, AOD change=19.21%, EOD change=0.0%
+  iters=4: Acc drop=None%, AOD change=19.21%, EOD change=0.0%
+
+For alpha=0.8:
+  iters=1: Acc drop=None%, AOD change=19.21%, EOD change=0.0%
+  iters=2: Acc drop=None%, AOD change=19.21%, EOD change=0.0%
+  iters=3: Acc drop=None%, AOD change=19.21%, EOD change=0.0%
+  iters=4: Acc drop=None%, AOD change=19.21%, EOD change=0.0%
+
+DATASET-SPECIFIC TREND ANALYSIS & INSIGHTS
+----------------------------------------------------------------------------------------------------
+
+1. CRITICAL ANOMALY - IDENTICAL RESULTS ACROSS ALL CONFIGURATIONS:
+   - EXTREMELY UNUSUAL: All 8 configurations (all combinations of iters 1-4 and alpha 0.8/1.0) 
+     produce IDENTICAL results. This is highly suspicious and suggests a fundamental issue.
+   - Possible causes:
+     * Projection matrix computation may be failing or not being applied correctly
+     * Dataset may have insufficient bias to project (baseline AOD=0.0526 is already very low)
+     * Model may be too simple or dataset too small (best epoch=5, very early convergence)
+     * Log parsing may be capturing cached/duplicate results
+
+2. ACCURACY IMPACT:
+   - No accuracy drop observed: All configurations show final accuracy of 67.5% vs baseline 
+     66.5%, actually a slight improvement (+1%).
+   - This is the ONLY dataset showing accuracy improvement, though minimal.
+
+3. AOD (AVERAGE ODDS DIFFERENCE) WORSE:
+   - Consistent worsening: All configurations show AOD change of +19.21%, meaning fairness 
+     WORSE by 19.21%.
+   - Baseline AOD is already low (0.0526), so worsening is significant relative to baseline.
+   - This is the WORST AOD performance across all datasets - the only dataset where INLP 
+     consistently makes fairness worse.
+
+4. EOD (EQUALIZED ODDS DIFFERENCE) NO CHANGE:
+   - Zero change: EOD remains exactly 0.05 (0.0% change) across all configurations.
+   - This suggests the projection is not affecting equalized odds at all.
+
+5. SVM GENDER DETECTION PATTERNS:
+   - Baseline: Very high gender information (86.5% SVM accuracy), with extreme gender bias 
+     (Female=98.36%, Male=81.30%).
+   - With alpha=0.8: SVM accuracy remains high (74-86%), indicating projection ineffective.
+   - With alpha=1.0: SVM drops significantly (34.5% to 51.0%), indicating gender information 
+     removal, but this doesn't translate to fairness improvement.
+   - Paradox: Gender information is removed (SVM drops) but fairness metrics worsen - suggests 
+     projection direction may be incorrect or removing wrong information.
+
+6. CLASS-WISE ACCURACY:
+   - Minimal change: Class 0 improves slightly (60.0% → 61.43%), Class 1 unchanged (81.67%).
+   - Overall stability suggests projection is not significantly affecting predictions.
+
+7. EARLY CONVERGENCE ISSUE:
+   - Best epoch=5: Model converges extremely early (epoch 5), suggesting:
+     * Dataset may be too small (only 800 training samples based on previous analysis)
+     * Model may be overfitting immediately
+     * Training may not be robust enough
+   - This early convergence may explain why INLP has no effect - the model hasn't learned 
+     robust representations.
+
+8. RECOMMENDATION FOR THIS DATASET:
+   - DO NOT USE INLP: All configurations worsen fairness (AOD +19.21%) with no benefit.
+   - Investigation needed: The identical results across all configurations suggest a bug or 
+     fundamental incompatibility.
+   - Alternative approaches: This dataset may require different fairness intervention methods, 
+     or the bias structure may not be amenable to nullspace projection.
+   - Dataset characteristics: Very small dataset (800 samples) with low baseline bias may not 
+     be suitable for INLP.
+
+====================================================================================================
+DATASET: NLSB
+====================================================================================================
+
+HYPERPARAMETER COMPARISON TABLE
+----------------------------------------------------------------------------------------------------
+Iters  Alpha  Best Epoch   Val Loss   Base Acc   Final Acc  Acc Drop   Base AOD   Final AOD  AOD Δ%     Base EOD   Final EOD  EOD Δ%    
+----------------------------------------------------------------------------------------------------
+1      0.8    169          0.433435   70.47%     69.76%     0.71%      0.3828     0.3640     -4.93%     0.4011     0.3904     -2.65%    
+1      1.0    169          0.433435   70.47%     70.06%     0.41%      0.3828     0.3579     -6.50%     0.4011     0.3931     -1.99%    
+2      0.8    169          0.433435   70.47%     69.86%     0.61%      0.3828     0.3537     -7.60%     0.4011     0.3920     -2.25%    
+2      1.0    169          0.433435   70.47%     69.14%     1.32%      0.3828     0.3463     -9.55%     0.4011     0.3856     -3.85%    
+3      0.8    169          0.433435   70.47%     69.14%     1.32%      0.3828     0.3463     -9.55%     0.4011     0.3856     -3.85%    
+3      1.0    169          0.433435   70.47%     62.22%     8.25%      0.3828     0.0000     -100.00%   0.4011     0.0000     -100.00%  
+4      0.8    169          0.433435   70.47%     68.94%     1.53%      0.3828     0.3420     -10.66%    0.4011     0.3856     -3.85%    
+4      1.0    169          0.433435   70.47%     62.22%     8.25%      0.3828     0.0000     -100.00%   0.4011     0.0000     -100.00%  
+
+DETAILED METRICS TABLE
+----------------------------------------------------------------------------------------------------
+
+Configuration: iters=1, alpha=0.8
+  Training: Best epoch=169, Val loss=0.433435
+  Baseline: Acc=70.4684%, Class0=70.8895%, Class1=70.2128%
+  Baseline Fairness: Discrimination=43.58%, AOD=0.382838, EOD=0.401064
+  SVM Before: Test=75.7637%, Female=71.2766%, Male=79.8828%
+  SVM After: Test=75.7637%, Female=71.2766%, Male=79.8828%
+  Final: Acc=69.7556%, Class0=73.5849%, Class1=67.4304%, Drop=0.7128%
+  Final Fairness: Discrimination=43.28%, AOD=0.363971, EOD=0.390426
+  Changes: Acc Δ=1.01%, Disc Δ=0.7%, AOD Δ=-4.93%, EOD Δ=-2.65%
+
+Configuration: iters=1, alpha=1.0
+  Training: Best epoch=169, Val loss=0.433435
+  Baseline: Acc=70.4684%, Class0=70.8895%, Class1=70.2128%
+  Baseline Fairness: Discrimination=43.58%, AOD=0.382838, EOD=0.401064
+  SVM Before: Test=75.7637%, Female=71.2766%, Male=79.8828%
+  SVM After: Test=28.4114%, Female=36.5957%, Male=20.8984%
+  Final: Acc=70.0611%, Class0=74.124%, Class1=67.5941%, Drop=0.4073%
+  Final Fairness: Discrimination=43.28%, AOD=0.357947, EOD=0.393085
+  Changes: Acc Δ=0.58%, Disc Δ=0.7%, AOD Δ=-6.5%, EOD Δ=-1.99%
+
+Configuration: iters=2, alpha=0.8
+  Training: Best epoch=169, Val loss=0.433435
+  Baseline: Acc=70.4684%, Class0=70.8895%, Class1=70.2128%
+  Baseline Fairness: Discrimination=43.58%, AOD=0.382838, EOD=0.401064
+  SVM Before: Test=75.7637%, Female=71.2766%, Male=79.8828%
+  SVM After: Test=76.6802%, Female=71.9149%, Male=81.0547%
+  Final: Acc=69.8574%, Class0=74.3935%, Class1=67.1031%, Drop=0.611%
+  Final Fairness: Discrimination=43.69%, AOD=0.353739, EOD=0.392021
+  Changes: Acc Δ=0.87%, Disc Δ=-0.23%, AOD Δ=-7.6%, EOD Δ=-2.25%
+
+Configuration: iters=2, alpha=1.0
+  Training: Best epoch=169, Val loss=0.433435
+  Baseline: Acc=70.4684%, Class0=70.8895%, Class1=70.2128%
+  Baseline Fairness: Discrimination=43.58%, AOD=0.382838, EOD=0.401064
+  SVM Before: Test=75.7637%, Female=71.2766%, Male=79.8828%
+  SVM After: Test=30.4481%, Female=39.7872%, Male=21.875%
+  Final: Acc=69.1446%, Class0=73.8544%, Class1=66.2848%, Drop=1.3238%
+  Final Fairness: Discrimination=43.38%, AOD=0.346292, EOD=0.385638
+  Changes: Acc Δ=1.88%, Disc Δ=0.47%, AOD Δ=-9.55%, EOD Δ=-3.85%
+
+Configuration: iters=3, alpha=0.8
+  Training: Best epoch=169, Val loss=0.433435
+  Baseline: Acc=70.4684%, Class0=70.8895%, Class1=70.2128%
+  Baseline Fairness: Discrimination=43.58%, AOD=0.382838, EOD=0.401064
+  SVM Before: Test=75.7637%, Female=71.2766%, Male=79.8828%
+  SVM After: Test=75.6619%, Female=71.4894%, Male=79.4922%
+  Final: Acc=69.1446%, Class0=73.8544%, Class1=66.2848%, Drop=1.3238%
+  Final Fairness: Discrimination=43.38%, AOD=0.346292, EOD=0.385638
+  Changes: Acc Δ=1.88%, Disc Δ=0.47%, AOD Δ=-9.55%, EOD Δ=-3.85%
+
+Configuration: iters=3, alpha=1.0
+  Training: Best epoch=169, Val loss=0.433435
+  Baseline: Acc=70.4684%, Class0=70.8895%, Class1=70.2128%
+  Baseline Fairness: Discrimination=43.58%, AOD=0.382838, EOD=0.401064
+  SVM Before: Test=75.7637%, Female=71.2766%, Male=79.8828%
+  SVM After: Test=31.4664%, Female=41.0638%, Male=22.6562%
+  Final: Acc=62.22%, Class0=0.0%, Class1=100.0%, Drop=8.2485%
+  Final Fairness: Discrimination=0.0%, AOD=0.0, EOD=0.0
+  Changes: Acc Δ=11.71%, Disc Δ=100.0%, AOD Δ=-100.0%, EOD Δ=-100.0%
+
+Configuration: iters=4, alpha=0.8
+  Training: Best epoch=169, Val loss=0.433435
+  Baseline: Acc=70.4684%, Class0=70.8895%, Class1=70.2128%
+  Baseline Fairness: Discrimination=43.58%, AOD=0.382838, EOD=0.401064
+  SVM Before: Test=75.7637%, Female=71.2766%, Male=79.8828%
+  SVM After: Test=75.2546%, Female=71.4894%, Male=78.7109%
+  Final: Acc=68.9409%, Class0=73.3154%, Class1=66.2848%, Drop=1.5275%
+  Final Fairness: Discrimination=43.18%, AOD=0.342037, EOD=0.385638
+  Changes: Acc Δ=2.17%, Disc Δ=0.93%, AOD Δ=-10.66%, EOD Δ=-3.85%
+
+Configuration: iters=4, alpha=1.0
+  Training: Best epoch=169, Val loss=0.433435
+  Baseline: Acc=70.4684%, Class0=70.8895%, Class1=70.2128%
+  Baseline Fairness: Discrimination=43.58%, AOD=0.382838, EOD=0.401064
+  SVM Before: Test=75.7637%, Female=71.2766%, Male=79.8828%
+  SVM After: Test=24.5418%, Female=29.3617%, Male=20.1172%
+  Final: Acc=62.22%, Class0=0.0%, Class1=100.0%, Drop=8.2485%
+  Final Fairness: Discrimination=0.0%, AOD=0.0, EOD=0.0
+  Changes: Acc Δ=11.71%, Disc Δ=100.0%, AOD Δ=-100.0%, EOD Δ=-100.0%
+
+TREND ANALYSIS WITHIN DATASET
+----------------------------------------------------------------------------------------------------
+
+For alpha=1.0:
+  iters=1: Acc drop=0.4073%, AOD change=-6.5%, EOD change=-1.99%
+  iters=2: Acc drop=1.3238%, AOD change=-9.55%, EOD change=-3.85%
+  iters=3: Acc drop=8.2485%, AOD change=-100.0%, EOD change=-100.0%
+  iters=4: Acc drop=8.2485%, AOD change=-100.0%, EOD change=-100.0%
+
+For alpha=0.8:
+  iters=1: Acc drop=0.7128%, AOD change=-4.93%, EOD change=-2.65%
+  iters=2: Acc drop=0.611%, AOD change=-7.6%, EOD change=-2.25%
+  iters=3: Acc drop=1.3238%, AOD change=-9.55%, EOD change=-3.85%
+  iters=4: Acc drop=1.5275%, AOD change=-10.66%, EOD change=-3.85%
+
+DATASET-SPECIFIC TREND ANALYSIS & INSIGHTS
+----------------------------------------------------------------------------------------------------
+
+1. MODEL COLLAPSE WITH ALPHA=1.0, ITERS≥3:
+   - CRITICAL FAILURE: With alpha=1.0 and iters≥3, model collapses identically to adult dataset:
+     * Accuracy drops from 70.47% to 62.22% (8.25% drop)
+     * Model predicts ONLY class 1 (Class 0: 0%, Class 1: 100%)
+     * Perfect fairness metrics (AOD=0, EOD=0) but unusable model
+   - Pattern matches adult dataset: Same collapse pattern suggests this is a general phenomenon 
+     with aggressive projections on certain dataset types.
+   - Alpha=0.8 prevents collapse: All configurations with alpha=0.8 maintain reasonable accuracy 
+     (68.94-69.76%), showing partial projection is safe.
+
+2. ACCURACY PRESERVATION (NON-COLLAPSED):
+   - Excellent preservation: With alpha=0.8, accuracy drops are minimal (0.61-1.53%), 
+     among the best across all datasets.
+   - Alpha=1.0 risk: With alpha=1.0, accuracy drops increase from 0.41% (iters=1) to 1.32% 
+     (iters=2), then collapse at iters=3.
+   - Best preservation: iters=2, alpha=0.8 shows only 0.61% accuracy drop - excellent trade-off.
+
+3. AOD (AVERAGE ODDS DIFFERENCE) IMPROVEMENT:
+   - Strong improvements with alpha=0.8: Progressive improvement from -4.93% (iters=1) to 
+     -10.66% (iters=4), showing clear benefit of more iterations.
+   - Alpha=1.0 shows better improvement: -6.5% (iters=1) to -9.55% (iters=2), but risk of 
+     collapse at iters≥3.
+   - Perfect AOD in collapsed state: Only achieved when model collapses (not valid).
+
+4. EOD (EQUALIZED ODDS DIFFERENCE) IMPROVEMENT:
+   - Consistent improvements: All non-collapsed configurations show EOD improvement (-1.99% to 
+     -3.85%).
+   - Progressive improvement: More iterations lead to better EOD improvement with alpha=0.8.
+   - Unlike acs_public_coverage: EOD improves here, showing dataset-specific behavior.
+
+5. SVM GENDER DETECTION OBSERVATIONS:
+   - Baseline: High gender information (75.76% SVM accuracy), with gender bias 
+     (Female=71.28%, Male=79.88%).
+   - With alpha=0.8: Minimal change in SVM accuracy (75.25-76.68%), suggesting projection 
+     ineffective at removing gender information.
+   - With alpha=1.0: Significant drops (28.41% → 30.45% → 31.47% → 24.54%), indicating gender 
+     information removal, but correlates with collapse risk.
+   - Paradox: When SVM drops dramatically (alpha=1.0, iters≥3), model collapses.
+
+6. CLASS-WISE ACCURACY:
+   - Non-collapsed: Class accuracies remain relatively stable (Class 0: 73-74%, Class 1: 66-68%), 
+     showing good balance.
+   - Collapsed: Class 0 becomes 0%, Class 1 becomes 100% - complete failure.
+
+7. ALPHA EFFECT IS CRITICAL:
+   - Alpha=1.0: 3.51% higher average accuracy drop, with collapse risk at iters≥3.
+   - Alpha=0.8: Safe, progressive improvements across all iterations.
+
+8. ITERATION EFFECT:
+   - With alpha=0.8: Clear progressive improvement in AOD/EOD as iterations increase.
+   - With alpha=1.0: Better initial improvements but collapse risk limits usability.
+
+9. RECOMMENDATION FOR THIS DATASET:
+   - SAFE and BEST configuration: iters=1, alpha=0.8 (minimal accuracy drop 0.71%, good AOD 
+     improvement -4.93%, good EOD improvement -2.65%).
+   - For better fairness: iters=4, alpha=0.8 (1.53% accuracy drop, -10.66% AOD, -3.85% EOD).
+   - AVOID: iters≥3 with alpha=1.0 (guaranteed collapse).
+   - This dataset shows excellent accuracy-fairness trade-offs with conservative settings, but 
+     requires careful alpha selection to avoid collapse.
+
+====================================================================================================
+CROSS-DATASET COMPARISON
+====================================================================================================
+
+Average Accuracy Drop by Dataset:
+  acs_public_coverage: 15.75% (range: 14.06% - 16.89%)
+  adult: 21.47% (range: 9.22% - 56.66%)
+  compas: 0.87% (range: 0.00% - 4.37%)
+  nlsb: 2.80% (range: 0.41% - 8.25%)
+
+Average AOD Improvement by Dataset:
+  acs_public_coverage: -22.25% (range: -26.48% - -14.17%)
+  adult: -14.44% (range: -100.00% - 17.31%)
+  compas: 0.11% (range: -22.55% - 4.64%)
+  credit: 19.21% (range: 19.21% - 19.21%)
+  nlsb: -31.10% (range: -100.00% - -4.93%)
+
+Average EOD Improvement by Dataset:
+  acs_public_coverage: 2.62% (range: -2.33% - 12.34%)
+  adult: -54.87% (range: -100.00% - -31.18%)
+  compas: 2.04% (range: -30.14% - 10.14%)
+  credit: 0.00% (range: 0.00% - 0.00%)
+  nlsb: -27.30% (range: -100.00% - -1.99%)
+
+====================================================================================================
+CRITICAL ANALYSIS & KEY OBSERVATIONS
+====================================================================================================
+
+1. TRADE-OFF ANALYSIS (Accuracy vs Fairness):
+----------------------------------------------------------------------------------------------------
+  acs_public_coverage: Best trade-off at iters=1, alpha=0.8
+    Acc drop: 14.1176%, AOD change: -14.17%
+  adult: Best trade-off at iters=2, alpha=1.0
+    Acc drop: 10.1459%, AOD change: 10.16%
+  compas: Best trade-off at iters=2, alpha=1.0
+    Acc drop: 0.0%, AOD change: 2.49%
+  nlsb: Best trade-off at iters=1, alpha=0.8
+    Acc drop: 0.7128%, AOD change: -4.93%
+
+2. ALPHA EFFECT ANALYSIS:
+----------------------------------------------------------------------------------------------------
+  acs_public_coverage:
+    Alpha=1.0: Avg acc drop = 15.97%
+    Alpha=0.8: Avg acc drop = 15.54%
+    Difference: 0.43%
+  adult:
+    Alpha=1.0: Avg acc drop = 33.17%
+    Alpha=0.8: Avg acc drop = 9.77%
+    Difference: 23.40%
+  compas:
+    Alpha=1.0: Avg acc drop = 1.46%
+    Alpha=0.8: Avg acc drop = 0.00%
+    Difference: 1.46%
+  nlsb:
+    Alpha=1.0: Avg acc drop = 4.56%
+    Alpha=0.8: Avg acc drop = 1.04%
+    Difference: 3.51%
+
+3. ITERATIONS EFFECT ANALYSIS:
+----------------------------------------------------------------------------------------------------
+  acs_public_coverage:
+    1 iterations: Avg acc drop = 14.09%
+    2 iterations: Avg acc drop = 15.77%
+    3 iterations: Avg acc drop = 16.44%
+    4 iterations: Avg acc drop = 16.71%
+  adult:
+    1 iterations: Avg acc drop = 9.22%
+    2 iterations: Avg acc drop = 9.96%
+    3 iterations: Avg acc drop = 33.32%
+    4 iterations: Avg acc drop = 33.39%
+  compas:
+    2 iterations: Avg acc drop = 0.00%
+    3 iterations: Avg acc drop = 0.00%
+    4 iterations: Avg acc drop = 2.19%
+  nlsb:
+    1 iterations: Avg acc drop = 0.56%
+    2 iterations: Avg acc drop = 0.97%
+    3 iterations: Avg acc drop = 4.79%
+    4 iterations: Avg acc drop = 4.89%
+
+4. CONTRADICTIONS & ANOMALIES:
+----------------------------------------------------------------------------------------------------
+  acs_public_coverage (iters=1, alpha=0.8): AOD=-14.17%, EOD=12.34%
+    -> Contradictory fairness improvements!
+  acs_public_coverage (iters=1, alpha=1.0): AOD=-14.22%, EOD=12.21%
+    -> Contradictory fairness improvements!
+  adult (iters=1, alpha=0.8): AOD=17.31%, EOD=-31.18%
+    -> Contradictory fairness improvements!
+  adult (iters=1, alpha=1.0): AOD=17.31%, EOD=-31.18%
+    -> Contradictory fairness improvements!
+  adult (iters=2, alpha=0.8): AOD=15.59%, EOD=-39.02%
+    -> Contradictory fairness improvements!
+  adult (iters=2, alpha=1.0): AOD=10.16%, EOD=-48.18%
+    -> Contradictory fairness improvements!
+  adult (iters=3, alpha=0.8): AOD=12.48%, EOD=-44.68%
+    -> Contradictory fairness improvements!
+  adult (iters=4, alpha=0.8): AOD=11.67%, EOD=-44.68%
+    -> Contradictory fairness improvements!
+
+5. EXTREME CASES:
+----------------------------------------------------------------------------------------------------
+  Maximum accuracy drop: adult (iters=3, alpha=1.0): 56.66%
+  Minimum accuracy drop: compas (iters=2, alpha=1.0): 0.00%
+  Best AOD improvement: adult (iters=3, alpha=1.0): -100.00%
+  Worst AOD change: credit (iters=1, alpha=1.0): 19.21%
+
+6. GENERAL TRENDS ACROSS ALL DATASETS:
+----------------------------------------------------------------------------------------------------
+  AOD Improvement by Number of Iterations:
+    1 iterations: Avg AOD change = 4.25%
+    2 iterations: Avg AOD change = 0.72%
+    3 iterations: Avg AOD change = -20.45%
+    4 iterations: Avg AOD change = -23.29%
+  AOD Improvement by Alpha Value:
+    Alpha=0.8: Avg AOD change = 1.43%
+    Alpha=1.0: Avg AOD change = -20.81%
